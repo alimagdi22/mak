@@ -1,0 +1,12 @@
+<header class="d-flex justify-content-between mx-4">
+  <p class="titles">
+    {{ sharedService.selectedFlightItinerary.allJourney.flights[0].flightDTO[0].departureTerminalAirport.cityName }} -
+    {{
+      sharedService.selectedFlightItinerary.allJourney.flights[0].flightDTO[
+        sharedService.selectedFlightItinerary.allJourney.flights[0].flightDTO.length - 1
+      ].arrivalTerminalAirport.cityName
+    }}
+  </p>
+
+  <img src="assets/icons/exit-black.svg" title="Exit Icon" class="exit" (click)="onClickExit()" width="40" />
+</header>

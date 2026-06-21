@@ -1,0 +1,170 @@
+@import 'colors';
+
+a {
+  text-decoration: none;
+}
+.footer {
+  background-color: map-get($map: $blue, $key: 'one');
+  color: #fff;
+  padding: 2rem 1rem;
+  font-size: 0.9rem;
+
+  .logo {
+    width: 150px;
+
+    object-fit: contain;
+  }
+
+  .footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .footer-links {
+    .column {
+      a {
+        color: #fff;
+        text-decoration: none;
+        transition: all 0.2s;
+
+        &:hover {
+          color: map-get($map: $green, $key: 'one');
+        }
+      }
+    }
+  }
+
+  .footer-contact {
+    .footer-certificates {
+      align-self: flex-end;
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+
+      img {
+        height: 40px;
+        object-fit: contain;
+      }
+
+      @media (max-width: 768px) {
+        gap: 0.5rem;
+      }
+    }
+  }
+
+  .footer-bottom {
+    text-align: center;
+    border-top: 1px solid #444;
+    margin-top: 2rem;
+    padding-top: 1rem;
+
+    .brand-green {
+      color: map-get($map: $green, $key: 'one');
+    }
+  }
+}
+
+.footer-desktop {
+  background-color: map-get($map: $blue, $key: 'one');
+  color: #fff;
+  padding: 2rem 8rem;
+  font-size: 0.9rem;
+
+  .head {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1rem; // optional for spacing between columns
+
+    .logo-section {
+      grid-column: 1 / 4;
+    }
+
+    .logo-text {
+      max-width: 328px;
+      font-family: Poppins;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.6;
+      letter-spacing: 0;
+      margin-top: 30px;
+    }
+
+    .data {
+      grid-column: 4 / 7;
+
+      .links {
+        ul {
+          display: flex;
+          flex-direction: column;
+          list-style: none;
+          gap: 20px;
+
+          a {
+            text-decoration: none;
+            color: white;
+            font-family: Poppins;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 100%;
+            letter-spacing: 0%;
+          }
+        }
+      }
+    }
+
+    .privacy {
+      grid-column: 7 / 9;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      a {
+        text-decoration: none;
+        color: white;
+      }
+    }
+
+    .contact {
+      grid-column: 9 / 12;
+
+      ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+  }
+  .foot {
+    border-top: 1px solid white;
+  }
+  .footer-bottom {
+    text-align: start;
+    margin-top: 0.3rem;
+
+    .brand-green {
+      color: map-get($map: $green, $key: 'one');
+    }
+  }
+}
+
+.force-ltr {
+  direction: ltr;
+  unicode-bidi: bidi-override;
+}
+
+@media (max-width: $web-view-break-point) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-contact {
+    align-items: center;
+  }
+}

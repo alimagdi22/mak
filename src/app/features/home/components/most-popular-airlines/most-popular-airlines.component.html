@@ -1,0 +1,11 @@
+<h4 class="fw-bold mx-3 mt-5 text-center">{{ 'home.popularAirlines' | translate }}</h4>
+
+<swiper-container #swiperEl class="mt-4" [class.mb-5]="sharedService.screenWidth >= sharedService.webViewBreakPoint" autoplay='{"delay": 2500, "disableOnInteraction": false, "centeredSlides": true}'>
+  @for (airline of popularAirlines; track airline) {
+    <swiper-slide class="d-flex justify-content-center">
+      <div class="airline-wrapper">
+        <img [src]="airline" />
+      </div>
+    </swiper-slide>
+  }
+</swiper-container>

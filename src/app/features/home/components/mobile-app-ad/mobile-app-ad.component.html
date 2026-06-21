@@ -1,0 +1,47 @@
+<div class="d-flex justify-content-center">
+  <div class="ad row rounded-4 justify-content-center center">
+    <div class="ad__img position-relative col-12 col-lg-6">
+      <img src="assets/images/wallpaper.jpg" title="Bannar Image" />
+      <img class="position-absolute" src="assets/images/Mobile.jpg" />
+    </div>
+
+    <div class="ad__info col-10 col-lg-6">
+      <p class="ad__info__title">{{ 'home.adContent.title' | translate }}</p>
+
+      <div class="ad__info__paragraphs">
+        <div class="ad__info__paragraphs__container" *ngFor="let feature of 'home.adContent.features' | translate">
+          <img
+            src="assets/icons/home-icons/check-icon.svg"
+            title="Check Icon"
+            class="ad__info__paragraphs__container__icon"
+          />
+          <p class="ad__info__paragraphs__container__text">{{ feature }}</p>
+        </div>
+      </div>
+
+      <div class="ad__info__apps">
+        <p class="ad__info__apps__title">{{ 'home.adContent.scanToDownload' | translate }}</p>
+        <div class="ad__info__apps__icons">
+          <img src="assets/icons/home-icons/qr-code.png" title="QR Code" class="ad__info__apps__icons__qr" />
+          <div class="ad__info__apps__icons__stores">
+            <button class="btn" (click)="openStore('android')">
+              <img
+                src="assets/icons/home-icons/google-play-button.svg"
+                title="Google Play"
+                class="ad__info__apps__icons__qr"
+              />
+            </button>
+
+            <button class="btn" (click)="openStore('ios')">
+              <img src="assets/icons/home-icons/app-store-button.svg" title="App Store" class="ad__info__apps__qr" />
+            </button>
+            <!-- 
+                    <button class="btn">
+                        <img src="assets/icons/home-icons/app-gallery-button.svg" title="App Gallery" class="ad__info__apps__qr" />
+                    </button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

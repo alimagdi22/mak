@@ -1,0 +1,93 @@
+@import 'variables';
+@import 'colors';
+
+.wrapper {
+  align-items: center;
+  padding: 25px;
+}
+
+.flight-path {
+  display: flex;
+  align-items: center;
+}
+
+.path-left,
+.path-right {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: center;
+
+  .circle {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: map-get($green, 'one');
+  }
+
+  .path-time {
+    font-weight: bold;
+  }
+
+  .city-code {
+    font-weight: bold;
+  }
+}
+
+.path-left {
+  align-items: flex-end;
+}
+
+.dashed-line {
+  flex-grow: 1;
+  height: 0;
+  border-top: 1px dashed map-get($blue, 'one');
+}
+
+.path-info {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: 400;
+
+  .duration {
+    padding: 4px 8px;
+    background-color: #f5faf1;
+    border-radius: 10px;
+    color: #1f8f0a;
+  }
+
+  .direct-code {
+    position: absolute;
+    top: 30px;
+    color: map-get($blue, 'one');
+  }
+}
+
+.airline {
+  display: flex;
+  gap: 20px;
+
+  .airline-logo {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+    border: 1px solid map-get($blue, 'one');
+    border-radius: 5px;
+  }
+
+  .airline-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .airline-name {
+      font-weight: bold;
+    }
+
+    .airline-ref {
+      font-size: 12px;
+    }
+  }
+}

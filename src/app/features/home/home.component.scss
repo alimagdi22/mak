@@ -1,0 +1,82 @@
+@import 'variables';
+@import 'colors';
+
+::ng-deep header {
+  position: fixed;
+  @media (max-width: $web-view-break-point) {
+    position: relative;
+  }
+}
+.banner {
+  position: relative;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 100%;
+  background-color: map-get($map: $blue, $key: 'one');
+  color: white;
+  text-align: center;
+  padding-bottom: 80px;
+  margin-bottom: 20px;
+  margin-top: -1px;
+
+  @media (min-width: $web-view-break-point) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-image: url('../../../../public/assets/images/wallpaper.jpg');
+    background-position: 0 20%;
+    background-size: cover;
+
+    height: 80vh;
+    z-index: 1;
+    overflow: hidden;
+
+    span {
+      // font-family: Open Sans;
+      font-family: Poppins;
+      font-weight: 800;
+      font-size: 3vw;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 70vh; // or 100% if you want it to cover the whole banner
+      background: linear-gradient(
+        180deg,
+        #043263 0%,
+        rgba(4, 50, 99, 0.94) 11.93%,
+        rgba(4, 50, 99, 0.9) 27.4%,
+        rgba(4, 50, 99, 0.3) 49.79%,
+        rgba(4, 50, 99, 0.192135) 69.06%,
+        rgba(4, 50, 99, 0.1) 90.42%,
+        rgba(4, 50, 99, 0.1) 100%
+      );
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    > * {
+      position: relative;
+      z-index: 3;
+    }
+  }
+}
+
+::ng-deep .drop-down {
+  color: white !important;
+}
+
+.search-box {
+  @media (min-width: $web-view-break-point) {
+    app-flights-search-box {
+      width: 100%;
+    }
+  }
+
+  margin-top: -100px;
+}

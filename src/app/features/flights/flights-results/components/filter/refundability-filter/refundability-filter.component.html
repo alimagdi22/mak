@@ -1,0 +1,6 @@
+<ng-container [formGroup]="flightResultService.filterForm">
+  <ng-container formGroupName="flexibleTickets">
+    <mat-checkbox color="primary" formControlName="refund">{{ 'Refundable' | translate }}</mat-checkbox>
+    <mat-checkbox color="primary" formControlName="nonRefund">{{ 'NonRefundable' | translate }}</mat-checkbox>
+  </ng-container>
+</ng-container>

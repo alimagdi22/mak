@@ -1,0 +1,285 @@
+@if (isLoading || flightCheckoutService.loader) {
+  <div class="loader-container">
+    <mat-spinner diameter="50" strokeWidth="5"></mat-spinner>
+  </div>
+} @else {
+  @if (sharedService.screenWidth < sharedService.webViewBreakPoint) {
+    <div class="border rounded bg-white p-3 mt-3">
+      <div class="bg-white w-100 d-flex flex-column gap-1">
+        <p class="ticket-head mt-2">{{ 'checkout.brandedFares.ticketSelection' | translate }}</p>
+        <div class="ticket-section" (click)="selectTicket('standard')">
+          <div class="ticket-input-group d-flex align-items-center gap-2">
+            <label class="ticket-checkbox">
+              <input type="checkbox" [checked]="ticketType === 'standard'" (click)="$event.preventDefault()" readonly />
+              <span class="ticket-checkmark"></span>
+            </label>
+            <div class="d-flex flex-column">
+              @if (flightCheckoutService.selectedFlight?.airItineraryDTO?.cabinClass === 'Economy') {
+                <span class="ticket-type">{{ 'checkout.brandedFares.economy' | translate }}</span>
+              } @else if (flightCheckoutService.selectedFlight?.airItineraryDTO?.cabinClass === 'Business') {
+                <span class="ticket-type">{{ 'checkout.brandedFares.business' | translate }}</span>
+              }
+              @if (flightCheckoutService.selectedFlight?.airItineraryDTO?.isRefundable === true) {
+                <span class="refund">{{ 'flight-result.refund' | translate }}</span>
+              } @else {
+                <span class="non-refund">{{ 'flight-result.nonRefund' | translate }}</span>
+              }
+            </div>
+          </div>
+          <span class="ticket-amount fw-bold" [ngClass]="{ 'ticket-amount-rtl': currentLang === 'ar' }">
+            {{ flightCheckoutService.selectedFlight?.airItineraryDTO?.itinTotalFare?.currencyCode | exchange: 'code' }}
+            {{ flightCheckoutService.selectedFlight?.airItineraryDTO?.itinTotalFare?.amount | exchange: 'value' }}
+          </span>
+          <mat-expansion-panel [expanded]="ticketType === 'standard'">
+            <hr />
+            <ul>
+              <li [ngClass]="currentLang === 'en' ? 'flex-row-en' : 'flex-row-ar'">
+                <span class="icon-green">
+                  <i class="bi bi-check"></i>
+                </span>
+                <span class="item-text">{{ 'checkout.brandedFares.Rules.Standard' | translate }}</span>
+              </li>
+            </ul>
+          </mat-expansion-panel>
+        </div>
+        @if (flightResultService.isBrandedFaresLoading) {
+          <div class="fare-card skeleton">
+            <div class="fare-top">
+              <div class="fare-left">
+                <div class="badge skeleton-circle"></div>
+                <div class="fare-title">
+                  <div class="skeleton-line title-line"></div>
+                  <div class="skeleton-line small-line"></div>
+                </div>
+              </div>
+
+              <div class="fare-price">
+                <div class="skeleton-line price-line"></div>
+              </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="fare-note">
+              <div class="note-icon skeleton-circle small"></div>
+              <div class="note-text">
+                <div class="skeleton-line note-line short"></div>
+                <div class="skeleton-line note-line long"></div>
+              </div>
+            </div>
+          </div>
+        } @else {
+          @if (brandedFare.amount) {
+            <div class="ticket-section" (click)="selectTicket('branded')">
+              <div class="ticket-input-group d-flex align-items-center gap-2">
+                <label class="ticket-checkbox">
+                  <input
+                    type="checkbox"
+                    [checked]="ticketType === 'branded'"
+                    (click)="$event.preventDefault()"
+                    readonly
+                  />
+                  <span class="ticket-checkmark"></span>
+                </label>
+                <div class="d-flex flex-column">
+                  @if (selectedBrand.cabinClasse === 'Economy') {
+                    <span class="ticket-type">{{ 'checkout.brandedFares.economyFlexible' | translate }}</span>
+                  } @else if (selectedBrand.cabinClasse === 'Business') {
+                    <span class="ticket-type">{{ 'checkout.brandedFares.businessFlexible' | translate }}</span>
+                  }
+                  @if (selectedBrand.isRefundable === true) {
+                    <span class="refund">{{ 'flight-result.refund' | translate }}</span>
+                  } @else {
+                    <span class="non-refund">{{ 'flight-result.nonRefund' | translate }}</span>
+                  }
+                </div>
+              </div>
+              <span class="ticket-amount fw-bold" [ngClass]="{ 'ticket-amount-rtl': currentLang === 'ar' }">
+                {{ brandedFare.currencyCode | exchange: 'code' }} {{ brandedFare.amount | exchange: 'value' }}
+              </span>
+
+              <mat-expansion-panel [expanded]="ticketType === 'branded'">
+                <hr />
+                <ul>
+                  <li [ngClass]="currentLang === 'en' ? 'flex-row-en' : 'flex-row-ar'">
+                    @if (buttonService) {
+                      @if (translateService.currentLang === 'en') {
+                        <span class="item-text" innerHtml="{{ buttonService.serviceDescription }}"></span>
+                      } @else if (translateService.currentLang === 'ar') {
+                        <span class="item-text" innerHtml="{{ buttonService.serviceDescriptionAr }}"></span>
+                      }
+                    }
+                  </li>
+                  <!-- <li [ngClass]="currentLang === 'en' ? 'flex-row-en' : 'flex-row-ar'">
+                    <span class="icon-green">
+                      <i class="bi bi-check"></i>
+                    </span>
+                    <span class="item-text">{{ 'checkout.brandedFares.Rules.Flexible.rule2' | translate }}</span>
+                  </li>
+                  <li [ngClass]="currentLang === 'en' ? 'flex-row-en' : 'flex-row-ar'">
+                    <span class="icon-green">
+                      <i class="bi bi-check"></i>
+                    </span>
+                    <span class="item-text">{{ 'checkout.brandedFares.Rules.Flexible.rule3' | translate }}</span>
+                  </li> -->
+                </ul>
+              </mat-expansion-panel>
+            </div>
+          }
+        }
+      </div>
+    </div>
+
+    <div class="mobile-btn p-4 bg-white text-center mt-3 sticky-mobile">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <div class="d-flex flex-column text-start">
+          <!-- Ticket Type -->
+          <span class="ticket-type fw-bold">
+            @if (ticketType === 'standard') {
+              @if (flightCheckoutService.selectedFlight?.airItineraryDTO?.cabinClass === 'Economy') {
+                {{ 'checkout.brandedFares.economy' | translate }}
+              } @else {
+                {{ 'checkout.brandedFares.business' | translate }}
+              }
+            } @else if (ticketType === 'branded') {
+              @if (selectedBrand?.cabinClasse === 'Economy') {
+                {{ 'checkout.brandedFares.economyFlexible' | translate }}
+              } @else {
+                {{ 'checkout.brandedFares.businessFlexible' | translate }}
+              }
+            }
+          </span>
+
+          <!-- Refundability -->
+          <span
+            class="refund"
+            *ngIf="ticketType === 'standard' && flightCheckoutService.selectedFlight?.airItineraryDTO?.isRefundable"
+          >
+            {{ 'flight-result.refund' | translate }}
+          </span>
+          <span
+            class="non-refund"
+            *ngIf="ticketType === 'standard' && !flightCheckoutService.selectedFlight?.airItineraryDTO?.isRefundable"
+          >
+            {{ 'flight-result.nonRefund' | translate }}
+          </span>
+
+          <span class="refund" *ngIf="ticketType === 'branded' && selectedBrand?.isRefundable">
+            {{ 'flight-result.refund' | translate }}
+          </span>
+          <span class="non-refund" *ngIf="ticketType === 'branded' && !selectedBrand?.isRefundable">
+            {{ 'flight-result.nonRefund' | translate }}
+          </span>
+        </div>
+
+        <!-- Amount -->
+        <div class="ticket-amount fw-bold">
+          @if (ticketType === 'standard') {
+            {{ flightCheckoutService.selectedFlight?.airItineraryDTO?.itinTotalFare?.currencyCode | exchange: 'code' }}
+            {{ flightCheckoutService.selectedFlight?.airItineraryDTO?.itinTotalFare?.amount | exchange: 'value' }}
+          }
+
+          @if (ticketType === 'branded') {
+            {{ brandedFare.currencyCode | exchange: 'code' }}
+            {{ brandedFare.amount | exchange: 'value' }}
+          }
+        </div>
+      </div>
+
+      <button class="ticket-button btn py-2 fw-bold w-100" (click)="bookTicket()" [disabled]="!ticketType">
+        {{ 'checkout.brandedFares.book' | translate }}
+      </button>
+    </div>
+  } @else {
+    <div class="section">
+      <div class="d-flex justify-content-center">
+        <!-- Standard Ticket -->
+        <div class="ticket-sec d-flex align-items-center mb-3">
+          <div class="data d-flex flex-column justify-content-center align-content-center mt-3">
+            <div class="d-flex flex-column gap-2">
+              @if (flightCheckoutService.selectedFlight?.airItineraryDTO?.cabinClass === 'Economy') {
+                <div class="ticket-title">{{ 'checkout.brandedFares.economy' | translate }}</div>
+              } @else if (flightCheckoutService.selectedFlight?.airItineraryDTO?.cabinClass === 'Business') {
+                <div class="ticket-title">{{ 'checkout.brandedFares.business' | translate }}</div>
+              }
+              @if (flightCheckoutService.selectedFlight?.airItineraryDTO?.isRefundable === true) {
+                <span class="refund">{{ 'flight-result.refund' | translate }}</span>
+              } @else {
+                <span class="non-refund">{{ 'flight-result.nonRefund' | translate }}</span>
+              }
+            </div>
+            <div class="price">
+              {{
+                flightCheckoutService.selectedFlight?.airItineraryDTO?.itinTotalFare?.currencyCode | exchange: 'code'
+              }}
+              {{ flightCheckoutService.selectedFlight?.airItineraryDTO?.itinTotalFare?.amount | exchange: 'value' }}
+            </div>
+          </div>
+          <button
+            class="btn standard-btn mt-4"
+            (click)="handleDesktopSelection('standard', $event)"
+            [disabled]="isNavigating"
+            [ngClass]="{ 'no-branded': !brandedFare.amount }"
+          >
+            <span *ngIf="!isNavigating">{{ 'checkout.brandedFares.select' | translate }}</span>
+            <span *ngIf="isNavigating" class="spinner-border spinner-border-sm"></span>
+          </button>
+        </div>
+        @if (flightResultService.isBrandedFaresLoading) {
+          <div class="price-skeleton" aria-hidden="true">
+            <div class="price-skeleton__inner container">
+              <!-- right text area -->
+              <div class="price-skeleton__right">
+                <div class="skeleton title-small" style="width: 120px; height: 28px; margin-bottom: 8px"></div>
+                <div class="skeleton subtitle-link" style="width: 110px; height: 22px; margin-bottom: 18px"></div>
+                <div class="skeleton price-large"></div>
+              </div>
+              <!-- left big rounded box -->
+              <div class="price-skeleton__left">
+                <div class="skeleton choose-box"></div>
+              </div>
+            </div>
+          </div>
+        } @else {
+          @if (brandedFare.amount) {
+            <!-- Flexible Ticket -->
+            <div class="ticket-card d-flex">
+              <div class="data">
+                <div class="d-flex flex-column gap-2">
+                  <div class="ticket-title">
+                    @if (selectedBrand.cabinClasse === 'Economy') {
+                      {{ 'checkout.brandedFares.economyFlexible' | translate }}
+                    } @else if (selectedBrand.cabinClasse === 'Business') {
+                      {{ 'checkout.brandedFares.businessFlexible' | translate }}
+                    }
+                    <i class="bi bi-info-circle-fill info-icon" (click)="openInfoModal()"></i>
+                  </div>
+                  @if (selectedBrand.isRefundable === true) {
+                    <span class="refund">{{ 'flight-result.refund' | translate }}</span>
+                  } @else {
+                    <span class="non-refund">{{ 'flight-result.nonRefund' | translate }}</span>
+                  }
+                </div>
+                <app-branded-fare-info-modal
+                  #infoModal
+                  [offlineServices]="offlineServices"
+                ></app-branded-fare-info-modal>
+                <div class="price">
+                  {{ brandedFare.currencyCode | exchange: 'code' }} {{ brandedFare.amount | exchange: 'value' }}
+                </div>
+              </div>
+              <button
+                class="btn btn-green mt-3"
+                (click)="handleDesktopSelection('branded', $event)"
+                [disabled]="isNavigating"
+              >
+                <span *ngIf="!isNavigating">{{ 'checkout.brandedFares.select' | translate }}</span>
+                <span *ngIf="isNavigating" class="spinner-border spinner-border-sm"></span>
+              </button>
+            </div>
+          }
+        }
+      </div>
+    </div>
+  }
+}

@@ -1,0 +1,16 @@
+<article>
+  <img src="assets/icons/userPage/warning-icon.svg" title="Warning Icon" width="50" />
+
+  <div>
+    <p class="title">Sign Out</p>
+    <p>Are you sure you want to sign out of your account?</p>
+  </div>
+
+  <div class="actions">
+    <button mat-stroked-button (click)="onClickSignOut()">Sign Out</button>
+
+    <button mat-flat-button color="primary" (click)="onClickCancel()">Cancel</button>
+  </div>
+</article>
+
+<div class="background" (click)="onClickCancel()"></div>

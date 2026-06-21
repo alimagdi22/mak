@@ -1,0 +1,153 @@
+@import 'utilities';
+@import 'colors';
+
+.about-banner {
+  background-image: url('../../../../../../public/assets/images/wallpaper.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+
+  h1 {
+    color: #fff;
+    font-size: clamp(2rem, 5vw, 3rem); /* Responsive font size */
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.form-section {
+  flex: 2;
+  background: white;
+  padding: 20px;
+  border-radius: 10px 0 0 10px;
+  box-sizing: border-box;
+
+  &.ar {
+    border-radius: 0 10px 10px 0;
+  }
+}
+
+.info-section {
+  direction: ltr;
+  flex: 1;
+  background-color: map-get($map: $blue, $key: 'one');
+  color: white;
+  padding: 20px;
+  border-radius: 0 10px 10px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  height: 570px;
+
+  &.ar {
+    border-radius: 10px 0 0 10px;
+  }
+
+  a {
+    text-decoration: none;
+
+    img {
+      width: 30px;
+      height: 30px;
+      object-fit: contain;
+    }
+  }
+}
+
+h2 {
+  color: map-get($blue, 'one');
+  margin-bottom: 45px;
+}
+
+.info-section h2 {
+  color: white;
+}
+
+.form-section form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+label {
+  color: #a9a9a9;
+}
+
+.row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  input {
+    width: 100%;
+  }
+}
+
+.input-group.full {
+  width: 100%;
+}
+
+input,
+textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+textarea {
+  height: 140px;
+}
+
+button {
+  margin-top: 20px;
+  align-self: center;
+
+  @include custom-button(
+    $width: 220px,
+    $height: 64px,
+    $background: map-get($green, 'one'),
+    $color: white,
+    $border-radius: 10px,
+    $font-weight: bold
+  );
+}
+
+.map {
+  width: 100%;
+  height: 200px;
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .contact-container {
+    flex-direction: column;
+  }
+
+  .form-section {
+    border-radius: 10px 10px 0 0;
+
+    &.ar {
+      border-radius: 10px 10px 0 0;
+    }
+  }
+
+  .info-section {
+    border-radius: 0 0 10px 10px;
+
+    &.ar {
+      border-radius: 0 0 10px 10px;
+    }
+  }
+}

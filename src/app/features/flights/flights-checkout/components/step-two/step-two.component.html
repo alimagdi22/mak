@@ -1,0 +1,41 @@
+<!-- @if(sharedService.loader) {
+  <app-loader diameter="200px" color="##198754" />
+} @else { -->
+<!-- Mobile View -->
+@if (sharedService.screenWidth < sharedService.webViewBreakPoint) {
+  <app-flight-result-card
+    [details]="airItineraries ? [airItineraries] : []"
+    [showIconInDetails]="true"
+    [ShowBagsInDetails]="true"
+    [isExpanded]="false"
+    [searchCriteria]="flightData.searchCriteria"
+  >
+      <button class="flight-details-btn" (click)="goToFlightDetails(airItineraries ? [airItineraries] : [])">{{ 'flightDetails.title' | translate }}</button>
+  </app-flight-result-card>
+  <app-login-section />
+  <app-contact-details id="contactDetailsForm" />
+  <app-travellers-details />
+  <app-payment-method />
+}
+
+<!-- Desktop View -->
+@else {
+  <div class="desktop-layout" [ngClass]="{'ar':translate.currentLang === 'ar'}">
+    <div class="main-content">
+      <div class="section">
+        <app-checkout-card [details]="airItineraries ? [airItineraries] : []" />
+      </div>
+      <div class="section">
+        <app-travellers-details />
+      </div>
+      <div class="section">
+        <app-payment-method />
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <app-fare-breakdown />
+    </div>
+  </div>
+}
+<!-- } -->

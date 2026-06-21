@@ -1,0 +1,424 @@
+@if (sharedService.screenWidth >= sharedService.webViewBreakPoint) {
+  @for (flight of details.length ? details[0].allJourney.flights : []; track flight) {
+    <div
+      class="card"
+      [class]="showButtonMoreDetails"
+      [class.border-top-0]="!showButtonMoreDetails && $index"
+      [class.border-bottom-0]="!showButtonMoreDetails"
+      [ngStyle]="{ margin: margin }"
+    >
+      @if ($index === details[0].allJourney.flights.length - 1) {
+        <ng-content />
+      }
+
+      @if (showButtonMoreDetails) {
+        <mat-expansion-panel class="my-2" [expanded]="isExpanded">
+          <div class="content mt-2">
+            @if (flightResultService.FlightType.toLowerCase() === 'roundtrip' && $index === 1) {
+              <h2>{{ 'flightDetails.itinerary.Arrive' | translate }}</h2>
+            } @else {
+              <h2>{{ 'flightDetails.itinerary.Departure' | translate }}</h2>
+            }
+
+            <!-- flight details -->
+            @for (flightSegment of flight.flightDTO; track flightSegment; let i = $index) {
+              <div class="d-flex justify-content-between mb-2">
+                <div class="travel d-flex flex-row gap-2 mt-1">
+                  @if (showIconInDetails) {
+                    <img src="assets/icons/clock-icon.svg" width="12px" height="12px" />
+                  } @else if (!$index) {
+                    <p class="duration-time card-text mb-0">{{ "itinerary.totalDuration" | translate }}</p>
+                  }
+
+                  @if (!$index) {
+                    <p class="duration-time card-text mb-2">{{ flight.elapsedTime | durationFormat }}</p>
+                  }
+                </div>
+
+                @if (ShowBagsInDetails) {
+                  <div class="d-flex flex-row gap-2 mt-1">
+                    @if(['0 Piece', '0 KG', '0'].includes(details[0].baggageInformation[0].baggage)) {
+               <img src="assets/icons/no-baggage.png" width='20'height='20' alt="" />
+            }
+            @else{
+            <img src="assets/icons/bags.svg" alt="" width="15px" height="16px" />
+
+            }
+                    <p class="bags-details card-text mb-0">{{ details[0].baggageInformation[0].baggage }}</p>
+                  </div>
+                }
+              </div>
+
+              <div class="flight-date">
+                <img src="assets/icons/calender.svg" width="20px" />
+                <p class="mb-0">
+                  {{
+                    flightSegment.arrivalDate
+                      | date: 'EEEE dd MMM' : undefined : (translate.currentLang === 'ar' ? 'ar-EG' : 'en-US')
+                  }}
+                </p>
+              </div>
+
+              <div class="flight-details justify-content-center">
+                <div class="right-sec" [ngClass]="currentLang == 'ar' ? 'ar' : 'en'">
+                  <p class="details-text">{{ flightSegment.deptTime | timeFormat: true }}</p>
+                  <p class="details-text">Terminal {{ flightSegment.departureTerminalAirport.terminal }}</p>
+                  <p class="details-text">{{ flightSegment.durationPerLeg | durationFormat }}</p>
+                  <p class="details-text">{{ flightSegment.landTime | timeFormat: true }}</p>
+                  <p class="details-text">Terminal {{ flightSegment.arrivalTerminalAirport.terminal }}</p>
+                </div>
+                <img src="assets/icons/plane-ver.svg" alt="" class="airport" />
+                <div class="left-sec mt-1">
+                  <div class="right-airline">
+                    <p
+                      class="airline-details"
+                      [ngClass]="{ invisible: !flightSegment.departureTerminalAirport.cityName }"
+                    >
+                      {{ flightSegment.departureTerminalAirport.cityName }}
+                    </p>
+
+                    <p
+                      class="airport-name"
+                      [ngClass]="{ invisible: !flightSegment.departureTerminalAirport.airportName }"
+                    >
+                      {{ flightSegment.departureTerminalAirport.airportName }}
+                    </p>
+                  </div>
+
+                  <div class="airline-name">
+                    <div class="airline">
+                      <img [src]="flight.flightAirline.airlineLogo" class="flight-img" alt="airline_logo" />
+                      <p class="airline-details">{{ flight.flightAirline.airlineName }} ({{flight.flightAirline.airlineCode}})</p>
+                    </div>
+                    <p>
+                      <span>{{ translateCabinClass(details[0].cabinClass) }}</span> - <span>{{ flightSegment.flightInfo.flightNumber }}</span
+                      >
+                      <span>{{ flightSegment.flightAirline.airlineCode }}</span>
+                    </p>
+                  </div>
+
+                  <div class="dep-airline">
+                    <p
+                      class="airline-details"
+                      [ngClass]="{ invisible: !flightSegment.arrivalTerminalAirport.cityName }"
+                    >
+                      {{ flightSegment.arrivalTerminalAirport.cityName }}
+                    </p>
+                    <p
+                      class="airport-name"
+                      [ngClass]="{ invisible: !flightSegment.arrivalTerminalAirport.airportName }"
+                    >
+                      {{ flightSegment.arrivalTerminalAirport.airportName }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              @if (flight.stopsNum && flightSegment.transitTime !== '00:00:00') {
+                <div class="transit-duration d-flex justify-content-end">
+                  <div class="transit-text">
+                    <p>{{"flightDetails.transit" | translate}}</p>
+                  </div>
+                  <div class="transit-details">
+                    <img src="assets/icons/clock-black.svg" />
+                    <p class="mb-0">
+                      {{ flightSegment.transitTime | timeFormatTransit }} {{'flightDetails.in' | translate}}
+                      {{ flightSegment.arrivalTerminalAirport.cityName }}
+                    </p>
+                  </div>
+                </div>
+              }
+            }
+          </div>
+        </mat-expansion-panel>
+      }
+    </div>
+  }
+} @else {
+    @for (flight of details.length ? details[0].allJourney.flights : []; track flight; let i = $index) {
+    <div
+      class="card"
+      [class.mb-2]="showButtonMoreDetails"
+      [class.border-top-0]="!showButtonMoreDetails && $index"
+      [class.border-bottom-0]="!showButtonMoreDetails"
+      [ngStyle]="{ margin: margin }"
+    >
+      <!-- Header -->
+      <app-flight-result-card-header [flight]="flight" [index]="i" [showTag]="showTag" />
+
+      <!-- Body -->
+      <div class="card-body">
+        <!-- Departure and Arrival Info -->
+        <div class="d-flex gap-2 align-items-end mb-2">
+          <app-flight-result-card-info
+            [flightSegment]="flight.flightDTO[0]"
+            [isDepart]="true"
+            [show]="true"
+            [flight]="flight"
+            [currentLang]="translate.currentLang"
+          />
+          <!-- <app-flight-result-card-stops /> -->
+          <app-flight-result-card-info
+            [flightSegment]="flight.flightDTO[flight.flightDTO.length - 1]"
+            [isDepart]="false"
+          />
+        </div>
+
+        <!-- Duration Info -->
+        <app-flight-result-card-duration
+          class="custom-duration"
+          [flight]="flight"
+          [details]="details"
+          [baggageInformation]="details[0].baggageInformation"
+          [showBaggageIcon]="!showButtonMoreDetails"
+          [index] = "i"
+        />
+      </div>
+
+      <div class="btn-section">
+        @if (showButtonMoreDetails) {
+          <button
+            class="toggle-btn"
+            mat-button
+            (click)="togglePanel()"
+            class="toggle-btn"
+            [class.toggle-btn-close]="isExpanded"
+            [class.toggle-btn-open]="!isExpanded"
+          >
+            {{ 'flight-result.moreDetails' | translate }}
+            @if (isExpanded) {
+              <img src="assets/icons/flight-details-arrow-up.svg" />
+            } @else {
+              <img src="assets/icons/flight-details-arrow-down.svg" />
+            }
+          </button>
+        }
+      </div>
+    </div>
+
+    @if ($index === details[0].allJourney.flights.length - 1) {
+      <ng-content />
+    }
+
+    @if (showButtonMoreDetails) {
+      <mat-expansion-panel class="my-2" [expanded]="isExpanded">
+        <div class="content mt-2">
+          @if (flightResultService.FlightType.toLowerCase() === 'roundtrip' && $index === 1) {
+            <h2>{{ 'flightDetails.itinerary.Arrive' | translate }}</h2>
+          } @else {
+            <h2>{{ 'flightDetails.itinerary.Departure' | translate }}</h2>
+          }
+
+          <!-- flight details -->
+          @for (flightSegment of flight.flightDTO; track flightSegment; let i = $index) {
+            <div class="d-flex justify-content-between mb-2">
+              <div class="d-flex flex-row gap-2 mt-1">
+                @if (showIconInDetails && $index === 0) {
+                  <img src="assets/icons/clock-icon.svg" width="20px" height="20px" />
+                  <p class="duration-time card-text mb-0">{{ "itinerary.totalDuration" | translate }}</p>
+                }
+
+                @if (!$index) {
+                  <p class="duration-time card-text mb-2">
+                    {{ "flight-result.totalDuration" | translate }} {{ flight.elapsedTime | durationFormat }}
+                  </p>
+                }
+              </div>
+
+              @if (ShowBagsInDetails) {
+                <div class="d-flex flex-row gap-2 mt-1">
+                  <!-- <img src="assets/icons/bags.svg" alt="" width="15px" height="16px" /> -->
+                  <!-- <p class="bags-details card-text mb-0">{{ details[0].baggageInformation[0].baggage }}</p> -->
+                </div>
+              }
+            </div>
+
+            <div class="flight-date">
+              <img src="assets/icons/calender.svg" width="20px" />
+              <p class="mb-0">
+                {{
+                  flightSegment.arrivalDate
+                    | date: 'EEEE dd MMM' : undefined : (translate.currentLang === 'ar' ? 'ar-EG' : 'en-US')
+                }}
+              </p>
+            </div>
+
+            <div class="flight-details justify-content-center">
+              <div class="right-sec" [ngClass]="currentLang == 'ar' ? 'ar' : 'en'">
+                <p class="details-text">{{ flightSegment.deptTime | timeFormat: true }}</p>
+                <p class="details-text">{{ flightSegment.durationPerLeg | durationFormat }}</p>
+                <p class="details-text">{{ flightSegment.landTime | timeFormat: true }}</p>
+              </div>
+              <img src="assets/icons/plane-ver.svg" alt="" class="airport" />
+              <div class="left-sec mt-1">
+                <div class="right-airline">
+                  <p
+                    class="airline-details"
+                    [ngClass]="{ invisible: !flightSegment.departureTerminalAirport.cityName }"
+                  >
+                    {{ flightSegment.departureTerminalAirport.cityName }} ({{ flightSegment.departureTerminalAirport.airportCode }})
+                  </p>
+
+                  <p
+                    class="airport-name"
+                    [ngClass]="{ invisible: !flightSegment.departureTerminalAirport.airportName }"
+                  >
+                    {{ flightSegment.departureTerminalAirport.airportName }}
+                    @if(flightSegment.departureTerminalAirport.terminal) {
+                      <span class="terminal">
+                        {{ 'flightDetails.itinerary.terminal' | translate }}
+                        {{ flightSegment.departureTerminalAirport.terminal }}
+                      </span>
+                    }
+                  </p>
+                </div>
+
+                <div class="airline-name">
+                  <div class="airline">
+                    <img [src]="flight.flightAirline.airlineLogo" class="flight-img" alt="airline_logo" />
+                    <p class="airline-details">{{ flight.flightAirline.airlineName }} ({{flight.flightAirline.airlineCode}})</p>
+                  </div>
+                  <p>
+                    <span>{{ translateCabinClass(details[0].cabinClass) }}</span> -
+                    <span>{{flight.flightAirline.airlineCode}}{{ flightSegment.flightInfo.flightNumber }}</span>
+                  </p>
+                </div>
+
+                <div class="dep-airline">
+                  <p class="airline-details" [ngClass]="{ invisible: !flightSegment.arrivalTerminalAirport.cityName }">
+                    {{ flightSegment.arrivalTerminalAirport.cityName }} ({{ flightSegment.arrivalTerminalAirport.airportCode }})
+                  </p>
+                  <p class="airport-name" [ngClass]="{ invisible: !flightSegment.arrivalTerminalAirport.airportName }">
+                    {{ flightSegment.arrivalTerminalAirport.airportName }}
+                    @if(flightSegment.arrivalTerminalAirport.terminal) {
+                      <span class="terminal">
+                        {{ 'flightDetails.itinerary.terminal' | translate }}
+                        {{ flightSegment.arrivalTerminalAirport.terminal }}
+                      </span>
+                    }
+                  </p>
+                </div>
+              </div>
+            </div>
+            @if (flight.stopsNum && flightSegment.transitTime !== '00:00:00') {
+              <div class="transit-duration d-flex justify-content-end">
+                <div class="transit-text d-flex align-items-center">
+                  <p class="mb-0">{{"flightDetails.transit" | translate}}</p>
+                </div>
+                <div class="transit-details d-flex align-items-center gap-2">
+                  <img src="assets/icons/clock-black.svg" />
+                  <p class="mb-0">
+                    {{ flightSegment.transitTime | timeFormatTransit }} {{'flightDetails.in' | translate}}
+                    {{ flightSegment.arrivalTerminalAirport.cityName }}
+                  </p>
+                </div>
+              </div>
+            }
+          }
+        </div>
+
+
+          <div class="baggage-container" [ngStyle]="{ padding: 0 + 'px' }">
+            <div class="baggage-header">
+              <h3 class="baggage-title">{{ 'flightDetails.headers.Baggage' | translate }}</h3>
+              @if(flight.flightDTO) {
+                <span>
+                  {{flight.flightDTO[0].departureTerminalAirport.airportCode}}-{{flight.flightDTO[flight.flightDTO.length-1].arrivalTerminalAirport.airportCode}} 
+                  <span>
+                    (
+                    <ng-container *ngFor="let f of flight.flightDTO; let last = last">
+                      {{ f.flightAirline.airlineCode }}{{ f.flightInfo.flightNumber }}<span *ngIf="!last">, </span>
+                    </ng-container>
+                    )
+                  </span>
+                </span>
+              }
+            </div>
+            @if(flightResultService.isBrandedFaresLoading || flightResultService.fareLoading){
+            <div class="spinner-loading">
+              <mat-spinner />
+            </div>
+            }@else {
+            
+            <div class="baggage-section">
+              @if (flightResultService.baggageInfo && hasPaxType('ADT')) {
+              <div class="baggage-row">
+                <span class="passenger-title">{{ 'checkout.PASSENGER_TYPES.ADULT' | translate }}</span>
+                <div class="baggage-detail">
+                  <span class="baggage-icon">
+                    @if((ticketType === 'branded' && hasStepTwo) ? isNoBaggageBranded(i, 'ADT') : isNoBaggageLegacy(i,'ADT')) {
+                      <img src="assets/icons/no-baggage.png" width='20'height='20' alt=""  />
+                    }
+                    @else{
+                      <img src="assets/icons/bags.svg" alt=""  />
+                    }
+                  </span>
+                  <div class="baggage-quantity" [dir]="translate.currentLang === 'ar' ? 'rtl' : 'ltr'">
+                    <span class="weight" [innerHTML]="(ticketType === 'branded' && hasStepTwo)
+                            ? getBrandedBaggageCount(i, 'ADT')
+                            : getBaggageCount(i,'ADT')"></span>
+                  </div>
+                  <span class="baggage-icon"><img src="assets/icons/home-icons/Vector.svg" style="width: 15px;" alt="" /></span>
+                  <div class="baggage-quantity" [dir]="translate.currentLang === 'ar' ? 'rtl' : 'ltr'">
+                    <span class="weight">1 x <strong> {{'checkout.payment.cabin'|translate}} </strong> 7KG</span>
+                  </div>
+                </div>
+              </div>
+              }
+          
+              @if (flightResultService.baggageInfo && hasPaxType('CHD')) {
+              <div class="baggage-row">
+                <span class="passenger-title">{{ 'checkout.PASSENGER_TYPES.CHILD' | translate }}</span>
+                <div class="baggage-detail">
+                  <span class="baggage-icon">
+                    @if((ticketType === 'branded' && hasStepTwo) ? isNoBaggageBranded(i, 'CHD') : isNoBaggageLegacy(i,'CHD')) {
+                      <img src="assets/icons/no-baggage.png" width='20'height='20' alt=""  />
+                    }
+                    @else{
+                      <img src="assets/icons/bags.svg" alt=""  />
+                    }
+                  </span>    
+                  <div class="baggage-quantity" [dir]="translate.currentLang === 'ar' ? 'rtl' : 'ltr'">
+                    <span class="weight" [innerHTML]="(ticketType === 'branded' && hasStepTwo)
+                            ? getBrandedBaggageCount(i, 'CHD')
+                            : getBaggageCount(i,'CHD')"></span>
+                  </div>
+                  <span class="baggage-icon"><img src="assets/icons/bags.svg" alt="" /></span>
+                  <div class="baggage-quantity" [dir]="translate.currentLang === 'ar' ? 'rtl' : 'ltr'">
+                    <span class="weight">1 x <strong> {{'checkout.payment.cabin'|translate}} </strong> 7KG</span>
+                  </div>
+                </div>
+              </div>
+              }
+          
+              @if (flightResultService.baggageInfo && hasPaxType('INF')) {
+              <div class="baggage-row">
+                <span class="passenger-title">{{ 'checkout.PASSENGER_TYPES.INFANT' | translate }}</span>
+                <div class="baggage-detail">
+                  <span class="baggage-icon">
+                    @if((ticketType === 'branded' && hasStepTwo) ? isNoBaggageBranded(i, 'INF') : isNoBaggageLegacy(i,'INF')) {
+                      <img src="assets/icons/no-baggage.png" width='20'height='20' alt=""  />
+                    }
+                    @else{
+                      <img src="assets/icons/bags.svg" alt=""  />
+                    }
+                  </span>
+                  <div class="baggage-quantity" [dir]="translate.currentLang === 'ar' ? 'rtl' : 'ltr'">
+                    <span class="weight" [innerHTML]="(ticketType === 'branded' && hasStepTwo)
+                            ? getBrandedBaggageCount(i, 'INF')
+                            : getBaggageCount(i,'INF')"></span>
+                  </div>
+                  <!-- <span class="baggage-icon"><img src="assets/icons/bags.svg" alt="" /></span>
+                  <div class="baggage-quantity" [dir]="translate.currentLang === 'ar' ? 'rtl' : 'ltr'">
+                    <span class="weight">1 x <strong> {{'checkout.payment.cabin'|translate}} </strong> 7KG</span>
+                  </div> -->
+                </div>
+              </div>
+              }
+            </div>
+          }
+          </div>
+        <!-- <app-baggage [index]="i" [baggageInfo]="details[0].baggageInformation" [searchCriteria]="searchCriteria" /> -->
+      </mat-expansion-panel>
+    }
+  }
+}

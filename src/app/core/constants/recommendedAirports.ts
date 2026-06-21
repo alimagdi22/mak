@@ -1,0 +1,105 @@
+import { IAirPort, IAirPortTranslated } from '../models/airport.model';
+
+export const initialRecommendedAirports: IAirPortTranslated[] = [
+  {
+    en: {
+      airportCode: 'CAI',
+      airportName: 'Cairo International Airport',
+      cityName: 'Cairo',
+      cityCode: 'CAI',
+      countryCode: 'EG',
+      countryName: 'Egypt',
+      regionName: 'Africa',
+    },
+    ar: {
+      airportCode: 'CAI',
+      airportName: 'مطار القاهرة الدولي',
+      cityName: 'القاهرة',
+      cityCode: 'CAI',
+      countryCode: 'EG',
+      countryName: 'مصر',
+      regionName: 'Africa',
+    },
+  },
+  {
+    en: {
+      airportCode: 'KWI',
+      airportName: 'Kuwait International Airport',
+      cityName: 'Kuwait',
+      cityCode: 'KWI',
+      countryCode: 'KW',
+      countryName: 'Kuwait',
+      regionName: 'Asia',
+    },
+    ar: {
+      airportCode: 'KWI',
+      airportName: 'مطار الكويت الدولى ',
+      cityName: 'مدينة الكويت',
+      cityCode: 'KWI',
+      countryCode: 'KW',
+      countryName: 'الكويت',
+      regionName: 'Asia',
+    },
+  },
+  {
+    en: {
+      airportCode: 'DXB',
+      airportName: 'Dubai International Airport',
+      cityName: 'Dubai',
+      cityCode: 'DXB',
+      countryCode: 'AE',
+      countryName: 'United Arab Emirates',
+      regionName: 'Asia',
+    },
+    ar: {
+      airportCode: 'DXB',
+      airportName: 'دبي',
+      cityName: 'دبي',
+      cityCode: 'DXB',
+      countryCode: 'AE',
+      countryName: 'الإمارات العربية المتحدة',
+      regionName: 'Asia',
+    },
+  },
+  {
+    en: {
+      airportCode: 'IST',
+      airportName: 'Istanbul Airport',
+      cityName: 'Istanbul',
+      cityCode: 'IST',
+      countryCode: 'TR',
+      countryName: 'Turkey',
+      regionName: 'Asia',
+    },
+    ar: {
+      airportCode: 'IST',
+      airportName: 'مطار اسطنبول',
+      cityName: 'اسطنبول',
+      cityCode: 'IST',
+      countryCode: 'TR',
+      countryName: 'تركيا',
+      regionName: 'Asia',
+    },
+  },
+  {
+    en: {
+      airportCode: 'LHR',
+      airportName: 'London Heathrow Airport',
+      cityName: 'London',
+      cityCode: 'LHR',
+      countryCode: 'GB',
+      countryName: 'United Kingdom of Great Britain and Northern Ireland',
+      regionName: 'Europe',
+    },
+    ar: {
+      airportCode: 'LHR',
+      airportName: 'مطار لندن هيثرو',
+      cityName: 'لندن',
+      cityCode: 'LHR',
+      countryCode: 'GB',
+      countryName: 'المملكة المتحدة لبريطانيا العظمى وأيرلندا الشمالية',
+      regionName: 'Europe',
+    },
+  },
+];
+

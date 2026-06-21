@@ -1,0 +1,37 @@
+<app-input-header [headerTitle]="'user.otp.title' | translate" (onClickClose)="dismiss.emit()" />
+
+<div class="otp">
+  <div class="otp__icon">
+    <img src="assets/icons/user/key-icon.svg" title="Key Icon" />
+  </div>
+
+  <p>{{ 'user.otp.message' | translate }}</p>
+
+  <ng-otp-input
+    (onInputChange)="onOtpChange($event)"
+    [config]="{
+      length: 6,
+      allowNumbersOnly: true,
+    }"
+  ></ng-otp-input>
+
+  @if (error) {
+    <p
+      [ngStyle]="{
+        visibility: 'visible',
+      }"
+      class="validation-msg"
+    >
+      {{ 'user.otp.error' | translate }}
+    </p>
+  } @else {
+    <p
+      [ngStyle]="{
+        visibility: 'hidden',
+      }"
+      class="validation-msg"
+    >
+      Error Message Placeholder
+    </p>
+  }
+</div>

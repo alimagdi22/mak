@@ -1,0 +1,24 @@
+@import 'colors';
+
+.tab-group {
+  display: flex;
+  justify-content: space-between;
+
+  span {
+    flex-grow: 1;
+    flex-basis: 50%;
+    cursor: pointer;
+
+    text-align: center;
+    text-transform: capitalize;
+
+    padding-block: 8px;
+    transition: all 0.2s;
+  }
+
+  .active {
+    border-radius: 6px;
+    color: map-get($map: $green, $key: 'one');
+    background-color: white;
+  }
+}

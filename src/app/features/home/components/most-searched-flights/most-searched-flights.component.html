@@ -1,0 +1,14 @@
+@if (sharedService.screenWidth < sharedService.webViewBreakPoint) {
+  <h4 class="fw-bold mx-3 mt-5 text-center">{{ 'home.mostSearched' | translate }}</h4>
+} @else {
+  <p class="deals-title mx-3 mt-5 text-center">{{ 'home.bestDeals' | translate }}</p>
+  <p class="deals-description mt-3 text-center">{{ 'home.bestDealsDescription' | translate }}</p>
+}
+
+<swiper-container #swiperEl class="mt-4">
+  @for (card of mostSearchedFlightsService.mostSearchedFlights; track card) {
+    <swiper-slide>
+      <app-most-searched-flights-card [mostSearchedFlight]="card" />
+    </swiper-slide>
+  }
+</swiper-container>

@@ -1,0 +1,99 @@
+<div
+  class="airport-input date-width text-center"
+  
+  [class.web-input-border-raidus-left]="
+    (!isReturnDate && translate.currentLang === 'en') || (isReturnDate && translate.currentLang === 'ar')
+  "
+  [class.web-input-border-raidus-right]="
+    (isReturnDate && translate.currentLang === 'en') || (!isReturnDate && translate.currentLang === 'ar')
+  "
+  [class.not-valid-input]="isCalanderNotValid(index)"
+  [class.rounded-border]="flightSharedService.selectedFlightType === 'multicity'"
+  [matMenuTriggerFor]="sharedService.screenWidth >= sharedService.webViewBreakPoint ? calender : null"
+  (click)="onClickInput(mobileTemplate)"
+  #calenderTrigger
+>
+  @if (sharedService.screenWidth >= sharedService.webViewBreakPoint) {
+    <label class="text-start" [class.text-end]="translate.currentLang === 'ar'">{{
+      (isReturnDate ? 'searchBox.return' : 'searchBox.depart') | translate
+    }}</label>
+    @if (isReturnDate) {
+      <div class="input-box text-start" [class.text-end]="translate.currentLang === 'ar'">
+        {{
+          flightSearchService.searchFlight.get('returnDate')?.value
+            ? (flightSearchService.searchFlight.get('returnDate')?.value
+              | date: 'EEEE, dd MMM yyyy' : undefined : (translate.currentLang === 'ar' ? 'ar-EG' : 'en-US'))
+            : ('searchBox.returnDate' | translate)
+        }}
+      </div>
+    } @else {
+      <div class="input-box text-start" [class.text-end]="translate.currentLang === 'ar'">
+        {{
+          flightItem.get('departingD')?.value
+            ? (flightItem.get('departingD')?.value
+              | date: 'EEEE, dd MMM yyyy' : undefined : (translate.currentLang === 'ar' ? 'ar-EG' : 'en-US'))
+            : ('searchBox.departDate' | translate)
+        }}
+      </div>
+    }
+  } @else {
+    <label class="text-center">{{ (isReturnDate ? 'searchBox.return' : 'searchBox.depart') | translate }}</label>
+    @if (isReturnDate) {
+      <div class="input-box text-center">
+        {{
+          flightSearchService.searchFlight.get('returnDate')?.value
+            ? (flightSearchService.searchFlight.get('returnDate')?.value
+              | date: 'MMM dd' : undefined : (translate.currentLang === 'ar' ? 'ar-EG' : 'en-US'))
+            : ('searchBox.returnDate' | translate)
+        }}
+      </div>
+    } @else {
+      <div class="input-box text-center">
+        {{
+          flightItem.get('departingD')?.value
+            ? (flightItem.get('departingD')?.value
+              | date: 'MMM dd' : undefined : (translate.currentLang === 'ar' ? 'ar-EG' : 'en-US'))
+            : ('searchBox.departDate' | translate)
+        }}
+      </div>
+    }
+  }
+</div>
+
+<ng-template #mobileTemplate let-modal>
+  <app-mobile-view-date-input
+    [index]="index"
+    [flightType]="flightSharedService.selectedFlightType"
+    [isReturnDate]="isReturnDate"
+    (closemodel)="modal.dismiss('Cross click')"
+  />
+</ng-template>
+
+<mat-menu #calender="matMenu" class="calenderMenu" (click)="$event.stopPropagation()">
+  <ngb-datepicker
+    class="searchBoxPicker"
+    [displayMonths]="2"
+    (click)="$event.stopPropagation()"
+    navigation="arrows"
+    [dayTemplate]="calendarTemplate"
+    outsideDays="hidden"
+    [minDate]="calendarMinDate"
+  [startDate]="calendarStartDate"
+    appDatepickerRtl
+  />
+
+  <ng-template #calendarTemplate let-date let-focused="focused" (click)="$event.stopPropagation()">
+    <span
+      class="custom-day"
+      (click)="onDateSelection(date, index); closeCalendar($event)"
+      [class.focused]="(isReturnDate ? isReturnSelected(date) : false) || isDepartSelected(date, index)"
+      [class.range]="isReturnDate ? isRange(date) : false"
+      [class.faded]="isHovered(date)"
+      [class.disabled]="isDisabled(date)"
+      (mouseenter)="hoveredDate = date"
+      (mouseleave)="hoveredDate = null"
+    >
+      {{ date.day }}
+    </span>
+  </ng-template>
+</mat-menu>

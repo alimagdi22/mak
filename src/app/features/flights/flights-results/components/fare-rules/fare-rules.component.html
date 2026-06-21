@@ -1,0 +1,11 @@
+@for (rule of FlightResultService.fareRules[0].adtRules; track rule) {
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title> {{ rule.title }} </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    {{ rule.fareRule }}
+  </mat-expansion-panel>
+} @empty {
+  <h3 class="text-center">No Fare Rules To Show</h3>
+}

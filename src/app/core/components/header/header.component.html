@@ -1,0 +1,121 @@
+@if (sharedService.screenWidth >= sharedService.webViewBreakPoint) {
+  <header
+    class="header d-flex justify-content-around align-items-center"
+    [class.dark-bg]="isScrolled"
+    [class.white-bg]="isNotInHome"
+    [class.shadow]="isNotInHome"
+  >
+    @if (isNotInHome) {
+      <img class="logo" src="assets/images/logo.png" routerLink="/" />
+    } @else {
+      <img class="logo" src="assets/images/logo.png" routerLink="/" />
+    }
+
+    <div class="d-flex justify-content-between align-items-center web-actions">
+      <div class="d-flex gap-1">
+        <div
+          class="d-flex align-items-center action"
+          routerLink="/"
+          [class.rounded-radius-right]="translate.currentLang === 'en'"
+          [class.rounded-radius-left]="translate.currentLang === 'ar'"
+          [ngStyle]="isNotInHome ? { color: 'black' } : {}"
+        >
+          <app-home-icon [fillColor]="isNotInHome ? '#000' : '#fff'" />
+        </div>
+
+        <div
+          class="action"
+          routerLink="/contact-us"
+          [class.rounded-radius-left]="translate.currentLang === 'en'"
+          [class.rounded-radius-right]="translate.currentLang === 'ar'"
+          [ngStyle]="isNotInHome ? { color: 'black' } : {}"
+        >
+          <app-phone-icon [fillColor]="isNotInHome ? '#000' : '#fff'" />
+        </div>
+      </div>
+      
+      <div class="d-flex gap-1">
+        <div
+          class="currency d-flex align-items-center"
+          [class.rounded-radius-right]="translate.currentLang === 'en'"
+          [class.rounded-radius-left]="translate.currentLang === 'ar'"
+          [matMenuTriggerFor]="currencyMenu"
+          [ngStyle]="isNotInHome ? { color: 'black' } : {}"
+        >
+          <img src="assets/icons/header/arrow-down-black.svg" />
+          <p>{{ this.homePageService.selectedCurrency['Currency_Code'] }}</p>
+          <img [src]="this.homePageService.selectedCurrency['Image_Url']" />
+        </div>
+
+        <div
+          class="lang"
+          [class.rounded-radius-left]="translate.currentLang === 'en'"
+          [class.rounded-radius-right]="translate.currentLang === 'ar'"
+          [matMenuTriggerFor]="langMenu"
+          [ngStyle]="isNotInHome ? { color: 'black' } : {}"
+        >
+          {{ translate.currentLang }}
+        </div>
+      </div>
+
+      @if (sharedService.isAuthenticated) {
+        <app-drop-down />
+      } @else {
+        <div
+          class="header-button"
+          [ngClass]="isNotInHome ? 'header-black' : ''"
+          (click)="headerSharedService.onClickLogin()"
+        >
+          {{ 'header.signIn' | translate }}
+        </div>
+      }
+    </div>
+  </header>
+
+  <mat-menu #langMenu="matMenu">
+    <button mat-menu-item (click)="headerSharedService.updateLang('en')">EN (English)</button>
+    <button mat-menu-item (click)="headerSharedService.updateLang('ar')">AR (العربية)</button>
+  </mat-menu>
+
+  <mat-menu #currencyMenu="matMenu">
+    @for (currency of this.homePageService.allCurrency; track currency) {
+      <button mat-menu-item (click)="headerSharedService.updateCurrency(currency)">
+        <img width="25" height="25" [src]="currency.Image_Url" title="Currency Icon" />
+        {{ currency['Currency_Code'] }}
+      </button>
+    }
+  </mat-menu>
+} @else {
+  <header class="mobile-header d-flex justify-content-between align-items-center">
+    <img class="logo" src="assets/images/logo.png" routerLink="/" />
+
+    <div class="actions d-flex gap-5">
+      <img src="assets/icons/header/global.svg" (click)="sharedService.isGlobalModalOpened = true" />
+      <img src="assets/icons/header/menu.svg" (click)="sharedService.isMenuModalOpened = true" />
+    </div>
+  </header>
+}
+
+<ng-template #loginTemplate let-modal>
+  <app-login
+    (dismiss)="modal.dismiss()"
+    (register)="showModal(registerTemplate)"
+    (resetPassword)="showModal(restPasswordTemplate)"
+  />
+</ng-template>
+
+<ng-template #registerTemplate let-modal>
+  <app-register (dismiss)="modal.dismiss()" (login)="showModal(loginTemplate)" (otp)="showModal(otpTemplate)" />
+</ng-template>
+
+<ng-template #otpTemplate let-modal>
+  <app-otp (dismiss)="modal.dismiss()" />
+</ng-template>
+
+<ng-template #forgetPasswordTemplate let-modal>
+  <app-forget-password (dismiss)="modal.dismiss()" (login)="showModal(loginTemplate)" />
+</ng-template>
+
+<ng-template #restPasswordTemplate let-modal>
+  <app-reset-password (login)="showModal(loginTemplate)" />
+</ng-template>

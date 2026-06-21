@@ -1,0 +1,40 @@
+@if (sharedService.isGlobalModalOpened) {
+  <div class="overlay">
+    <div class="custom_modal" appClickOutside (clickOutside)="sharedService.closeModals()">
+      <app-global-modal />
+    </div>
+  </div>
+}
+
+@if (sharedService.isMenuModalOpened) {
+  <div class="overlay">
+    <div class="custom_modal" appClickOutside (clickOutside)="sharedService.closeModals()">
+      <app-menu-modal />
+    </div>
+  </div>
+}
+
+@if (sharedService.isBaggageInfoShowed) {
+  <div class="overlay">
+    <div class="custom_modal" appClickOutside (clickOutside)="sharedService.closeModals()">
+      <app-baggage class="baggage" [padding]="20" />
+
+      <div class="btn-sec mt-3">
+        <button class="btn" (click)="sharedService.closeModals()">Close</button>
+      </div>
+    </div>
+  </div>
+}
+
+@if (sharedService.isPaymentModalShowed) {
+  <div class="overlay d-flex justify-content-center align-items-center">
+    <div
+      class="custom_modal bg-white rounded-2 w-50"
+      [class.w-75]="sharedService.screenWidth < sharedService.webViewBreakPoint"
+      appClickOutside
+      (clickOutside)="sharedService.closeModals()"
+    >
+      <app-payment-modal />
+    </div>
+  </div>
+}

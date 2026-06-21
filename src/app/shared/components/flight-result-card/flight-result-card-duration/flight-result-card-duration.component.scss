@@ -1,0 +1,26 @@
+p {
+  font-size: 15px;
+}
+.transit-margin {
+  :host-context([dir="ltr"]) .transit-margin {
+  margin-inline-start: 172px;
+}
+
+:host-context([dir="rtl"]) .transit-margin {
+  margin-inline-end: 172px;
+}
+}
+.baggage-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  direction: ltr !important;
+  text-align: left;
+}
+.ar{
+  direction: ltr !important;
+}
+
+.baggage-icon {
+  margin-inline-start: 2px;
+}

@@ -1,0 +1,27 @@
+header {
+  margin-top: 20px;
+  background-color: #f4f4f5;
+  margin-right: 0rem !important;
+  margin-left: 0rem !important;
+  margin-top: 0px;
+  height: 120px;
+}
+
+p {
+  // font-family: Open Sans;
+  font-family: Poppins;
+  font-weight: 600;
+  font-size: 32px;
+  margin-top: 30px;
+  margin-inline-start: 20px;
+}
+
+.exit {
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-inline-end: 20px;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}

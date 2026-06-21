@@ -1,0 +1,260 @@
+@if (isFormReady && passengerCount > 0) {
+  <mat-accordion #travellerPanel>
+    <mat-expansion-panel
+      *ngFor="let passenger of usersArray.controls; let i = index; trackBy: trackByFn"
+      [class.highlight-panel]="shouldHighlightPanel(i)"
+      [expanded]="i === currentExpandedIndex"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-description>
+          {{ 'checkout.travellersDetails.traveller' | translate }} {{ i + 1 }}
+          {{ getPassengerTypeLabel(getPassengerForm(i).get('PassengerType')?.value) }}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="container bg-white mt-1">
+        <div class="form-section" [formGroup]="getPassengerForm(i)">
+          <!-- Personal Information Section -->
+          <div class="personal-info-section">
+            @if (sharedService.screenWidth <= sharedService.webViewBreakPoint) {
+              <!-- Title (Mr/Mrs) -->
+              <div class="form-group d-flex flex-column">
+                <label class="mb-1"> {{ 'checkout.travellersDetails.gender' | translate }} *</label>
+                <div class="input-group d-flex gap-2">
+                  <input
+                    type="radio"
+                    formControlName="title"
+                    value="Mr"
+                    [class.is-invalid]="isFieldInvalid(i, 'title')"
+                  />
+                  <label class="mb-0 mt-2">{{ 'checkout.travellersDetails.male' | translate }}</label>
+                  <input
+                    type="radio"
+                    formControlName="title"
+                    value="Mrs"
+                    [class.is-invalid]="isFieldInvalid(i, 'title')"
+                  />
+                  <label class="mb-0 mt-2">{{ 'checkout.travellersDetails.female' | translate }}</label>
+                </div>
+                <small class="text-danger" *ngIf="isFieldInvalid(i, 'title')">
+                  {{ getFieldError(i, 'title') }}
+                </small>
+              </div>
+            } @else {
+              <div class="form-group gender-toggle-group d-none d-md-flex flex-column w-100">
+                <label class="mb-1"> {{ 'checkout.travellersDetails.gender' | translate }} *</label>
+                <div class="gender-buttons d-flex">
+                  <button
+                    type="button"
+                    [class.selected]="getPassengerForm(i).get('title')?.value === 'Mr'"
+                    (click)="getPassengerForm(i).get('title')?.setValue('Mr')"
+                    class="gender-btn"
+                  >
+                    {{ 'checkout.travellersDetails.male' | translate }}
+                  </button>
+
+                  <button
+                    type="button"
+                    [class.selected]="getPassengerForm(i).get('title')?.value === 'Mrs'"
+                    (click)="getPassengerForm(i).get('title')?.setValue('Mrs')"
+                    class="gender-btn"
+                  >
+                    {{ 'checkout.travellersDetails.female' | translate }}
+                  </button>
+                </div>
+
+                <small class="text-danger" *ngIf="isFieldInvalid(i, 'title')">
+                  {{ getFieldError(i, 'title') }}
+                </small>
+              </div>
+            }
+
+            <div class="form-section">
+              <!-- First Name -->
+              <div class="form-group">
+                <label> {{ 'checkout.travellersDetails.firstName' | translate }} *</label>
+                <input type="text" formControlName="firstName" [class.is-invalid]="isFieldInvalid(i, 'firstName')" />
+                <small class="text-danger" *ngIf="isFieldInvalid(i, 'firstName')">
+                  {{ getFieldError(i, 'firstName') }}
+                </small>
+              </div>
+
+              <!-- Last Name -->
+              <div class="form-group">
+                <label> {{ 'checkout.travellersDetails.lastName' | translate }} *</label>
+                <input type="text" formControlName="lastName" [class.is-invalid]="isFieldInvalid(i, 'lastName')" />
+                <small class="text-danger" *ngIf="isFieldInvalid(i, 'lastName')">
+                  {{ getFieldError(i, 'lastName') }}
+                </small>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <!-- Date of Birth -->
+              <div class="form-group">
+                <label> {{ 'checkout.travellersDetails.birthday' | translate }} *</label>
+                <!-- <input
+                    class="form-control date-input"
+                    placeholder="yyyy-mm-dd"
+                    name="dateOfBirth"
+                    ngbDatepicker
+                    #d="ngbDatepicker"
+                    formControlName="dateOfBirth"
+                    [minDate]="dateToNgbDateStruct(getMinBirthDate(departureDate, getPassengerForm(i).get('PassengerType')?.value))"
+                    [maxDate]="dateToNgbDateStruct(getMaxBirthDate(departureDate, getPassengerForm(i).get('PassengerType')?.value))"
+                    [class.is-invalid]="isFieldInvalid(i, 'dateOfBirth')"
+                    (keydown)="onKeydown($event)"
+                    (click)="d.toggle()"
+                  /> -->
+                <input
+                  class="form-control calendar-input"
+                  name="dp"
+                  ngbDatepicker
+                  #d="ngbDatepicker"
+                  [minDate]="minDates[i]"
+                  [maxDate]="maxDates[i]"
+                  formControlName="birthDate"
+                  [class.is-invalid]="isFieldInvalid(i, 'dateOfBirth')"
+                  (click)="d.toggle()"
+                  [startDate]="getInitialFocusDate(getPassengerForm(i).get('PassengerType')?.value)"
+                />
+                <input type="text" formControlName="dateOfBirth" hidden />
+
+                <small class="text-danger" *ngIf="isFieldInvalid(i, 'dateOfBirth')">
+                  {{ getFieldError(i, 'dateOfBirth') }}
+                </small>
+              </div>
+              @if (sharedService.screenWidth > sharedService.webViewBreakPoint) {
+                <!-- Passport Number -->
+                <div class="form-group">
+                  <label> {{ 'checkout.travellersDetails.passport.passportNumber' | translate }} *</label>
+                  <input
+                    type="text"
+                    formControlName="PassportNumber"
+                    [class.is-invalid]="isFieldInvalid(i, 'PassportNumber')"
+                  />
+                  <small class="text-danger" *ngIf="isFieldInvalid(i, 'PassportNumber')">
+                    {{ getFieldError(i, 'PassportNumber') }}
+                  </small>
+                </div>
+              }
+            </div>
+            @if (sharedService.screenWidth > sharedService.webViewBreakPoint) {
+              <div class="form-section mb-3">
+                <div class="form-group">
+                  <label> {{ 'checkout.travellersDetails.passport.issuingCountry' | translate }} *</label>
+                  <input
+                    type="text"
+                    formControlName="countryName"
+                    matInput
+                    [matAutocomplete]="auto"
+                    [class.is-invalid]="isFieldInvalid(i, 'IssuedCountry')"
+                    (blur)="getPassengerForm(i).get('countryName')?.markAsTouched()"
+                    #countryInput
+                  />
+                  <input type="hidden" formControlName="IssuedCountry" />
+                  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onIssuedCountrySelected($event, i)">
+                    <mat-option *ngFor="let option of filteredCountries[i]" [value]="option.countryName">
+                      {{ option.countryName }} <!-- Display in original language -->
+                    </mat-option>
+                  </mat-autocomplete>
+                  <small class="text-danger" *ngIf="isFieldInvalid(i, 'IssuedCountry')">
+                    {{ getFieldError(i, 'IssuedCountry') }}
+                  </small>
+                </div>
+
+                <!-- Passport Expiry Date -->
+                <div class="form-group">
+                  <label> {{ 'checkout.travellersDetails.passport.expirationDate' | translate }} *</label>
+                  <input
+                    class="form-control calendar-input"
+                    ngbDatepicker
+                    #exp="ngbDatepicker"
+                    (click)="exp.toggle()"
+                    [minDate]="getMinPassportExpiryDateObj()"
+                    [class.is-invalid]="isFieldInvalid(i, 'PassportExpiry')"
+                    formControlName="PassportExpiration"
+                  />
+                  <input type="text" formControlName="PassportExpiry" hidden />
+                  <small class="text-danger" *ngIf="isFieldInvalid(i, 'PassportExpiry')">
+                    {{ getFieldError(i, 'PassportExpiry') }}
+                  </small>
+                </div>
+              </div>
+            }
+          </div>
+          @if (sharedService.screenWidth <= sharedService.webViewBreakPoint) {
+            <!-- Passport Information Section -->
+            <p
+              class="expansion-opener d-flex align-items-center gap-3"
+              mat-button
+              (click)="togglePanel()"
+              >
+              {{ 'checkout.travellersDetails.passport.passportDetails' | translate }}
+              <span [ngStyle]="{ color: isExpanded ? 'red' : 'green' }">{{ isExpanded ? '-' : '+' }}</span>
+            </p>
+
+            <mat-expansion-panel
+              [expanded]="isExpanded && sharedService.screenWidth <= sharedService.webViewBreakPoint"
+              class="custom-expansion-panel"
+            >
+              <div class="passport-info-section mt-4">
+                <!-- Passport Number -->
+                <div class="form-group mt-2">
+                  <label> {{ 'checkout.travellersDetails.passport.passportNumber' | translate }} *</label>
+                  <input
+                    type="text"
+                    formControlName="PassportNumber"
+                    [class.is-invalid]="isFieldInvalid(i, 'PassportNumber')"
+                  />
+                  <small class="text-danger" *ngIf="isFieldInvalid(i, 'PassportNumber')">
+                    {{ getFieldError(i, 'PassportNumber') }}
+                  </small>
+                </div>
+
+                <!-- Issuing Country -->
+                <div class="form-group">
+                  <label> {{ 'checkout.travellersDetails.passport.issuingCountry' | translate }} *</label>
+                  <div class="country-input-container">
+                    <input
+                      type="text"
+                      [value]="getPassengerForm(i).get('countryName')?.value"
+                      readonly
+                      class="country-display-input"
+                      [class.is-invalid]="isFieldInvalid(i, 'IssuedCountry')"
+                      (click)="openCountrySelection(i)"
+                    />
+                    <input type="hidden" formControlName="IssuedCountry" />
+                    <small class="text-danger" *ngIf="isFieldInvalid(i, 'IssuedCountry')">
+                      {{ getFieldError(i, 'IssuedCountry') }}
+                    </small>
+                  </div>
+                </div>
+
+                <!-- Passport Expiry Date -->
+                <div class="form-group">
+                  <label> {{ 'checkout.travellersDetails.passport.expirationDate' | translate }} *</label>
+                  <input
+                    class="form-control calendar-input"
+                    ngbDatepicker
+                    #exp="ngbDatepicker"
+                    (click)="exp.toggle()"
+                    [minDate]="getMinPassportExpiryDateObj()"
+                    [class.is-invalid]="isFieldInvalid(i, 'PassportExpiry')"
+                    formControlName="PassportExpiration"
+                  />
+                  <input type="text" formControlName="PassportExpiry" hidden />
+                  <small class="text-danger" *ngIf="isFieldInvalid(i, 'PassportExpiry')">
+                    {{ getFieldError(i, 'PassportExpiry') }}
+                  </small>
+                </div>
+              </div>
+            </mat-expansion-panel>
+          }
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <!-- <button *ngIf="isFormReady && passengerCount > 0" mat-raised-button color="primary" (click)="onSubmit()">{{"checkout.travellersDetails.submit" | translate}}</button> -->
+}

@@ -1,0 +1,221 @@
+<div
+  class="airport-input dest-width"
+  [class.web-input-border-raidus-left]="
+    (destination === 'departing' && translate.currentLang === 'en') ||
+    (destination === 'landing' && translate.currentLang === 'ar')
+  "
+  [class.web-input-border-raidus-right]="
+    (destination === 'landing' && translate.currentLang === 'en') ||
+    (destination === 'departing' && translate.currentLang === 'ar')
+  "
+  [class.not-valid-input]="isDestNotValid(index, destination) || isTheSameDestination(index)"
+  (click)="onClickInput(mobileTemplate)"
+>
+  <div class="option d-flex justify-content-between">
+    @if (sharedService.screenWidth >= sharedService.webViewBreakPoint) {
+      <label>{{ (destination === 'departing' ? 'searchBox.from' : 'searchBox.to') | translate }}</label>
+    } @else {
+      <label>{{ (destination === 'departing' ? 'searchBox.leaving' : 'searchBox.arriving') | translate }}</label>
+    }
+    @if (isDestNotValid(index, destination) && sharedService.screenWidth < sharedService.webViewBreakPoint) {
+      <p class="validation-msg">
+        {{
+          flightSearchService.getDestinationErrorMessage(
+            flightItem.get(destination)!,
+            translate.currentLang === 'en' ? 'en' : 'ar'
+          )
+        }}
+      </p>
+    }
+
+    @if (
+      isTheSameDestination(index) &&
+      destination === 'departing' &&
+      sharedService.screenWidth < sharedService.webViewBreakPoint
+    ) {
+      <p class="validation-msg">
+        {{ flightSearchService.getFlightErrorMessage(flightItem, translate.currentLang === 'en' ? 'en' : 'ar') }}
+      </p>
+    }
+  </div>
+
+  <div class="input-box d-flex">
+    <input
+      #destinationInput
+      type="text"
+      [placeholder]="'searchBox.placeholder' | translate"
+      type="text"
+      aria-label="City"
+      matInput
+      [matAutocomplete]="autoa"
+      [readonly]="sharedService.screenWidth < 992"
+      (change)="onChangeDestination(destination)"
+      (input)="onInputDestination($event)"
+    />
+
+    @if (isLoading) {
+      <mat-spinner diameter="15" color="accent" />
+    }
+  </div>
+</div>
+
+<mat-autocomplete #autoa="matAutocomplete" panelWidth="500px">
+  @if (!isLoading) {
+    @if (flightSharedService.cities.length && inputRef.nativeElement.value) {
+      @for (group of getGroupedCities(); track group.city) {
+        <!-- City Option -->
+        <mat-option (click)="onSelectCity(destination, group.airports[0])">
+          <div class="d-flex justify-content-between">
+            <div class="d-flex gap-1">
+              <i class="bi bi-geo-alt city-icon"></i>
+              <span>{{group.city}}, {{group.country}}</span>
+            </div>
+            @if(group.airports.length > 1){
+              <span class="city-code-option">({{"searchBox.allAirports" | translate}})</span>
+            }
+            </div>
+          </mat-option>
+        
+        <!-- Airport Options -->
+        @for (airport of group.airports; track airport) {
+          <mat-option (click)="onSelectAirport(destination, airport[sharedService.lang],true); storageAirport(destination, airport)">
+            <div class="d-flex justify-content-between airport-option">
+              <div class="d-flex gap-1">
+                <i class="bi bi-airplane airport-icon"></i>
+                <span [innerHTML]="airport[sharedService.lang].airportName | highlighter: flightItem.get(destination)?.value"></span>
+              </div>
+              <span
+                class="airport-code"
+                [innerHTML]="airport[sharedService.lang].airportCode | highlighter: flightItem.get(destination)?.value"
+              ></span>
+            </div>
+          </mat-option>
+        }
+      }
+    } @else {
+      @for (airport of getRecommendedAirports() | limitTo: 10; track airport) {
+        <!-- Show recommended airports when no search results -->
+        <mat-option (click)="onSelectAirport(destination, airport[sharedService.lang]); storageAirport(destination, airport)">
+          <div class="d-flex justify-content-between">
+            <div class="d-flex gap-1">
+              <i class="bi bi-airplane airport-icon"></i>
+              <span [innerHTML]="airport[sharedService.lang].airportName | highlighter: flightItem.get(destination)?.value"></span>
+            </div>
+            <span
+              class="airport-code"
+              [innerHTML]="airport[sharedService.lang].airportCode | highlighter: flightItem.get(destination)?.value"
+            ></span>
+          </div>
+        </mat-option>
+      }
+    }
+  }
+</mat-autocomplete>
+
+
+<ng-template #mobileTemplate let-modal>
+  <app-input-header
+    [headerTitle]="(destination === 'departing' ? 'searchBox.leaving' : 'searchBox.arriving') | translate"
+    (onClickClose)="modal.dismiss('Cross click')"
+  />
+
+  <div class="px-2">
+    <input
+      type="text"
+      class="form-control"
+      aria-label="City"
+      matInput
+      [placeholder]="'searchBox.placeholder' | translate"
+      (input)="onInputDestination($event)"
+      #mobileDestInput
+    />
+  </div>
+
+  <hr class="mx-2" />
+
+  <div>
+    @if (isLoading) {
+      @for (loader of [1, 2, 3, 4, 5]; track loader) {
+        <div class="d-flex gap-2 mx-2 mb-2">
+          <div class="loader-circle skeleton"></div>
+          <div class="loader-content flex-grow-1 skeleton"></div>
+        </div>
+      }
+    } @else {
+      <!-- Show recommended airports when no search results -->
+      @if (flightSharedService.cities.length === 0 || !mobileDestInput.value) {
+        <h4 class="text-center">{{ 'searchBox.recommendedAirports' | translate }}</h4>
+        @for (airport of getRecommendedAirports() | limitTo: 10; track airport) {
+          <mat-option (click)="onSelectAirport(destination, airport[sharedService.lang]); storageAirport(destination, airport)">
+            <div class="d-flex flex-wrap align-items-center">
+              <div
+                class="airport-result-icon"
+                [class.me-2]="translate.currentLang === 'en'"
+                [class.ms-2]="translate.currentLang === 'ar'"
+              >
+                <img
+                  [src]="
+                    destination === 'departing'
+                      ? 'assets/images/search-box/depart-icon.png'
+                      : 'assets/images/search-box/landing-icon.png'
+                  "
+                />
+              </div>
+              <span>
+                (<span>{{airport[sharedService.lang].airportCode}}</span>)
+              </span>
+              <span class="mx-2">-</span>
+              <span>{{airport[sharedService.lang].airportName}}</span>
+            </div>
+          </mat-option>
+        }
+      } @else {
+        <!-- Show grouped cities when there are search results -->
+        @for (group of getGroupedCities(); track group.city) {
+          <!-- City Group Header -->
+          <!-- <div class="city-group-header px-3 py-2">
+            <h5 class="mb-0">{{group.city}}, {{group.country}}</h5>
+          </div> -->
+          @if(group.airports.length > 1){
+            <!-- City Option (All Airports) -->
+            <mat-option (click)="onSelectCity(destination, group.airports[0])">
+              <div class="d-flex align-items-center px-3 py-2">
+                <div class="city-result-icon me-2">
+                  <i class="bi bi-geo-alt"></i>
+                </div>
+                <span class="flex-grow-1">{{group.city}}, {{group.country}}</span>
+                <span class="badge bg-light text-dark">{{"searchBox.allAirports" | translate}}</span>
+              </div>
+            </mat-option>
+          }
+          
+          <!-- Airport Options -->
+          @for (airport of group.airports; track airport) {
+            <mat-option (click)="onSelectAirport(destination, airport[sharedService.lang],true); storageAirport(destination, airport)">
+              <div class="d-flex align-items-center px-3 py-2">
+                <div
+                  class="airport-result-icon"
+                  [class.me-2]="translate.currentLang === 'en'"
+                  [class.ms-2]="translate.currentLang === 'ar'"
+                >
+                  <img
+                    [src]="
+                      destination === 'departing'
+                        ? 'assets/images/search-box/depart-icon.png'
+                        : 'assets/images/search-box/landing-icon.png'
+                    "
+                  />
+                </div>
+                <span>
+                  (<span [innerHTML]="airport[sharedService.lang].airportCode | highlighter: flightItem.get(destination)?.value"></span>)
+                </span>
+                <span class="mx-2">-</span>
+                <span class="text-nowrap ellipsis" [innerHTML]="airport[sharedService.lang].airportName | highlighter: flightItem.get(destination)?.value"></span>
+              </div>
+            </mat-option>
+          }
+        }
+      }
+    }
+  </div>
+</ng-template>

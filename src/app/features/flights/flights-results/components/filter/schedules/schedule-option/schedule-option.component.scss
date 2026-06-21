@@ -1,0 +1,27 @@
+@import 'colors';
+
+.schedule-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+
+  border: 1px solid #CBCBCB;
+  border-radius: 6px;
+
+  padding: 4px;
+  font-weight: 400;
+
+  transition: all 0.2s;
+
+  &__icon {
+    width: 16px;
+    margin-bottom: 5px;
+  }
+}
+
+.active {
+  color: white;
+  border: 1px solid map-get($map: $green, $key: 'one');
+  background-color: map-get($map: $green, $key: 'one');
+}

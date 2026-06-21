@@ -1,0 +1,94 @@
+@import 'utilities';
+
+div {
+  height: auto;
+  background-color: rgb(242, 242, 242);
+}
+
+.baggage-container {
+  padding: 10px;
+}
+.skeleton {
+  color: transparent;
+  width: 100%;
+  height: 100px;
+  width: 22%;
+}
+
+.section {
+  display: grid;
+  padding: 0 0 20px 20px;
+  width: 100%;
+}
+
+.two-column-layout {
+  display: grid;
+  grid-template-columns: 65% 24%;
+  gap: 2%; 
+  align-items: start;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sidebar {
+  position: sticky;
+  top: 5px;
+  height: fit-content;
+  margin-top: 25px;
+}
+
+::ng-deep .cards-container {
+  margin-top: 30px;
+  padding: 50px 15px;
+  border-radius: 15px;
+}
+
+::ng-deep .cards-container .card {
+  margin: 0 !important;
+  width: 100% !important;
+}
+
+app-checkout-card {
+  grid-column: span 9;
+}
+
+app-fare-breakdown {
+  grid-column: span 3;
+  margin-top: 30px;
+}
+
+app-travellers-details {
+  grid-column: span 9;
+}
+
+app-login-section {
+  grid-column: span 12;
+}
+
+app-contact-details {
+  grid-column: span 9;
+}
+
+::ng-deep .login-section {
+  margin: 0 !important;
+}
+
+::ng-deep .contact-section {
+  margin: 0 !important;
+  width: auto !important;
+}
+
+::ng-deep .content {
+  padding: 10px !important;
+}
+@media (max-width: 768px) {
+  app-travellers-details {
+    grid-column: span 13;
+  }
+}

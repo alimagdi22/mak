@@ -1,0 +1,44 @@
+@import 'utilities';
+
+ul {
+  list-style: none;
+  padding: 5px;
+  margin-top: 30px;
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    div {
+      img {
+        width: 40px;
+        object-fit: contain;
+        transform: rotateZ(360);
+        margin-right: 10px;
+
+        &.ar {
+          margin-right: 0;
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+}
+
+span {
+  font-weight: 700;
+}
+
+.currency-btn {
+  cursor: pointer;
+}
+.update-btn {
+  @include custom-button(
+    $width: 262px,
+    $background: map-get($green, 'one'),
+    $color: white,
+    $border-radius: 10px,
+    $font-weight: bold
+  );
+}

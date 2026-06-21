@@ -1,0 +1,26 @@
+@import 'colors';
+
+.side-nav-content {
+  display: flex;
+  flex-direction: column;
+
+  margin-block: 40px;
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    list-style: none;
+
+    li {
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+a.active {
+  color: map-get($map: $green, $key: 'one');
+  font-weight: bold;
+}

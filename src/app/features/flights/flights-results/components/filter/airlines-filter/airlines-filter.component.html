@@ -1,0 +1,9 @@
+<ng-container [formGroup]="flightResultService.filterForm">
+  <ng-container formGroupName="airline">
+    <ng-container formArrayName="airlines">
+      @for (airline of flightResultService.airlinesA; track airline; let i = $index) {
+        <mat-checkbox color="primary" [formControlName]="i">{{ airline }}</mat-checkbox>
+      }
+    </ng-container>
+  </ng-container>
+</ng-container>

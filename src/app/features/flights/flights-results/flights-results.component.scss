@@ -1,0 +1,165 @@
+@import 'utilities';
+
+.search-box {
+  background-color: white;
+  width: 100%;
+  margin-bottom: 30px;
+}
+::ng-deep .search-section {
+  box-shadow: none;
+}
+.text-transparent {
+  color: transparent !important;
+}
+.skeleton {
+  width: 33%;
+  height: 60px;
+}
+.filters {
+  width: 100%;
+  max-height: -moz-fit-content;
+  max-height: fit-content;
+  position: sticky;
+}
+.top-icon {
+  width: 35px;
+  position: absolute;
+  top: 250px;
+  left: 15px;
+  z-index: 1001;
+  cursor: pointer;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  transform: translateX(50%);
+  // width: 300px;
+  height: 100vh;
+  background-color: #f2f2f2;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  transition: all 0.3s ease-in-out;
+  padding: 20px;
+  overflow-y: auto;
+
+  &.show {
+    right: 0;
+    transform: translateX(0);
+  }
+}
+
+.circle-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid black;
+  color: black;
+  font-size: 25px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 999;
+}
+
+.flight-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+}
+.alert {
+  height: 75vh;
+}
+.result {
+  margin-top: 25px;
+  font-weight: 600;
+  font-size: 24px;
+  color: #8f8f8f;
+}
+.msg {
+  margin-top: 20px;
+  font-weight: 400;
+  font-size: 20px;
+  color: #8f8f8f;
+}
+.back {
+  margin-top: 20px;
+  width: 150px;
+  height: 50px;
+  border-radius: 6px;
+  border: 1px solid #1f8f0a;
+  background-color: white;
+  color: #1f8f0a;
+  font-weight: 400;
+  font-size: 18px;
+}
+.loading-msg {
+  display: flex;
+  flex-direction: column;
+
+  padding-inline: 20px;
+  padding-top: 20px;
+
+  div {
+    display: flex;
+    justify-content: space-between;
+
+    p {
+      font-size: 12px;
+      font-weight: bold;
+    }
+  }
+
+  mat-progress-bar {
+    border-radius: 5px;
+    width: 97%;
+  }
+}
+
+.filter-wrapper {
+  height: fit-content;
+}
+
+::ng-deep .skeleton {
+  border-radius: 10px;
+  width: 100%;
+  margin: auto;
+}
+::ng-deep .skel {
+  display: block;
+  margin-top: 16px;
+}
+
+::ng-deep .flight-header {
+  display: none !important;
+}
+
+::ng-deep .container {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+::ng-deep .search-box-container {
+  align-items: center;
+  padding: 50px 0;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) !important;
+
+  @media (min-width: $web-view-break-point) {
+    app-flights-search-box {
+      width: 100%;
+    }
+  }
+}

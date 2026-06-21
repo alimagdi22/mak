@@ -1,0 +1,89 @@
+<div class="contact-section mt-3 p-3" id="contact-details">
+  <p class="contact-title">{{ 'checkout.contactDetails.contactDetails' | translate }}</p>
+  <form [formGroup]="contactForm" class="contact-form gap-3">
+    @if (sharedService.screenWidth < sharedService.webViewBreakPoint) {
+      <div class="contact-input-group d-flex flex-column gap-1">
+        <label for="email">{{ 'checkout.contactDetails.email' | translate }} *</label>
+        <input
+          type="text"
+          inputmode="email"
+          id="email"
+          formControlName="email"
+          [ngClass]="{ 'is-invalid': isFieldInvalid('email') }"
+          (blur)="onFieldBlur('email')"
+          (input)="onEmailInput($event)"
+        />
+        @if (isFieldInvalid('email')) {
+          <div class="invalid-feedback d-block">
+            {{ getFieldError('email') }}
+          </div>
+        }
+      </div>
+
+      <div class="contact-input-group d-flex flex-column mb-2 gap-1">
+        <label for="phone">{{ 'checkout.contactDetails.phone' | translate }} *</label>
+        <ngx-intl-tel-input
+          name="phone"
+          formControlName="phone"
+          [preferredCountries]="['us', 'gb', 'eg', 'sa']"
+          [enableAutoCountrySelect]="true"
+          [enablePlaceholder]="true"
+          [selectedCountryISO]="CountryISO.Kuwait"
+          [searchCountryPlaceholder]="'Search country name, code, or +dial'"
+          [searchCountryFlag]="true"
+          [searchCountryField]="[SearchCountryField.All]"
+          (countryChange)="onPhoneNumberChange($event)"
+          (blur)="onFieldBlur('phone')"
+          [ngClass]="{ 'is-invalid': isFieldInvalid('phone') }"
+        >
+        </ngx-intl-tel-input>
+        @if (isFieldInvalid('phone')) {
+          <div class="invalid-feedback d-block">
+            {{ getFieldError('phone') }}
+          </div>
+        }
+      </div>
+    } @else {
+      <div class="contact-input-group d-flex flex-column mb-2 gap-1">
+        <label for="phone">{{ 'checkout.contactDetails.phone' | translate }} *</label>
+        <ngx-intl-tel-input
+          name="phone"
+          formControlName="phone"
+          [preferredCountries]="['us', 'gb', 'eg', 'sa']"
+          [enableAutoCountrySelect]="true"
+          [enablePlaceholder]="true"
+          [selectedCountryISO]="CountryISO.Kuwait"
+          [searchCountryFlag]="true"
+          [searchCountryField]="[SearchCountryField.All]"
+          (countryChange)="onPhoneNumberChange($event)"
+          (blur)="onFieldBlur('phone')"
+          [ngClass]="{ 'is-invalid': isFieldInvalid('phone') }"
+        >
+        </ngx-intl-tel-input>
+        @if (isFieldInvalid('phone')) {
+          <div class="invalid-feedback d-block">
+            {{ getFieldError('phone') }}
+          </div>
+        }
+      </div>
+
+      <div class="contact-input-group d-flex flex-column gap-1">
+        <label for="email">{{ 'checkout.contactDetails.email' | translate }} *</label>
+        <input
+          type="text"
+          inputmode="email"
+          id="email"
+          formControlName="email"
+          [ngClass]="{ 'is-invalid': isFieldInvalid('email') }"
+          (blur)="onFieldBlur('email')"
+          (input)="onEmailInput($event)"
+        />
+        @if (isFieldInvalid('email')) {
+          <div class="invalid-feedback d-block">
+            {{ getFieldError('email') }}
+          </div>
+        }
+      </div>
+    }
+  </form>
+</div>

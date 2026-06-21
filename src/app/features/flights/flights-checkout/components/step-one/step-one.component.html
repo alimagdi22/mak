@@ -1,0 +1,53 @@
+@if (isLoading || flightCheckoutService.loader) {
+  <div class="p-4">
+    <div class="d-flex gap-4 mb-4">
+      @if (sharedService.screenWidth >= sharedService.webViewBreakPoint) {
+        <app-flight-card-skeleton-loader class="w-25" />
+      }
+      <app-flight-card-skeleton-loader class="flex-grow-1" />
+    </div>
+    <app-flight-card-skeleton-loader />
+  </div>
+} @else {
+  <ng-container>
+    @if (sharedService.screenWidth < sharedService.webViewBreakPoint) {
+      <app-flight-result-card
+        [details]="airItineraries ? [airItineraries] : []"
+        [ShowBagsInDetails]="true"
+        [showIconInDetails]="true"
+        [isExpanded]="false"
+        [searchCriteria]="searchCriteria || flightCheckoutService.selectedFlight?.searchCriteria"
+      >
+        <button
+          class="flight-details-btn"
+          style="text-align: start"
+          (click)="goToFlightDetails(airItineraries ? [airItineraries] : [])"
+        >
+          {{ 'flightDetails.title' | translate }}
+        </button>
+      </app-flight-result-card>
+    } @else {
+      <div class="two-column-layout">
+        <div class="main-content">
+          <div class="section">
+            <app-checkout-card [details]="airItineraries ? [airItineraries] : []" />
+          </div>
+          <div class="section">
+            <app-login-section />
+          </div>
+          <div class="section">
+            <app-contact-details />
+          </div>
+        </div>
+        @if (!isSelectedFlightLoading) {
+          <div class="sidebar">
+            <app-fare-breakdown />
+          </div>
+        }
+      </div>
+    }
+    @if (!isSelectedFlightLoading) {
+      <app-branded-fares [offlineServices]="offlineServices" />
+    }
+  </ng-container>
+}

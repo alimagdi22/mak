@@ -1,0 +1,312 @@
+@import 'utilities';
+@import 'colors';
+@import 'variables';
+
+*{
+  // font-family: Open Sans;
+  font-family: Poppins;
+}
+
+::ng-deep .mat-expansion-panel-description {
+  padding: 0 3px 16px;
+}
+
+::ng-deep .mat-expansion-panel-header-description {
+  height: 50px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+::ng-deep {
+  .mat-expansion-panel-body {
+    padding: 0 !important;
+  }
+  .custom-expansion-panel {
+    width: 100% !important;
+    box-shadow: none !important;
+    border: none !important;
+    // margin-right: -22px;
+
+    .mat-expansion-panel-header {
+      border: none !important;
+      height: 40px;
+      padding: 50px 24px;
+    }
+
+    .mat-expansion-panel-content {
+      border: none !important;
+      padding: 0 !important;
+    }
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.container {
+  padding: 0 45px;
+}
+input {
+  border: 1px solid map-get($map: $green, $key: one);
+  height: 35px;
+}
+
+.section {
+  width: 100vw;
+  background-color: white;
+  border-radius: 8px;
+}
+
+p {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  margin-bottom: 0;
+}
+
+select {
+  width: 23%;
+  border: 1px solid map-get($map: $green, $key: one);
+  border-radius: 0;
+  height: 35px;
+}
+
+input.is-invalid,
+select.is-invalid {
+  border: 1px solid red;
+}
+
+head {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+
+label {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+
+.expansion-opener {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.highlight-panel {
+  border-left: 4px solid #f44336;
+  margin-bottom: 8px;
+}
+
+::ng-deep mat-panel-description {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: black;
+}
+
+input {
+  padding: 15px;
+}
+
+.contact-section {
+  width: 100vw;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.contact-title {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  margin-bottom: 0;
+}
+
+input {
+  border: 1px solid #cbcbcb;
+  height: 35px;
+  border-radius: 6px;
+  background-color: #f4f4f5;
+}
+
+select {
+  width: 35%;
+  border: 1px solid map-get($map: $green, $key: one);
+  border-radius: 0;
+  height: 35px;
+}
+
+.contact-phone {
+  width: 63%;
+}
+
+input.is-invalid,
+select.is-invalid {
+  border: 1px solid red;
+}
+
+.contact-country-select {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  direction: ltr;
+  position: relative;
+}
+
+.contact-country-select:hover {
+  overflow: visible;
+}
+
+.contact-country-select option {
+  white-space: nowrap;
+}
+
+.mat-accordion > .mat-expansion-panel-spacing,
+.mat-accordion > *:nth-child .mat-expansion-panel-spacing {
+  width: 75%;
+  margin: auto;
+}
+
+.mat-accordion .mat-expansion-panel {
+  width: 100%;
+  margin: 10px 0;
+  overflow: visible;
+  border-radius: 16px !important;
+}
+
+::ng-deep .mat-expansion-panel-body .container {
+  border-radius: 16px !important;
+}
+
+.personal-info-section {
+  width: 100%;
+}
+.form-section {
+  display: flex;
+  gap: 2%;
+}
+.form-group {
+  width: 50%;
+}
+
+.gender-buttons {
+  display: flex;
+  gap: 2%;
+
+  .gender-btn {
+    border: 1px solid #cbcbcb;
+    background-color: white;
+    color: black;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    width: 50%;
+
+    &.selected {
+      background-color: map-get($map: $green, $key: one);
+      color: white;
+      font-weight: 600;
+    }
+
+    &:hover {
+      background-color: map-get($map: $green, $key: one);
+      color: white;
+    }
+  }
+}
+
+.calendar-input {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%236c757d' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 16px 16px;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
+
+.full-screen-dialog {
+  max-width: 100vw !important;
+  max-height: 100vh !important;
+  border-radius: 0 !important;
+
+  .mat-dialog-container {
+    padding: 0 !important;
+    overflow: hidden;
+  }
+}
+
+.country-input-container {
+  position: relative;
+
+  .country-display-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+      border-color: #3f51b5;
+    }
+
+    &.is-invalid {
+      border-color: #f44336;
+    }
+  }
+}
+
+:dir(rtl) ::ng-deep .ngb-dp-arrow-btn {
+  transform: rotate(180deg);
+}
+
+:dir(rtl) ::ng-deep select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: none !important; /* remove arrow image */
+}
+
+.hint-message{
+  color: red;
+}
+@media (max-width: 768px) {
+  .mat-accordion > .mat-expansion-panel-spacing,
+  .mat-accordion > *:nth-child .mat-expansion-panel-spacing {
+    width: 100%;
+  }
+  .mat-accordion .mat-expansion-panel {
+    width: 100%;
+    margin: 1rem 0 !important;
+    box-shadow: none !important;
+  }
+  .form-section {
+    display: flex;
+    flex-direction: column;
+  }
+  .form-group {
+    width: 100%;
+  }
+  input {
+    border: 1px solid map-get($map: $green, $key: one);
+    height: 35px;
+    background-color: white;
+  }
+  ::ng-deep mat-expansion-panel {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1) !important;
+  }
+}

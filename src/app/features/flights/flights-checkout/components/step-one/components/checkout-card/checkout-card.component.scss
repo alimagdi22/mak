@@ -1,0 +1,179 @@
+* {
+  box-sizing: border-box;
+  // font-family: Open Sans;
+  font-family: Poppins;
+
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.cards-container {
+  background-color: white;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  // margin-bottom: 2rem;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+p {
+  margin-bottom: 0;
+}
+
+.card {
+  width: 75%;
+  background-color: #fafafa;
+  margin: auto;
+  border: none;
+  margin-bottom: 50px;
+}
+
+.card-header {
+  align-items: center;
+  background-color: #3e7dc3;
+  color: white;
+  height: 60px;
+  gap: 5px;
+}
+
+.card-body {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  align-items: center;
+  gap: 10px;
+  padding: 30px;
+  margin-top: 15px;
+  flex-wrap: nowrap;
+}
+
+.card-header p {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+.baggages {
+  direction: ltr;
+
+  [dir='rtl'] & {
+    direction: rtl;
+  }
+}
+.time {
+  direction: ltr;
+
+  [dir='rtl'] & {
+    direction: rtl;
+  }
+}
+
+.card-body .section {
+  grid-column: span 3;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.card-body .airline-name {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  max-width: 150px;
+}
+.card-body .img-sec {
+  border: 1px solid #cbcbcb;
+  border-radius: 10px;
+  padding: 9px 15px;
+  width: 59px;
+  width: auto;
+}
+
+.card-body .img-sec img {
+  max-width: 50px;
+}
+
+.depart-details,
+.return-details {
+  grid-column: span 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.return-details p,
+.depart-details p {
+  max-width: 150px;
+  // white-space: nowrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  margin: 0;
+  text-align: center;
+}
+
+.time {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  white-space: nowrap;
+}
+
+.divider {
+  grid-column: span 3;
+  display: flex;
+  flex-direction: column;
+}
+
+.divider p {
+  font-family: Lato;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #a9a9a9;
+  margin: auto;
+  margin-bottom: -12px;
+  z-index: 1;
+}
+
+.divider img {
+  max-width: 100%;
+  height: auto;
+  margin: auto;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: end;
+  border: none;
+  background-color: transparent;
+  padding: 40px;
+}
+
+.card-footer p {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-decoration: underline;
+  text-decoration-style: solid;
+  text-decoration-offset: 0%;
+  text-decoration-thickness: 0%;
+  text-decoration-skip-ink: auto;
+  color: #3a8fcc;
+  cursor: pointer;
+}
+.baggages {
+  grid-column: span 2;
+  margin: 0 5px;
+  gap: 3px;
+}
+.baggages p {
+  max-width: 150px;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  margin: 0;
+  text-align: start;
+}

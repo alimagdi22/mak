@@ -1,0 +1,87 @@
+@import 'utilities';
+
+.cabin-menu {
+  padding: 20px;
+  padding-top: 0;
+
+  &__guests__list,
+  &__options__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+  }
+
+  &__guests__list {
+    &__item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+
+      &__btns__left,
+      &__btns__right {
+        height: 40px;
+        width: 40px;
+
+        border-radius: 50%;
+        border: 1px solid;
+        color: map-get($map: $blue, $key: 'one');
+        cursor: pointer;
+
+        transition: all 0.2s;
+
+        &:hover {
+          transform: scale(1.1);
+        }
+
+        &:active {
+          transform: scale(1);
+        }
+      }
+
+      &__btns__right {
+        color: white;
+        background-color: map-get($map: $green, $key: 'one');
+      }
+    }
+  }
+
+  &__options__list {
+    display: grid;
+    gap: 10px;
+
+    &__item {
+      border: 1px solid #d7dddb;
+      border-radius: 6px;
+      padding: 15px 25px;
+
+      cursor: pointer;
+      transition: all 0.2s;
+
+      &.active,
+      &:hover {
+        color: map-get($map: $green, $key: 'one');
+        border-color: map-get($map: $green, $key: 'one');
+        background-color: #f5faf1;
+      }
+    }
+  }
+
+  &__button {
+    margin-top: 40px;
+    @include custom-button(
+      $background: map-get($map: $green, $key: 'one'),
+      $color: white,
+      $border-radius: 10px,
+      $font-weight: bold,
+      $height: 48px
+    );
+  }
+}
+
+.web-input-rounded {
+  @media (max-width: $web-view-break-point) {
+    border-radius: 12px !important;
+  }
+}

@@ -1,0 +1,231 @@
+@if(flightResultService.loading){
+  <app-searchbox-loader/>
+}@else {
+
+  @if (sharedService.screenWidth >= sharedService.webViewBreakPoint) {
+    <p class="flight-header d-flex justify-content-center align-content-center gap-1">
+      <img src="assets/icons/search-box/airplane.svg" />
+      {{ 'searchBox.flights' | translate }}
+    </p>
+  }
+  <section
+    class="d-flex flex-column align-items-center align-items-lg-start search-box-sec"
+    [class.ar]="translate.currentLang === 'ar'"
+    [class.shadow-none]="isInFlightResults"
+  >
+    <div class="trip-options my-2" [class.ar]="translate.currentLang === 'ar'">
+      <label class="custom-radio">
+        <input
+          type="radio"
+          name="tripType"
+          value="oneway"
+          #onewayRadioInput
+          [(ngModel)]="flightSharedService.selectedFlightType"
+          (change)="flightSearchService.changeFlightType('OneWay')"
+        />
+        <span>{{ 'searchBox.oneway' | translate }}</span>
+      </label>
+      <label class="custom-radio">
+        <input
+          type="radio"
+          name="tripType"
+          value="roundtrip"
+          #roundtripRadioInput
+          [(ngModel)]="flightSharedService.selectedFlightType"
+          (change)="flightSearchService.changeFlightType('RoundTrip')"
+        />
+        <span>{{ 'searchBox.roundtrip' | translate }}</span>
+      </label>
+      <label class="custom-radio">
+        <input
+          type="radio"
+          name="tripType"
+          value="multicity"
+          #multicityRadioInput
+          [(ngModel)]="flightSharedService.selectedFlightType"
+          (change)="flightSearchService.changeFlightType('MultiCity')"
+        />
+        <span>{{ 'searchBox.multicity' | translate }}</span>
+      </label>
+    </div>
+  
+    <form [formGroup]="flightSearchService.searchFlight" class="d-flex flex-wrap gap-3 w-100">
+      <ng-container formArrayName="Flights">
+        @for (
+          flightItem of flightSharedService.selectedFlightType === 'multicity'
+            ? flightSearchService.flightsArray['controls']
+            : (flightSearchService.flightsArray['controls'] | slice: 0 : 1);
+          track flightItem;
+          let i = $index
+        ) {
+          <div
+            class="d-flex gap-3 w-100 align-items-center justify-content-start position-relative"
+            [class.flex-wrap]="sharedService.webViewBreakPoint > sharedService.screenWidth"
+          >
+            <ng-container [formGroupName]="i">
+              @if (sharedService.screenWidth >= sharedService.webViewBreakPoint) {
+                <div class="d-flex dest-container">
+                  <app-dest-input [flightItem]="flightItem" [index]="i" [destination]="'departing'" (destinationTypeChange)="updateDestinationType($event)" />
+  
+                  <div class="switch-btn-desktop" (click)="switchDestination(flightItem)">
+                    <div>
+                      <img src="assets/icons/search-box/switch-arrows-desktop.svg" />
+                    </div>
+                  </div>
+  
+                  <app-dest-input [flightItem]="flightItem" [index]="i" [destination]="'landing'"  (destinationTypeChange)="updateDestinationType($event)"
+  />
+                </div>
+  
+                <div class="d-flex date-container">
+                  <app-date-input
+                    [flightItem]="flightItem"
+                    [index]="i"
+                    [isReturnDate]="false"
+                    [class.roundtrip-date]="flightSharedService.selectedFlightType === 'roundtrip'"
+                    class="w-50"
+                    (openRoundTripCalendar)="openReturnDateCalendar = openReturnDateCalendar + 1"
+                    [class.flex-grow-1]="flightSharedService.selectedFlightType === 'multicity'"
+                  />
+  
+                  @if (flightSharedService.selectedFlightType === 'roundtrip') {
+                    <app-date-input
+                      [flightItem]="flightItem"
+                      [index]="i"
+                      [isReturnDate]="true"
+                      class="w-50"
+                      [openCalendar]="openReturnDateCalendar"
+                      [isAddReturnSelected]="isAddReturnSelected"
+                      (restInput)="isAddReturnSelected = false"
+                    />
+                  } @else if (flightSharedService.selectedFlightType === 'oneway') {
+                    <div
+                      class="airport-input add-return w-50"
+                      [class.web-input-border-raidus-left]="translate.currentLang === 'ar'"
+                      [class.web-input-border-raidus-right]="translate.currentLang === 'en'"
+                      (click)="goToRoundTrip()"
+                    >
+                      <span class="fw-bold m-0">{{ 'searchBox.addReturn' | translate }}</span>
+                    </div>
+                  }
+                </div>
+  
+                @if (!$index) {
+                  <app-travelling-input />
+                } @else {
+                  <app-travelling-input class="invisible" />
+                }
+              } @else {
+                <app-dest-input
+                  [flightItem]="flightItem"
+                  [index]="i"
+                  [destination]="'departing'"
+                  (destinationTypeChange)="updateDestinationType($event)"
+                />
+  
+                <div
+                  class="switch-btn"
+                  [class.ar]="translate.currentLang === 'ar'"
+                  (click)="switchDestination(flightItem)"
+                >
+                  <div>
+                    <img src="assets/icons/search-box/switch-arrows.svg" />
+                  </div>
+                </div>
+  
+                <app-dest-input
+                  [flightItem]="flightItem"
+                  [index]="i"
+                  [destination]="'landing'"
+                  (destinationTypeChange)="updateDestinationType($event)"
+                />
+  
+                <app-date-input
+                  [flightItem]="flightItem"
+                  [index]="i"
+                  [isReturnDate]="false"
+                  [class.roundtrip-date]="flightSharedService.selectedFlightType === 'roundtrip'"
+                />
+  
+                @if (flightSharedService.selectedFlightType === 'roundtrip') {
+                  <app-date-input [flightItem]="flightItem" [index]="i" [isReturnDate]="true" class="roundtrip-date" />
+                }
+  
+                @if ($index === flightSearchService.flightsArray['controls'].length - 1 || flightSharedService.selectedFlightType !== 'multicity') {
+                  <app-travelling-input />
+                } @else {
+                  <app-travelling-input
+                    class="invisible"
+                    [class.d-none]="sharedService.webViewBreakPoint > sharedService.screenWidth"
+                  />
+                }
+              }
+            </ng-container>
+  
+            @if (!$index && sharedService.screenWidth >= sharedService.webViewBreakPoint) {
+              <button class="search-btn" (click)="onSubmit()">
+                @if (isSelectButtonLoading || flightResultService.loading) {
+                  <mat-spinner color="accent" diameter="20" />
+                } @else {
+                  {{ 'searchBox.search' | translate }}
+                }
+              </button>
+            } @else {
+              <button
+                class="search-btn invisible"
+                [class.d-none]="sharedService.webViewBreakPoint > sharedService.screenWidth"
+              >
+                {{ 'searchBox.search' | translate }}
+              </button>
+            }
+  
+            @if (
+              flightSharedService.selectedFlightType === 'multicity' &&
+              flightSearchService.flightsArray['controls'].length > 1 &&
+              sharedService.webViewBreakPoint >= sharedService.screenWidth
+            ) {
+              <hr class="w-100 bg-dark" />
+            }
+          </div>
+  
+          @if (
+            $index === flightSearchService.flightsArray['controls'].length - 1 &&
+            flightSharedService.selectedFlightType === 'multicity'
+          ) {
+            <div class="d-flex flex-grow-1 justify-content-between align-items-center">
+              <caption class="fst-italic">
+                {{
+                  'searchBox.addFlightNote' | translate
+                }}
+              </caption>
+  
+              <div class="d-flex gap-2">
+                @if (flightSearchService.flightsArray['controls'].length !== 4) {
+                  <button class="add-flight-btn" (click)="onAddFlight()">
+                    <img src="assets/icons/search-box/add-flight.svg" />
+                  </button>
+                }
+  
+                @if (flightSearchService.flightsArray['controls'].length > 1) {
+                  <button class="remove-flight-btn" (click)="onRemoveFlight(i)">
+                    <img src="assets/icons/search-box/remove-flight.svg" />
+                  </button>
+                }
+              </div>
+            </div>
+          }
+        }
+  
+        @if (sharedService.screenWidth < sharedService.webViewBreakPoint) {
+          <button class="search-btn" (click)="onSubmit()">
+            @if (isSelectButtonLoading || flightResultService.loading) {
+              <mat-spinner color="accent" diameter="20" />
+            } @else {
+              {{ 'searchBox.search' | translate }}
+            }
+          </button>
+        }
+      </ng-container>
+    </form>
+  </section>
+}

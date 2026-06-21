@@ -1,0 +1,28 @@
+@import 'utilities';
+@import 'variables';
+
+.custom_modal .baggage {
+  margin-bottom: -5px;
+  width: 100%;
+  background-color: white;
+}
+
+.btn {
+  @include custom-button(
+    $background: map-get($green, 'one'),
+    $color: white,
+    $border-radius: 10px,
+    $font-weight: bold,
+    $height: 38px,
+    $width: 260px
+  );
+}
+
+.btn-sec {
+  height: 60px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -20px;
+}

@@ -1,0 +1,241 @@
+@if (sharedService.screenWidth >= sharedService.webViewBreakPoint) {
+  <h1 class="text-center mt-2">{{ 'user.register.signUp' | translate }}</h1>
+} @else {
+  <app-input-header [headerTitle]="'user.register.title' | translate" (onClickClose)="dismiss.emit()" />
+}
+
+<div class="register">
+  <form class="register__form row between" [formGroup]="authService.registerForm">
+    <div class="register__form__input col-12 col-md-3">
+      <label>{{ 'user.register.firstNameLabel' | translate }}</label>
+      <input type="text" [placeholder]="'user.register.firstNamePlaceholder' | translate" formControlName="firstName" />
+
+      @if (registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched) {
+        <p
+          [ngStyle]="{
+            visibility: 'visible',
+          }"
+          class="validation-msg"
+        >
+          {{ getFirstNameErrorMessage(registerForm.get('firstName')!, lang) }}
+        </p>
+      } @else {
+        <p
+          [ngStyle]="{
+            visibility: 'hidden',
+          }"
+          class="validation-msg"
+        >
+          Error Message Placeholder
+        </p>
+      }
+    </div>
+
+    <div class="register__form__input col-12 col-md-3">
+      <label>{{ 'user.register.lastNameLabel' | translate }}</label>
+      <input type="text" [placeholder]="'user.register.lastNamePlaceholder' | translate" formControlName="lastName" />
+
+      @if (registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched) {
+        <p
+          [ngStyle]="{
+            visibility: 'visible',
+          }"
+          class="validation-msg"
+        >
+          {{ getLastNameErrorMessage(registerForm.get('lastName')!, lang) }}
+        </p>
+      } @else {
+        <p
+          [ngStyle]="{
+            visibility: 'hidden',
+          }"
+          class="validation-msg"
+        >
+          Error Message Placeholder
+        </p>
+      }
+    </div>
+
+    <div class="register__form__input col-12 col-md-5">
+      <label>{{ 'user.register.userNameLabel' | translate }}</label>
+      <input type="text" [placeholder]="'user.register.userNamePlaceholder' | translate" formControlName="username" />
+
+      @if (registerForm.get('username')?.invalid && registerForm.get('username')?.touched) {
+        <p
+          [ngStyle]="{
+            visibility: 'visible',
+          }"
+          class="validation-msg"
+        >
+          {{ getUserNameErrorMessage(registerForm.get('username')!, lang) }}
+        </p>
+      } @else {
+        <p
+          [ngStyle]="{
+            visibility: 'hidden',
+          }"
+          class="validation-msg"
+        >
+          Error Message Placeholder
+        </p>
+      }
+    </div>
+
+    <div class="register__form__input col-12 col-md-6">
+      <label>{{ 'user.register.emailLabel' | translate }}</label>
+      <input type="text" [placeholder]="'user.register.emailPlaceholder' | translate" formControlName="email" />
+
+      @if (registerForm.get('email')?.invalid && registerForm.get('email')?.touched) {
+        <p
+          [ngStyle]="{
+            visibility: 'visible',
+          }"
+          class="validation-msg"
+        >
+          {{ getEmailErrorMessage(registerForm.get('email')!, lang) }}
+        </p>
+      } @else {
+        <p
+          [ngStyle]="{
+            visibility: 'hidden',
+          }"
+          class="validation-msg"
+        >
+          Error Message Placeholder
+        </p>
+      }
+    </div>
+
+    <div class="register__form__input col-12 col-md-5">
+      <label>{{ 'user.register.phoneNumberLabel' | translate }}</label>
+      <input
+        type="text"
+        [placeholder]="'user.register.phoneNumberPlaceholder' | translate"
+        formControlName="userPhoneNumber"
+      />
+
+      @if (registerForm.get('userPhoneNumber')?.invalid && registerForm.get('userPhoneNumber')?.touched) {
+        <p
+          [ngStyle]="{
+            visibility: 'visible',
+          }"
+          class="validation-msg"
+        >
+          {{ getPhoneErrorMessage(registerForm.get('userPhoneNumber')!, lang) }}
+        </p>
+      } @else {
+        <p
+          [ngStyle]="{
+            visibility: 'hidden',
+          }"
+          class="validation-msg"
+        >
+          Error Message Placeholder
+        </p>
+      }
+    </div>
+
+    <div class="register__form__input col-12 col-md-6">
+      <label>{{ 'user.register.passwordLabel' | translate }}</label>
+      <input
+        type="password"
+        [placeholder]="'user.register.passwordPlaceholder' | translate"
+        formControlName="password"
+        autocomplete="new-password"
+      />
+
+      @if (registerForm.get('password')?.invalid && registerForm.get('password')?.touched) {
+        <p
+          [ngStyle]="{
+            visibility: 'visible',
+          }"
+          class="validation-msg"
+        >
+          {{ getPasswordErrorMessage(registerForm.get('password')!, lang, true) }}
+        </p>
+      } @else {
+        <p
+          [ngStyle]="{
+            visibility: 'hidden',
+          }"
+          class="validation-msg"
+        >
+          Error Message Placeholder
+        </p>
+      }
+    </div>
+
+    <div class="register__form__input col-12 col-md-5">
+      <label>{{ 'user.register.confirmPasswordLabel' | translate }}</label>
+      <input
+        type="password"
+        [placeholder]="'user.register.confirmPasswordPlaceholder' | translate"
+        formControlName="confirmPassword"
+        autocomplete="new-password"
+      />
+
+      @if (
+        registerForm.errors && (registerForm.get('confirmPassword')?.touched || registerForm.get('password')?.touched)
+      ) {
+        <p
+          [ngStyle]="{
+            visibility: 'visible',
+          }"
+          class="validation-msg"
+        >
+          {{ 'user.register.passwordMismatch' | translate }}
+        </p>
+      } @else {
+        <p
+          [ngStyle]="{
+            visibility: 'hidden',
+          }"
+          class="validation-msg"
+        >
+          Error Message Placeholder
+        </p>
+      }
+    </div>
+
+    @if (error) {
+      <p
+        [ngStyle]="{
+          visibility: 'visible',
+        }"
+        class="validation-msg"
+      >
+        {{ 'user.register.invalidUserError' | translate }}
+      </p>
+    } @else {
+      <p
+        [ngStyle]="{
+          visibility: 'hidden',
+        }"
+        class="validation-msg"
+      >
+        Error Message Placeholder
+      </p>
+    }
+  </form>
+
+  <div class="register__actions">
+    <button (click)="onSubmit()" [disabled]="isLoading">
+      @if (!isLoading) {
+        {{ 'user.register.signUp' | translate }}
+      } @else {
+        <mat-spinner diameter="20" color="accent"></mat-spinner>
+      }
+    </button>
+
+    <!-- <button class="google">
+      <img src="assets/icons/user/google-icon.svg" title="Google Icon" />
+      {{ 'user.register.signUpWithGoogle' | translate }}
+    </button> -->
+    <!-- <button class="facebook">Sign Up with facebook</button> -->
+  </div>
+
+  <footer class="register__footer">
+    {{ 'user.register.alreadyHaveAccount' | translate }}
+    <span (click)="goToSignIn($event)">{{ 'user.register.signIn' | translate }}</span>
+  </footer>
+</div>

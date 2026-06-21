@@ -1,0 +1,141 @@
+.skeleton {
+      position: relative;
+      background: #e6e6e6;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .skeleton::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -150%;
+      width: 150%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+      animation: shimmer 1.5s infinite;
+    }
+    @keyframes shimmer {
+      100% { left: 150%; }
+    }
+
+    /* trip type row */
+    .trip-types {
+      display: flex;
+      gap: 30px;
+      margin-bottom: 20px;
+      align-items: center;
+    }
+    .trip-type {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .radio {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2px solid #63a71f;
+      position: relative;
+    }
+    .radio::before {
+      content: "";
+      position: absolute;
+      inset: 3px;
+      border-radius: 50%;
+      background: #63a71f;
+    }
+    .radio.off::before {
+      display: none;
+    }
+    .label-skel {
+      width: 80px;
+      height: 12px;
+    }
+
+    /* main row */
+    .form-row {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .field {
+      border: 1px solid #d0d0d0;
+      border-radius: 8px;
+      padding: 12px 16px;
+      width: 230px;
+      height: 90px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    .field.double {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      width: 320px;
+    }
+
+    .divider {
+      position: absolute;
+      top: 15%;
+      bottom: 15%;
+      left: 50%;
+      width: 1px;
+      background: #ccc;
+    }
+    .swap {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      width: 36px;
+      height: 36px;
+      border: 1px solid #ccc;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+    }
+    .swap .skeleton {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+    }
+
+    .label {
+      width: 50px;
+      height: 12px;
+      margin-bottom: 8px;
+    }
+    .value {
+      width: 140px;
+      height: 18px;
+    }
+
+    /* button */
+    .search-btn {
+      width: 80px;
+      height: 56px;
+      border-radius: 10px;
+      background: #63a71f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .spinner {
+      width: 24px;
+      height: 24px;
+      border: 3px solid rgba(255,255,255,0.4);
+      border-top: 3px solid #fff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }

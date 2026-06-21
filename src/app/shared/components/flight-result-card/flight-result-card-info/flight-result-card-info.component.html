@@ -1,0 +1,24 @@
+<div class="segment">
+  <div class="stop">
+    @if (isDepart) {
+      <p class="segment-time">{{ flightSegment.deptTime | timeFormat }}</p>
+    } @else {
+      <p class="segment-time">{{ flightSegment.landTime | timeFormat }}</p>
+    }
+  </div>
+  <div class="stop">
+
+    @if (isDepart) {
+      <p class="segment-airport">
+        {{ flightSegment.departureTerminalAirport.cityName }} ({{ flightSegment.departureTerminalAirport.airportCode }})
+      </p>
+    } @else {
+      <p class="segment-airport">
+        {{ flightSegment.arrivalTerminalAirport.cityName }} ({{ flightSegment.arrivalTerminalAirport.airportCode }})
+      </p>
+    }
+    @if (show) {
+      <app-flight-result-card-stops class="img" [flight]="flight" [currentLang]="currentLang" />
+    }
+  </div>
+</div>

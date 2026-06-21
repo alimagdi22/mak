@@ -1,0 +1,124 @@
+@import 'colors';
+p {
+  margin-bottom: 0 !important;
+}
+
+.flight-path {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: start;
+
+  gap: 10px;
+
+  &__right,
+  &__middle,
+  &__left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 5px;
+  }
+
+  &__right {
+    align-items: start;
+    height: 200px;
+
+    &__city {
+      text-align: start;
+      font-size: 18px;
+      font-weight: 600;
+
+      &__airport {
+        font-size: 14px;
+        font-weight: 400;
+      }
+    }
+
+    &__airport {
+      display: flex;
+      gap: 5px;
+
+      &__logo {
+        width: 32px;
+        height: 32px;
+        object-fit: contain;
+      }
+
+      &__text {
+        text-align: start;
+        &__class {
+          font-weight: 400;
+        }
+      }
+    }
+  }
+
+  &__middle {
+    gap: 0;
+    align-items: center;
+    &__circle,
+    &__line,
+    &__flight-icon {
+      z-index: 2;
+    }
+
+    &__dashed-line {
+      position: absolute;
+      z-index: 1;
+      height: 100%;
+      width: 0;
+      border-left: 1px dashed gray;
+    }
+
+    &__circle {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+
+      background-color: #3e7dc3;
+    }
+
+    &__line {
+      width: 1px;
+      flex-grow: 1;
+      background-color: map-get($map: $green, $key: 'one');
+    }
+  }
+
+  &__left {
+    width: 100px;
+    text-align: end;
+
+    &__time {
+      font-weight: bold;
+    }
+
+    &__duration {
+      font-weight: 400;
+      font-size: 12px;
+    }
+    &__timee {
+      font-weight: bold;
+    }
+  }
+}
+
+.calendar {
+  margin-inline-start: 17%;
+}
+
+.img-sec {
+  border: 1px solid #cbcbcb;
+  border-radius: 10px;
+  padding: 5px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.flight-path__right__airport {
+  justify-content: center;
+  align-items: center;
+}

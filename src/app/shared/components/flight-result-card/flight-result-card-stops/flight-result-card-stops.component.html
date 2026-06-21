@@ -1,0 +1,6 @@
+<img
+  class="position-relative "
+  [ngClass]="{ 'flip-horizontal': currentLang === 'en' }"
+  [src]="'assets/images/flight-en' + (flight.stopsNum === 1 ? '-one' : flight.stopsNum >= 2 ? '-two' : '') + '.png'"
+  alt="Flight"
+/>

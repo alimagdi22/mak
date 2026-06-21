@@ -1,0 +1,511 @@
+{
+  "header": {
+    "language": "Language",
+    "currency": "Currency",
+    "update": "Update",
+    "menuTitle": "Sign in to get the best of our service",
+    "signUp": "Sign Up",
+    "signIn": "Sign In",
+    "menuNote": "You Can also Sign in with",
+    "aboutUs": "About Us",
+    "contactUs": "Contact Us",
+    "home": "Home",
+    "close": "Close"
+  },
+  "aboutUs": {
+    "About Us": "About Us",
+    "About Mak Travel": "About Mak Travel",
+    "Simplicity": "Simplicity of booking is our target. Our new website makes your trips even simpler",
+    "Ejazza": "Mak Travel is dedicated to helping clients optimize their travel programs and providing best-in-class service to travelers globally. We arrange your flight bookings, hotel booking, Insurance, car rentals, vacation packages, and sport events booking around the globe. We are committed to a trusted and reliable service for all our clients.",
+    "Chairman": "Chairman.",
+    "Travels": "Mak Travel.",
+    "Why Mak Travel": "Why Mak Travel",
+    "Why": "Why you travel with Mak Travel",
+    "worldwide": "200+ our worldwide airlines",
+    "trusted": "100% trusted travel agency",
+    "experience": "10+ years of travel experience",
+    "happy": "95% of our travellers happy",
+    "missionTitle": "Mission",
+    "missionDescription": "Dedicated to helping clients optimize their travel programs and providing best-in-class service to travelers globally.",
+    "visionTitle": "Vision",
+    "visionDescription": "An unwavering commitment to customer satisfaction that leads to a mutually beneficial and lifelong relationship."
+  },
+
+  "home": {
+    "title": "Plan your imagination and book it",
+    "bookWithUs": "Book with Mak Travel for better deals, and unforgettable experience",
+    "mostSearched": "Most searched flights",
+    "popularAirlines": "Most Popular Airlines",
+    "cardTitle": "Countless options",
+    "cardDescription": "Travelo compares flights from 450+ airlines to bring you the best deals",
+    "bestDeals": "The best Flight deals",
+    "bestDealsDescription": "Discover our featured destinations and find the perfect getaway. Whether you’re seeking for relaxation, adventure or cultural experience. Mak Travel has something for every traveler",
+    "adContent": {
+      "title": "Unlock exclusive features available only on the Mak Travel app Download it now!",
+      "features": [
+        "Enjoy more than ten practical features tailored exclusively for app users",
+        "Get early access to new offers and discounts",
+        "Seamlessly manage your bookings with advanced tools"
+      ],
+      "scanToDownload": "Scan to download"
+    }
+  },
+
+  "searchBox": {
+    "oneway": "One Way",
+    "roundtrip": "Round Trip",
+    "multicity": "Multi City",
+    "leaving": "Leaving",
+    "from": "From",
+    "arriving": "Arriving",
+    "to": "To",
+    "placeholder": "Enter your destination",
+    "noSearchResults": "No Search Results",
+    "recommendedAirports": "Recommended Airports",
+    "return": "Return",
+    "depart": "Depart",
+    "returnDate": "Return Date",
+    "departDate": "Depart Date",
+    "travellersCabin": "Travellers/Cabin Class",
+    "passengers": "Passengers",
+    "guest": "Travellers",
+    "adult": "Adult",
+    "child": "child",
+    "infant": "infant",
+    "Economy": "Economy",
+    "PremiumEconomy": "Permium Economy",
+    "Business": "Business",
+    "First": "First Class",
+    "done": "Done",
+    "close": "Close",
+    "search": "Search",
+    "datePicker": "Date Picker",
+    "flights": "Flights",
+    "addReturn": "+ Add return",
+    "addFlightNote": "Maximum of 4 different flights can be added",
+    "allAirports": "All Airports"
+  },
+
+  "footer": {
+    "description": "At Mak Travel, we believe that travel is more than just visiting new places, it’s about creating unforgettable experiences and lasting memories.",
+    "home": "Home",
+    "aboutUs": "About Us",
+    "application": "Application",
+    "contactUs": "Contact Us",
+    "privacyPolicy": "Privacy Policy",
+    "terms": "Terms and Conditions",
+    "helpCenter": "Help Center",
+    "email": "Ticketing3@mak-travel.com",
+    "phone": "01123324859",
+    "address": "11 Merritt St. - Tahrir Square, Cairo, Egypt",
+    "company": "Mak Travel",
+    "rights": "Copyright © all rights are reserved to Mak."
+  },
+
+  "user": {
+    "login": {
+      "title": "Login",
+      "emailLabel": "Email Address",
+      "emailPlaceholder": "Enter your email address",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "errorMessagePlaceholder": "Error Message Placeholder",
+      "invalidUserError": "Invalid user or something went wrong ..",
+      "forgotPassword": "Forget your password?",
+      "signIn": "Sign In",
+      "signInWithGoogle": "Sign In with Google",
+      "signInWithFacebook": "Sign In with Facebook",
+      "noAccount": "Don't have an account?",
+      "signUp": "Sign Up",
+      "cancel": "Cancel"
+    },
+    "register": {
+      "title": "Create Account",
+      "exitIconTitle": "Exit Icon",
+      "firstNameLabel": "First Name",
+      "firstNamePlaceholder": "Enter your first name",
+      "lastNameLabel": "Last Name",
+      "lastNamePlaceholder": "Enter your last name",
+      "userNameLabel": "User Name",
+      "userNamePlaceholder": "Enter your nick name",
+      "emailLabel": "Email Address",
+      "emailPlaceholder": "Enter your email address",
+      "phoneNumberLabel": "Phone Number",
+      "phoneNumberPlaceholder": "Enter your phone number",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "confirmPasswordLabel": "Confirm Password",
+      "confirmPasswordPlaceholder": "Confirm your password",
+      "passwordMismatch": "Password does not match.",
+      "errorMessagePlaceholder": "Error Message Placeholder",
+      "invalidUserError": "Invalid user or something went wrong ..",
+      "termsAgreement": "I agree with - and -",
+      "signUp": "Sign Up",
+      "signUpWithGoogle": "Sign Up with Google",
+      "alreadyHaveAccount": "Already have an account?",
+      "signIn": "Sign In"
+    },
+
+    "forgetPassword": {
+      "successTitle": "Password Reset",
+      "successMessage": "Your password has been successfully reset. Click below to login magically.",
+      "continueButton": "Continue",
+      "backToLogin": "Back to login",
+      "backToLoginTitle": "Go Back",
+      "setNewPasswordTitle": "Set New Password",
+      "setNewPasswordMessage": "Your new password must be different from previously used password.",
+      "newPasswordLabel": "New Password",
+      "newPasswordPlaceholder": "Enter your password",
+      "confirmPasswordLabel": "Confirm Password",
+      "confirmPasswordPlaceholder": "Confirm your password",
+      "passwordMismatchError": "Password does not match.",
+      "generalError": "Invalid user or something went wrong ..",
+      "resetPasswordButton": "Reset Password"
+    },
+
+    "otp": {
+      "title": "One Time Password",
+      "message": "We send you an OTP. Please, check your email.",
+      "error": "OTP is not valid."
+    },
+
+    "resetPassword": {
+      "emailSentTitle": "Check your email",
+      "emailSentMessage": "We sent a password reset link to",
+      "openEmailApp": "Open email app",
+      "resendEmail": "Didn’t receive the email?",
+      "clickResend": "Click to resend",
+      "backToLogin": "Back to login",
+      "backToLoginTitle": "Go Back",
+      "forgetPasswordTitle": "Forget Password",
+      "forgetPasswordMessage": "No worries, we’ll send you reset instructions.",
+      "emailLabel": "Email Address",
+      "emailPlaceholder": "Enter your email address",
+      "generalError": "Invalid user or something went wrong ..",
+      "sendButton": "Send"
+    },
+
+    "sideNav": {
+      "profile": "My Profile",
+      "flight": "Flight Booking",
+      "hotels": "Hotels Booking",
+      "signOut": "Sign Out"
+    },
+
+    "profile": {
+      "firstName": "First Name",
+      "firstNamePlaceholder": "First Name",
+      "lastName": "Last Name",
+      "lastNamePlaceholder": "Last Name",
+      "gmail": "Gmail",
+      "emailPlaceholder": "Email",
+      "contactNumber": "Contact Number",
+      "privacyPolicy": "I give Taj permission to send me informational and promotional emails and text messages in accordance with the",
+      "privacyPolicyLink": "Privacy Policy",
+      "changePassword": "Change Password",
+      "save": "Save"
+    },
+
+    "changePassword": {
+      "gmail": "Gmail",
+      "currentPassword": "Current Password",
+      "newPassword": "New Password",
+      "confirmNewPassword": "Confirm New Password",
+      "save": "Save"
+    },
+
+    "hotels": {
+      "empty": "No Hotels Booking to Show"
+    },
+
+    "flights": {
+      "empty": "No Flights Booking to Show"
+    }
+  },
+
+  "flight-result": {
+    "cheapest": "Cheapest",
+    "fastest": "Fastest",
+    "bestValue": "Best Value",
+    "FLightDetials": "Flight Details",
+    "moreDetails": "More Details",
+    "refund": "Refundable",
+    "nonRefund": "Non-Refundable",
+    "details": "Flight Details",
+    "fare": "Fare Rules",
+    "stops": "Stops",
+    "direct": "Direct",
+    "oneStop": "One Stop",
+    "twoStop": "Two Stops",
+    "earliest": "Departure (Morning)",
+    "latest": "Departure (Night)",
+    "loader": "Loading Search results, Please wait.",
+    "flightSchedules": "Flight Schedules",
+    "departure": "departure",
+    "arrival": "arrival",
+    "Morning": "Morning",
+    "Noon": "Noon",
+    "Afternoon": "Afternoon",
+    "Night": "Night",
+    "showRules": "Show Fare Rules",
+    "hideRules": "Hide Fare Rules",
+    "duration": "Duration",
+    "totalDuration": "Total Duration:"
+  },
+
+  "flightDetails": {
+    "title": "Flight Details",
+    "pricePerAdult": "Price per adult",
+    "select": "Select",
+    "transit": "Transit",
+    "in": "In",
+    "headers": {
+      "Itinerary": "Itinerary",
+      "Fare Rules": "Fare Rules",
+      "Baggage": "Baggage"
+    },
+
+    "itinerary": {
+      "Departure": "Departure",
+      "Arrive": "Return",
+      "One Stop": "One Stop",
+      "Two Stops": "Two Stops",
+      "Three Stops": "Three Stops",
+      "Four Stops": "Four Stops",
+      "Non-Stops": "Non-Stops",
+      "Economy": "Economy",
+      "PremiumEconomy": "Premium Economy",
+      "Business": "Business",
+      "First": "First Class",
+      "totalDuration": "Total Duration",
+      "changeIn": "Change in",
+      "terminal": "Treminal"
+    },
+
+    "fareRules": {
+      "fareBreakup": "Fare Breakup",
+      "cancellationFee": "Cancellation fee:",
+      "chanageFee": "Change fee",
+      "notAvaliable": "Not Avaliable",
+      "baseFare": "Base Fare:",
+      "taxesFees": "Taxes & Fees:",
+      "totalPrice": "Total Price",
+      "fareRules": "Fare Rules",
+      "sector": "Sector",
+      "airlineFee": "Airline Fee",
+      "adminCharges": "Admin Charges",
+      "perPassenger": "per passenger",
+      "dateChangeFee": "Date change fee:",
+      "allChangesNote": "All Changes are prior to scheduled departure of the first flight. Does not include additional no-show charges.",
+      "pleaseNote": "Please Note: The add-on service charges, convenience fee, and the discount you have received using a coupon code is non-refundable. The final refund amount will be adjusted as per the deductions.",
+      "airlinePolicyNote": "*Airlines stop accepting cancellation/change requests 4 - 72 hours before departure of the flight, depending on the airline. The airline fee is indicative based on an automated interpretation of airline fare rules. Ejazza doesn't guarantee the accuracy of this information. The change/cancellation fee may also vary based on fluctuations in currency conversion rates. For exact cancellation/change fee, please call us at our customer care number.",
+      "noRulesAvailable": "This airline doesn't have fare rules available",
+      "discount": "Discount"
+    },
+
+    "baggage": {
+      "included": "Included",
+      "adultItems": "Adult items",
+      "childItems": "Child items",
+      "infantItems": "Infant items",
+
+      "notPossible": "Baggage policy may vary based on fare",
+      "check": "Checked baggage are usually up to 23KG",
+      "baggageType": "Checked Baggage",
+      "message": "You will be able to add baggage when you check in or at the airport.",
+      "checkedBaggage": "Checked Baggage",
+      "cabinBaggage": "Cabin Baggage",
+
+      "note": "Different baggage allowance may apply, we show the minimum allowed. See itinerary for more baggage details."
+    }
+  },
+
+  "checkout": {
+    "goBack": "Go Back to Search Results",
+    "payment": {
+      "paymentSelection": "Choose Payment Method",
+      "paymentSelectionDesktop": "Choose Card",
+      "securePayment": "Pay Securely",
+      "conditionStart": "I have read and agree to the ",
+      "conditionEnd": "terms and conditions",
+      "loadingMsg": "Please wait till your payment session is ready..",
+      "cardMsg": "Please enter your details exactly as they appear on your card.",
+      "cabin": "Cabin",
+      "checked": "Checked",
+      "errorTitle": "Payment Error",
+      "errorMessage": "Something went wrong with the payment process. Please try again.",
+      "tryAgain": "Try Again"
+    },
+    "brandedFares": {
+      "ticketSelection": "Select Ticket Type",
+      "book": "Book",
+      "select": "Select",
+      "priceAdult": "Price per adult",
+      "Rules": {
+        "Flexible": {
+          "rule1": "Change your ticket date and time up to 24 hours before taking off, paying only the fare difference.",
+          "rule2": "Works for your outbound flight, your return trip or even both.",
+          "rule3": "Reschedule your flight regardless of ticket rules with no airline charges or fees."
+        },
+        "Standard": "Please be aware that standard ticket applies to fare rules regarding change or cancellation."
+      },
+      "economy": "Economy",
+      "economyFlexible": "Economy Flexible",
+      "business": "Business",
+      "businessFlexible": "Business Flexible"
+    },
+    "ticket": {
+      "flexible": "Flexible Fare",
+      "standard": "Standard Fare"
+    },
+    "contactDetails": {
+      "contactDetails": "Traveler Contacts",
+      "email": "Email",
+      "phone": "Contact Number"
+    },
+    "login": {
+      "signInHeader": "Login to speed up the process",
+      "login": "Sign In",
+      "signInOptions": "You can also login using "
+    },
+    "travellersDetails": {
+      "traveller": "Traveller",
+      "gender": "Gender",
+      "male": "Male",
+      "female": "Female",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "birthday": "Birth Date",
+      "passport": {
+        "passportDetails": "Passport Details",
+        "passportNumber": "Passport Number",
+        "issuingCountry": "Nationality",
+        "expirationDate": "Expiration Date"
+      },
+      "submit": "Submit"
+    },
+    "PASSENGER_TYPES": {
+      "ADULT": "Adult",
+      "CHILD": "Child",
+      "INFANT": "Infant",
+      "UNKNOWN": "Passenger"
+    },
+    "ERRORS": {
+      "REQUIRED": "This field is required",
+      "PATTERN": "This field can't contain a space in the beggining or the end",
+      "MINLENGTH": "Your name is too short (minimum {{requiredLength}} characters)",
+      "LETTERS_ONLY": "{{fieldName}} is required to be letters only",
+      "LEADING_TRAILING_SPACES": "Please remove any spaces at the beginning or end of your name",
+      "INVALID_PASSPORT": "Invalid passport number",
+      "EMAIL": "Invalid email address",
+      "INVALID_PHONE": "Invalid phone number",
+      "MAXLENGTH": "Maximum character limit exceeded",
+      "INVALID_COUNTRY": "Please select a country from the list",
+      "PASSPORT_EXPIRY_TOO_SOON": "Passport must be valid for at least 3 months after departure (until at least {{requiredDate}}). Your departure is on {{departureDate}}."
+    },
+    "CARD": {
+      "Details": "see more details"
+    },
+    "BreakDown": {
+      "fareBreakdown": "Tickets",
+      "singlePassenger": "Ticket",
+      "passengerType": {
+        "adultFare": "adult",
+        "childFare": "child",
+        "infantFare": "infant"
+      },
+      "fareType": {
+        "baseFare": "Base Fare",
+        "totalTax": "Total Tax",
+        "totalFare": "Total Fare"
+      },
+      "discount": "Discount",
+      "serviceCharge": "Service Charge"
+    },
+    "Modal": {
+      "body1": "With Flexible Ticket you can reschedule your flight up to 24 hours before departure, paying only the fare difference. The product can be used once for your outbound flight, your returning trip or even both at the same time.",
+      "body2": "You can change the date and time of your flights, while keeping the same airline and destination.",
+      "body3": "You can reschedule your journey with a phone call up to 24 hours (one day) before departure.",
+      "body4": "Your new flight dates need to be chosen within a year of your original booking and your new ticket won't be refundable.",
+      "body5": "Flexible Ticket cannot be used to change passenger names, classes or destinations.",
+      "body6": "Flexible Ticket can only be purchased when booking your trip."
+    },
+    "close": "Close"
+  },
+  "confirmation": {
+    "emailTicket": "Download E-ticket",
+    "print": "Print",
+    "bookingId": "Booking ID: ",
+    "pnr": "PNR: ",
+    "bookingDate": "Booking Date: ",
+    "passengerName": "Passenger Name",
+    "passengerNumber": "Passport Number",
+    "ticket": "Ticket",
+    "airlinePNR": "Airline PNR",
+    "flightDetails": "Flight Details",
+    "airlineRef": "Airline Ref:",
+    "Departure": "Departure",
+    "Arrive": "Arrive",
+    "baggage": "Baggage",
+    "perPerson": "per person",
+    "baggageMessage": "Guests are responsible for obtaining all entry and exit, health, vibes and other documents required by law, regulations. order, demands or  requirements of the countries flown from, into or over. we reserve the right to refuse carriage to any guest eho has not complied to such applicable laws, regulations, orders, demands or requirements.",
+    "contactInfo": "Contact Information",
+    "emailAddress": "Email Address",
+    "phoneNumber": "Phone Number",
+    "fareDetails": "Fare Details",
+    "fare": "Fare",
+    "tax": "Tax",
+    "total": "Total Cost",
+    "paymentMethod": "paymentMethod",
+    "paymentRef": "payment reference",
+    "paymentTrackID": "payment ID"
+  },
+
+  "contactUs": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "phone": "Phone",
+    "email": "Email",
+    "help": "How can we help?",
+    "chatWithUs": "Chat with us",
+    "submit": "Submit",
+    "send": "Send a Message",
+    "contactInfo": "Contact Info",
+    "contactUs": "Contact Us",
+    "sendMsg": "Send us a message",
+    "name": "Name",
+    "subject": "Subject",
+    "msg": "Message",
+    "sucess": "Your message has been sent. Thank you!",
+    "address": "11 Merritt St. - Tahrir Square, Cairo, Egypt",
+    "EmailValidation": "Valid Email is required",
+    "subjectValidation": "subject is required",
+    "messageValidation": "message is required",
+    "nameValidation": "Name is required",
+    "whatsApp": "WhatsApp:"
+  },
+
+  "terms": {
+    "title": "Terms",
+    "content": "This site displays the terms and conditions under which we provide our services to our customers on the Internet. By using this site, you are agreeing to the terms and conditions as detailed below:<br /><br />1. Mak Travel is not responsible for any technical glitches (internet problem, system down, technical error in issuing the ticket by the airline or GDS) during the ticketing. Mak Travel reserves the right to take any action (refund or if there is a fare increase, the full amount will be charged to you).<br /><br />2. Reservation<br /><br />All information and data of the reservation is the responsibility of the person who made the reservation and Mak Travel is not responsible for any errors related to the data, dates or travel destinations.<br /><br />When requesting a refund or change, you can send a copy of the ticket and your request via WhatsApp number +201111144895.<br /><br />3. Travel Documents<br /><br />It is the responsibility of the traveler to have all the documents required by the country traveling, including the validity of the passport, any type of visa required, hotel reservations, health or financial conditions, and any other requirements, and Mak Travel has no responsibility in this regard.<br /><br />4. Ensure any type of visa is needed for your trip.<br /><br />5. Cancellation charges may apply for each refundable ticket in addition to the airline fees.<br /><br />6. Flight cancellation for any reason may incur service charges for each ticket.<br /><br />7. Reissue fees may apply for each ticket in addition to airline fees if any required reason for reissue and all charges are nonrefundable.<br /><br />8. Modification and change date only through Mak Travel to avoid other fees.<br /><br />9. Please be at the boarding gate before 4 hours of your scheduled time of departure.<br /><br />10. Confirm your flight timing 24 hours before flight departure.<br /><br />11. Change or cancellation of reservation 72 hours before flight departure.<br /><br />12. Mak Travel is not responsible for any baggage related disputes (PC, KG) that might change based on the airline. Contact the airline for baggage details.<br /><br />13. Mak Travel is not responsible for any changes or cancellations of flights from the airline.<br /><br />14. Mak Travel is not responsible for the requirements of Covid-19.<br /><br />15. Unused tickets:<br />- If you are not using your ticket, please notify Mak Travel via email or WhatsApp.<br />- Mak Travel has the right to cancel the unused ticket and refund the taxes according to airline policy.<br /><br />16. Refund will be processed according to the airline or hotel agent policies.<br /><br />Mak Travel reserves the right to amend any of the site's services.<br /><br />This site is subject to the laws of the Arab Republic of Egypt."
+  },
+
+  "privacy-policy": {
+    "title": "Ejazza Travel Privacy Policy",
+    "content": "<p>This privacy policy has been compiled to better serve those who are concerned with how their 'Personally Identifiable Information' (PII) is being used online.</p><p>PII, as described in privacy law and information security, is information that can be used on its own or with other information to identify, contact, or locate a single person, or to identify an individual in context.</p><p>Please read our privacy policy carefully to get a clear understanding of how we collect, use, protect or otherwise handle your Personally Identifiable Information in accordance with our website.</p><h5>What personal information do we collect?</h5><p>When issuing a ticket on our website, you may be asked to enter your name, email address, phone number, credit card information, or other details to help you with your experience.</p><h5>When do we collect information?</h5><p>We collect information when you enter it on our site, including during:</p><ul><li>Flight ticket issuing</li><li>Hotel booking</li></ul><h5>How do we use your information?</h5><p>We may use the information we collect in the following ways:</p><ul><li>To quickly process your flight and hotel booking.</li></ul><h5>How do we protect your information?</h5><p>Our website is scanned regularly for security holes and vulnerabilities. We use Malware Scanning and secure networks. Sensitive data is encrypted via SSL.</p><p>All transactions are processed through a gateway provider and not stored on our servers.</p><h5>Do we use 'cookies'?</h5><p>Yes. Cookies help remember and process bookings and understand your preferences. You can choose to disable cookies via your browser settings.</p><p>If you disable cookies, some features may not function properly.</p><h5>Third-party disclosure</h5><p>We do not sell, trade, or transfer your Personally Identifiable Information to outside parties.</p><h5>Third-party links</h5><p>We do not include or offer third-party products or services on our website.</p><h5>Advertising & Analytics</h5><p>We use cookies from third-party vendors such as Google to compile data about user interactions with ads and the website.</p><h5>User Rights</h5><p>Users can visit our site anonymously. Privacy Policy link includes the word 'Privacy' and can be found on the homepage.</p><p>You will be notified of any changes on our Privacy Policy Page.</p><p>You can update your personal info by logging into your account.</p><h5>Behavioral Tracking</h5><p>We do not allow third-party behavioral tracking.</p><h5>Children Online Privacy Protection</h5><p>We comply with COPPA. Parents are in control of data collected from children under 13.</p><h5>Why do we collect email/phone?</h5><ul><li>To process hotel and flight bookings and send order updates.</li><li>To send offers and related service info.</li></ul><h5>SPAM Compliance</h5><p>We do not use false/misleading emails. You may unsubscribe anytime by following the instructions at the bottom of emails.</p><h5>Terms and Conditions</h5><p>Please also visit our Terms and Conditions page governing the use of our website.</p><h5>Contact Us</h5><p>If you have any questions about this Privacy Policy:</p><p>Website: maktravel.com<br/>Phone: 01123324859<br/>Cairo, Egypt</p><p><strong>Last Edited:</strong> 2024-05-10</p>"
+  },
+
+  "Price": "Price",
+  "Airlines": "Airlines",
+  "Refundability": "Refundability",
+  "Refundable": "Refundable",
+  "NonRefundable": "Non-Refundable",
+  "Stops": "Stops",
+  "1 Stop": "1 Stop",
+  "2 Stop": "2 Stop",
+  "minPrice": "min price",
+  "maxPrice": "max price",
+  "flightDetailsTitle": "Flight Details",
+  "Show Less": "Show Less",
+  "MoreFlightsSamePrice": "+{{count}} More flights at same price"
+}

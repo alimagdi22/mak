@@ -1,0 +1,24 @@
+.filter-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.schedule-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+::ng-deep .mat-expansion-panel {
+  border-radius: 10px !important;
+  overflow: hidden;
+}
+
+.filters {
+  position: sticky;
+  top: 100px;
+  max-height: auto;
+  overflow-y: auto;
+  padding-right: 8px;
+}

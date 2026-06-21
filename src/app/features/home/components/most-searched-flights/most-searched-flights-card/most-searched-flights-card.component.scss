@@ -1,0 +1,123 @@
+@import 'utilities';
+
+$border-radius: 16px;
+
+.flight {
+  cursor: pointer;
+  padding: 12px;
+  border-radius: $border-radius;
+  background-color: white;
+  box-shadow: 1px 1px 12px 0px #0000001f;
+  margin: 10px;
+  font-size: 14px;
+
+  &__image {
+    border-radius: $border-radius;
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  &__mid {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+
+    &__main {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      &__date {
+        font-weight: 600;
+      }
+
+      &__type {
+        font-weight: 700;
+      }
+    }
+
+    &__dest-code {
+      display: flex;
+      align-items: center;
+    }
+
+    &__percentage {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      width: 70px;
+      height: 45px;
+      font-size: 16px;
+      font-weight: 600;
+      color: map-get($map: $green, $key: 'two');
+
+      background-color: map-get($map: $green, $key: 'four');
+      border-radius: 12px;
+    }
+  }
+
+  &__footer {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+
+    &__created-time {
+      font-size: 10px;
+      font-weight: 600;
+      color: #7a7a7a;
+    }
+
+    &__price {
+      display: flex;
+      gap: 10px;
+      font-weight: 600;
+
+      &__actual {
+        color: gray;
+        text-decoration: line-through;
+        font-size: 12px;
+      }
+    }
+  }
+
+  @media (min-width: $web-view-break-point) {
+    &__mid {
+      &__main {
+        &__date {
+          font-weight: 600;
+          font-size: 16px;
+        }
+
+        &__type {
+          font-size: 18px;
+        }
+      }
+
+      &__dest-code {
+        display: flex;
+        font-weight: 600;
+        font-size: 16px;
+      }
+    }
+
+    &__footer {
+      &__created-time {
+        font-size: 14px;
+      }
+
+      &__price {
+        font-weight: 700;
+
+        &__actual {
+          font-size: 14px;
+        }
+        &__after-discount {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+<app-input-header [headerTitle]="'searchBox.datePicker' | translate" (onClickClose)="backToSearchBox()" />
+
+<div class="calenderMobile_datepicker">
+  <ngb-datepicker
+    [displayMonths]="2"
+    [dayTemplate]="dayCalander"
+    [startDate]="isReturnDate ? returnDate : departingDate"
+    [minDate]="isReturnDate ? departingDate : minDepartingDate"
+    (dateSelect)="onDateSelection($event)"
+  />
+
+  <ng-template #dayCalander let-date>
+    @if (flightType === 'roundtrip') {
+      <span class="custom-day" [class.focused]="isSelected(date)" [class.range]="isInside(date)">{{ date.day }}</span>
+    } @else {
+      <span class="custom-day" [class.focused]="isSelected(date)">{{ date.day }}</span>
+    }
+  </ng-template>
+</div>

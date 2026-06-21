@@ -1,0 +1,208 @@
+@import 'utilities';
+
+.flight-header {
+  width: 180px;
+  padding: 13px;
+  position: relative;
+  z-index: 1;
+
+  border-radius: 12px 12px 0 0;
+  background-color: white;
+  color: black;
+  margin-bottom: -20px;
+  margin-inline-end: 20px;
+
+  font-family: Poppins;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+section {
+  position: relative;
+  border-radius: 30px;
+  margin-block: 20px;
+  background-color: #f3f3f3;
+  padding: 15px;
+  z-index: 1;
+
+  @media (min-width: $web-view-break-point) {
+    background-color: white;
+    box-shadow: 0px 4px 4px 0px #00000040;
+
+    border-radius: 0 12px 12px 12px;
+
+    &.ar {
+      border-radius: 12px 0 12px 12px;
+    }
+  }
+}
+
+.trip-options {
+  display: flex;
+  gap: 10px;
+  text-wrap: nowrap;
+
+  &.ar {
+    input {
+      margin-right: 0px;
+      margin-left: 8px;
+    }
+
+    span {
+      font-size: 16px;
+    }
+  }
+
+  .custom-radio {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px;
+
+    input[type='radio'] {
+      appearance: none;
+      -webkit-appearance: none;
+      border: 1px solid map-get($map: $green, $key: 'one');
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 8px;
+      position: relative;
+      transition: border 0.2s ease;
+
+      &:checked {
+        border: 1px solid map-get($map: $green, $key: 'one');
+        background-color: white;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background-color: map-get($map: $blue, $key: 'three'); // Blue center
+        }
+      }
+    }
+  }
+}
+
+.add-flight-btn,
+.remove-flight-btn {
+  @include custom-button(
+    $background: transparent,
+    $border-radius: 10px,
+    $font-weight: bold,
+    $height: 48px,
+    $width: 48px
+  );
+
+  border: 1px solid;
+  font-size: 20px;
+  border-radius: 50px;
+
+  img {
+    width: 15px;
+  }
+}
+
+.add-flight-btn {
+  color: map-get($green, 'one');
+}
+
+.remove-flight-btn {
+  color: map-get($red, 'one');
+}
+
+.search-btn {
+  @include custom-button(
+    $background: map-get($green, 'one'),
+    $color: white,
+    $border-radius: 10px,
+    $font-weight: bold,
+    $height: 48px
+  );
+
+  @media (min-width: $web-view-break-point) {
+    flex-basis: 15%;
+  }
+}
+
+app-dest-input,
+app-travelling-input {
+  @media (max-width: $web-view-break-point) {
+    flex-basis: 100%;
+  }
+}
+
+app-travelling-input {
+  @media (min-width: $web-view-break-point) {
+    flex-basis: 18%;
+  }
+}
+
+app-date-input {
+  @media (max-width: $web-view-break-point) {
+    flex-grow: 1;
+    flex-basis: 45%;
+  }
+}
+
+.date-container,
+.dest-container {
+  position: relative;
+  flex-basis: 35%;
+}
+
+.roundtrip-date {
+  @media (max-width: $web-view-break-point) {
+    flex-grow: 1;
+    flex-basis: 45%;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: $web-view-break-point) {
+  app-dest-input,
+  app-travelling-input,
+  app-date-input {
+    flex-basis: 20%;
+  }
+
+  .roundtrip-date {
+    flex-grow: 0;
+    flex-basis: 10%;
+  }
+
+  .search-btn {
+    width: 15%;
+  }
+
+  .switch-btn {
+    left: 19.4%;
+    top: 17px;
+    transform: rotateZ(90deg);
+
+    &.ar {
+      left: auto;
+      right: 19.4%;
+      left: 50px;
+    }
+  }
+}
+
+.switch-btn-desktop {
+  cursor: pointer;
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+  
+  transform: translate(-50%, -50%);
+}
+
+.add-return {
+  cursor: pointer;
+}

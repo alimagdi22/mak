@@ -1,0 +1,267 @@
+@use '@angular/material' as mat;
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import './variables.scss';
+@import './colors.scss';
+
+body {
+  background-color: #f3f3f3;
+  font-family: Poppins !important;
+  // @media (min-width: $web-view-break-point) {
+  //   background-color: white;
+  // }
+}
+
+/* Calender */
+.calenderMenu {
+  height: 100%;
+  transform-origin: left top;
+  border-radius: 14px !important;
+  padding: 0.5% 1% !important;
+  display: flex !important;
+  justify-content: space-between;
+  width: 40rem;
+  max-width: unset !important;
+  box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+
+  .mat-mdc-menu-content {
+    width: 100%;
+
+    .date-summary-full {
+      width: 100%;
+      border-radius: 12px;
+    }
+  }
+
+  .searchBoxPicker {
+    width: 100%;
+    border: none;
+    direction: inherit;
+    .ngb-dp-header {
+      background-color: transparent !important;
+      margin-bottom: 2%;
+    }
+
+    .ngb-dp-arrow-btn {
+      color: black;
+      font-family: 'Lato';
+    }
+
+    .ngb-dp-month {
+      width: 100%;
+      .ngb-dp-week {
+        padding-left: 2.25rem;
+        padding-top: 0.3rem;
+      }
+    }
+
+    .ngb-dp-month-name {
+      background-color: transparent;
+      color: black;
+      font-size: 20px;
+      font-family: 'Lato';
+    }
+
+    .ngb-dp-weekdays {
+      background-color: transparent;
+      border: none;
+      padding: 1%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    .ngb-dp-weekday {
+      color: black;
+      font-family: Open Sans;
+      font-size: 18px;
+      margin: 0 0.2rem;
+    }
+
+    .ngb-dp-day {
+      margin: 0 0.2rem;
+    }
+  }
+
+  .custom-day {
+    text-align: center;
+    padding: 0.185rem 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 2rem;
+    width: 2rem;
+
+    border: none;
+    font-family: 'Lato';
+    font-size: 18px;
+    border-radius: 8px;
+  }
+
+  .ngb-dp-day.disabled {
+    color: #808080 !important;
+  }
+
+  .custom-day.focused {
+    background-color: map-get($map: $green, $key: 'one');
+    color: white;
+  }
+
+  .custom-day:hover {
+    background-color: map-get($map: $blue, $key: 'one');
+    color: white;
+  }
+
+  .custom-day.faded {
+    background-color: map-get($map: $red, $key: 'one');
+    color: #000000;
+  }
+.custom-day.range{
+    background-color: map-get($map: $green, $key: 'one');
+    color: white;
+}
+  .custom-day.range,
+  .custom-day.focused-range {
+    background-color: map-get($map: $green, $key: 'one');
+    color: white;
+  }
+}
+/* global styles.scss */
+
+.ngb-dp-rtl {
+  direction: rtl !important;
+  text-align: right !important;
+}
+
+/* reverse navigation arrows and month layout */
+
+
+.ngb-dp-rtl .ngb-dp-months {
+  flex-direction: row-reverse; /* if calendar shows multiple months */
+}
+
+.ngb-dp-rtl .ngb-dp-navigation {
+  flex-direction: row-reverse; /* reverse month name + arrows order */
+}
+
+/* flip the chevron direction: library uses transform; swap rotations for RTL */
+.ngb-dp-rtl .ngb-dp-navigation-chevron::before {
+  transform: rotate(45deg) !important;
+}
+.ngb-dp-rtl .right .ngb-dp-navigation-chevron::before {
+  transform: rotate(-135deg) !important;
+}
+
+/* small: make each day cell remain visually right-aligned if needed */
+.ngb-dp-rtl .ngb-dp-day, 
+.ngb-dp-rtl .ngb-dp-weekday {
+  text-align: center;
+}
+
+/* optional - if you need the header month name to be right aligned */
+.ngb-dp-rtl .ngb-dp-month-name {
+  text-align: center;
+}
+[dir="rtl"] .cdk-overlay-pane .ngb-dp-arrow-btn {
+  transform: rotate(180deg) !important;
+}
+// Custom primary (green)
+$green-palette: (
+  50: #e6f4db,
+  100: #c1e3a8,
+  200: #9dd175,
+  300: #78c043,
+  400: #63b225,
+  500: #66a928,
+  // Main
+  600: #5c9a24,
+  700: #4e841e,
+  800: #416d19,
+  900: #2f4f10,
+  contrast: (
+    50: #000,
+    100: #000,
+    200: #000,
+    300: #000,
+    400: #000,
+    500: #fff,
+    600: #fff,
+    700: #fff,
+    800: #fff,
+    900: #fff,
+  ),
+);
+
+// Custom secondary (used as accent) – deep blue
+$blue-palette: (
+  50: #e5eaf0,
+  100: #bccbd9,
+  200: #91aac0,
+  300: #6689a7,
+  400: #487092,
+  500: #2a3d54,
+  // Main
+  600: #25364b,
+  700: #1f2e40,
+  800: #192636,
+  900: #0f1926,
+  contrast: (
+    50: #000,
+    100: #000,
+    200: #000,
+    300: #fff,
+    400: #fff,
+    500: #fff,
+    600: #fff,
+    700: #fff,
+    800: #fff,
+    900: #fff,
+  ),
+);
+
+// Custom danger (warn)
+$red-palette: (
+  50: #ffe5e5,
+  100: #ffb8b8,
+  200: #ff8a8a,
+  300: #ff5c5c,
+  400: #ff3737,
+  500: #f71c1c,
+  // Main
+  600: #df1919,
+  700: #c61515,
+  800: #ae1212,
+  900: #8b0e0e,
+  contrast: (
+    50: #000,
+    100: #000,
+    200: #000,
+    300: #000,
+    400: #000,
+    500: #fff,
+    600: #fff,
+    700: #fff,
+    800: #fff,
+    900: #fff,
+  ),
+);
+
+// Define palettes
+$custom-primary: mat.define-palette($green-palette);
+$custom-accent: mat.define-palette($blue-palette);
+$custom-warn: mat.define-palette($red-palette);
+
+// Create the theme
+$custom-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $custom-primary,
+      accent: $custom-accent,
+      warn: $custom-warn,
+    ),
+  )
+);
+
+// Include styles
+@include mat.core();
+@include mat.all-component-themes($custom-theme);

@@ -1,0 +1,93 @@
+<section>
+  <div class="about-banner">
+    <h1>{{ 'header.contactUs' | translate }}</h1>
+  </div>
+</section>
+<div class="container">
+  <div class="row contact-container py-5">
+    <div class="form-section" [class.ar]="translate.currentLang === 'ar'">
+      <h2>{{ 'contactUs.send' | translate }}</h2>
+      <form (ngSubmit)="onSubmit()" [formGroup]="contactUsForm">
+        <div class="row">
+          <div class="input-group">
+            <label>{{ 'contactUs.name' | translate }}</label>
+            <input
+              type="text"
+              placeholder="Mohamed"
+              formControlName="name"
+              class="form-control"
+              [class.is-invalid]="isFormControllerInvaild('name')"
+            />
+          </div>
+          <div class="input-group">
+            <label>{{ 'contactUs.email' | translate }}</label>
+            <input
+              type="text"
+              formControlName="emailAddress"
+              class="form-control"
+              placeholder="mohamed&#64;gmail.com"
+              [class.is-invalid]="isFormControllerInvaild('emailAddress')"
+            />
+          </div>
+        </div>
+
+        <div class="input-group full">
+          <label>{{ 'contactUs.subject' | translate }}</label>
+          <input
+            type="text"
+            formControlName="subject"
+            class="form-control"
+            [class.is-invalid]="isFormControllerInvaild('subject')"
+          />
+        </div>
+
+        <div class="input-group full">
+          <label>{{ 'contactUs.msg' | translate }}</label>
+          <textarea
+            rows="4"
+            formControlName="emailBody"
+            [class.is-invalid]="isFormControllerInvaild('emailBody')"
+          ></textarea>
+        </div>
+
+        <button type="submit" [disabled]="contactUsForm.invalid || isLoading">
+          @if (isLoading) {
+            <mat-spinner diameter="20" color="accent" />
+          } @else {
+            {{ 'contactUs.submit' | translate }}
+          }
+        </button>
+      </form>
+    </div>
+
+    <div class="info-section" [class.ar]="translate.currentLang === 'ar'">
+      <div>
+        <h2>{{ 'contactUs.contactInfo' | translate }}</h2>
+
+        <div class="d-flex flex-column align-items-start gap-4">
+          <a href="tel:01123324859" class="d-flex align-items-center gap-3">
+            <img src="assets/icons/contact-us/call-icon.svg" />
+            <span class="text-white">01123324859</span>
+          </a>
+
+          <a target="_blank" href="https://wa.me/201111144895" class="d-flex align-items-center gap-3">
+            <img src="assets/icons/contact-us/whatsapp-icon.svg" />
+            <span class="text-white">Chat with us on WhatsApp</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="map">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3453.593740263385!2d31.2335122!3d30.0444196!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145840c61172a633%3A0xc638708c69135010!2sTahrir%20Square!5e0!3m2!1sen!2seg!4v1715340000000!5m2!1sen!2seg"
+          width="100%"
+          height="100%"
+          frameborder="0"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,133 @@
+@import 'utilities';
+@import 'colors';
+@import 'variables';
+
+sort-container {
+  padding: 0 10px;
+  margin-bottom: 10px;
+  font-family: Poppins !important;
+  font-weight: 600;
+  font-style: SemiBold;
+  font-size: 15px;
+  leading-trim: NONE;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+@media (min-width: $web-view-break-point) {
+  .sort-container {
+    padding: 0 10px;
+    margin-bottom: 10px;
+  }
+
+  .sort-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: white;
+    border-radius: 12px;
+    padding: 8px 16px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    gap: 12px;
+  }
+
+  .sort-option-box {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    color: black;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  .sort-option-box.active {
+    background-color: rgba(0, 200, 83, 0.1);
+    color: map-get($map: $green, $key: one);
+  }
+
+  .sort-option-box.active .label {
+    font-weight: bold;
+  }
+
+  .sort-option-box .count {
+    font-weight: normal;
+    color: inherit;
+  }
+
+  .divider {
+    width: 1px;
+    height: 20px;
+    background-color: #ddd;
+  }
+
+  .sort-icon {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    gap: 10px;
+  }
+
+  .sort-icon img {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+  }
+
+  .sort-button {
+    min-width: auto;
+    padding: 0;
+  }
+}
+
+@media (max-width: $web-view-break-point) {
+  sort-container {
+    padding: 0 10px;
+    margin-bottom: 10px;
+  }
+  .sort-box {
+    height: 35px;
+    padding: -1px 24px;
+    box-sizing: border-box;
+    border: 1px solid map-get($map: $green, $key: one);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: white;
+    margin: 0 10px;
+    margin-bottom: 10px;
+  }
+
+  .sort-option {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: bold;
+    color: black;
+  }
+
+  .sort-option.active {
+    color: map-get($map: $blue, $key: two);
+  }
+
+  .divider {
+    width: 1px;
+    height: 20px;
+    background-color: #ddd;
+    margin: 0 12px;
+  }
+
+  .count {
+    font-weight: normal;
+  }
+
+  .sort-icon img {
+    width: 40px;
+    height: 30px;
+    color: map-get($map: $green, $key: one);
+  }
+}

@@ -1,0 +1,14 @@
+<div class="country-selection-container">
+  <div class="search-header">
+    <h2>Select Issuing Country</h2>
+    <div class="search-box">
+      <input type="text" placeholder="Search countries..." [formControl]="searchControl" class="search-input" />
+    </div>
+  </div>
+
+  <div class="country-list">
+    <div *ngFor="let country of filteredCountries" class="country-item" (click)="selectCountry(country)">
+      {{ country.countryName }}
+    </div>
+  </div>
+</div>

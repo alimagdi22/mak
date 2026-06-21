@@ -1,0 +1,155 @@
+@import 'variables';
+@import 'colors';
+@import 'utilities';
+
+
+*{
+  // font-family: Open Sans;
+  font-family: Poppins;
+
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+
+  &.show {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.modal-content {
+  background-color: white;
+  width: 100%;
+  max-height: 60vh;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  padding: 20px;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+
+  &.show {
+    transform: translateY(0);
+  }
+
+  &[dir='rtl'] {
+    text-align: right;
+
+    .modal-header {
+      flex-direction: row-reverse;
+    }
+
+    .close-btn {
+      margin-left: 0;
+      margin-right: auto;
+      transform: scaleX(-1);
+    }
+
+    .modal-body {
+      p,
+      .body-content {
+        text-align: right;
+        direction: rtl;
+      }
+    }
+
+    .modal-footer {
+      direction: rtl;
+    }
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+
+  h4 {
+    margin: 0;
+    font-weight: bold;
+    text-align: start;
+  }
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  margin-left: auto;
+}
+
+.modal-body {
+  flex: 1;
+  padding: 8px 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  p {
+    width: 90%;
+    margin: 0;
+    padding: 0;
+    word-wrap: break-word;
+    text-align: start;
+  }
+
+  .body-content {
+    display: flex;
+    flex-direction: column;
+    padding: 0 25px;
+    text-align: start;
+    direction: inherit;
+    gap: 7px;
+  }
+}
+
+.modal-footer {
+  padding-top: 16px;
+  display: flex;
+  justify-content: center;
+
+  button {
+    width: 40%;
+    direction: ltr;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: map-get($green, 'one');
+    color: white;
+  }
+}
+
+[dir='rtl'] {
+  .modal-body {
+    p,
+    .body-content {
+      text-align: right;
+      padding-right: 0;
+      padding-left: 25px;
+    }
+  }
+
+  .body-content {
+    padding: 0 25px 0 0;
+    gap: 7px;
+  }
+}

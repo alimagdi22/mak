@@ -1,0 +1,86 @@
+@import 'colors';
+.baggage-container {
+  background-color: #fff;
+}
+
+.baggage-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.baggage-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.flight-route {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 15px;
+  font-weight: 400;
+  flex-wrap: wrap;
+}
+
+.baggage-row {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  align-items: center;
+  direction: ltr !important; 
+  text-align: left;
+}
+
+.passenger-title {
+  min-width: 70px;
+  font-weight: 700;
+  font-size: 16px;
+  color: map-get($map: $blue, $key: three);
+}
+
+.baggage-detail-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.baggage-detail {
+  display: flex;
+  margin-left: 5px;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  color: #444;
+  word-break: break-word;
+}
+
+.baggage-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.baggage-quantity {
+  display: flex;
+  gap: 4px;
+    direction: ltr;
+  text-align: left;
+}
+
+
+.spinner-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100px;
+}

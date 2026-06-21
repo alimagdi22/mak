@@ -1,0 +1,31 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100vh;
+}
+
+.main {
+  display: flex;
+  gap: 30px;
+  margin: 30px 0;
+}
+
+aside,
+section {
+  box-shadow:
+    rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  border-radius: 12px;
+}
+
+section {
+  min-height: 80vh;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 25px;
+  }
+}

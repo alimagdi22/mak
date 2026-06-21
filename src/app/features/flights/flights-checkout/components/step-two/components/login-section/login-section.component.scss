@@ -1,0 +1,146 @@
+@import 'utilities';
+@import 'colors';
+@import 'variables';
+
+*{
+  // font-family: Open Sans;
+  font-family: Poppins;
+}
+
+.login-section {
+  width: 75%;
+  background-color: white;
+  border-radius: 8px;
+  margin: auto;
+}
+
+.login-button {
+  background-color: map-get($green, 'one');
+  color: white;
+  border: none;
+  text-align: center;
+  height: 30px;
+  width: 91px;
+  border-radius: 10px;
+}
+
+.login-button:hover {
+  background-color: map-get($green, 'two');
+  color: white;
+}
+
+.login-lock-icon {
+  width: 34px;
+  height: 34px;
+}
+
+.login-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.login-label-text {
+  margin: auto 0;
+
+  .register {
+    cursor: pointer;
+    color: map-get($map: $green, $key: "one");
+  }
+}
+
+.login-sec-container {
+  margin-top: -10px;
+}
+
+:host {
+  &[dir='rtl'] .login-icons-sec {
+    margin-right: 15px;
+  }
+
+  &[dir='ltr'] .login-icons-sec {
+    margin-left: 15px;
+  }
+}
+
+@media (max-width: $web-view-break-point) {
+  .login-section {
+    width: 100%;
+  }
+}
+
+@media (min-width: 769px) {
+  .login-section {
+    text-align: center;
+    padding: 30px 0;
+    border-radius: 16px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    width: 100%;
+  }
+  .header-sec {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .login-text {
+    font-size: 25px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 8px !important;
+  }
+
+  .login-button {
+    width: 220px;
+    height: 48px;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: map-get($green, 'one');
+    color: white;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+    transition:
+      background-color 0.3s ease,
+      transform 0.2s ease;
+    margin-bottom: 0;
+  }
+
+  .login-button:hover {
+    background-color: map-get($green, 'two');
+    transform: translateY(-2px);
+  }
+
+  .login-label-text {
+    margin: 10px 0 15px;
+    font-size: 18px;
+    color: #555;
+    font-weight: 500;
+  }
+
+  .login-icons-sec {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .login-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    padding: 8px;
+    background-color: #f8f9fa;
+    transition:
+      transform 0.2s ease,
+      background-color 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
+
+  .login-icon:hover {
+    background-color: #e9ecef;
+    transform: scale(1.1);
+  }
+}

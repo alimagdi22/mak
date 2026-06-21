@@ -1,0 +1,14 @@
+<div *ngIf="showPopup" class="overlay">
+  <div class="popup" [ngStyle]="{ 'background-color': bgColor, color: textColor }">
+    <h2>{{ message }}</h2>
+    <button
+      (click)="navigate()"
+      [ngStyle]="{
+        'background-color': buttonBgColor,
+        color: buttonTextColor,
+      }"
+    >
+      {{ buttonText }}
+    </button>
+  </div>
+</div>

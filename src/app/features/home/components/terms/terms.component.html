@@ -1,0 +1,28 @@
+<div class="container p-5 my-5 bg-white rounded-4" [dir]="translate.currentLang === 'ar' ? 'rtl' : 'ltr'">
+  <!-- Loader -->
+  @if (isLoading) {
+    <div class="loader-container">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  }
+
+  <!-- Error Message -->
+  @if (hasError && !isLoading) {
+    <div class="alert alert-danger text-center">
+      {{ errorMessage }}
+      <button class="btn btn-sm btn-outline-danger ms-2" (click)="loadTermsContent()">
+        {{ 'common.retry' | translate }}
+      </button>
+    </div>
+  }
+
+  <!-- Main Content -->
+  @if (!isLoading && !hasError) {
+    <!-- <p class="title">{{ 'terms.title' | translate }}</p> -->
+    <div class="terms-content" [innerHTML]="termsContent"></div>
+    <!-- Static content can be added here if needed -->
+    <!-- <p class="fw-bold" [innerHTML]="'terms.content' | translate"></p> -->
+  }
+</div>

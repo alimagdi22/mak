@@ -1,0 +1,20 @@
+<button
+  mat-flat-button
+  color="primary"
+  (click)="onClick($event)"
+  [disabled]="isLoading"
+  class="gradient-button"
+  [title]="mainButtonInfo.title"
+  [ngStyle]="{
+    width: mainButtonInfo.width,
+    height: mainButtonInfo.height,
+    borderRadius: mainButtonInfo.borderRadius,
+  }"
+  [disabled]="isDisibled || isLoading"
+>
+  @if (isLoading) {
+    <mat-spinner color="accent" diameter="30" />
+  } @else {
+    <span>{{ mainButtonInfo.title }}</span>
+  }
+</button>

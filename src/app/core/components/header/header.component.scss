@@ -1,0 +1,126 @@
+@import 'utilities';
+
+header {
+  padding: 24px;
+  background-color: map-get($map: $blue, $key: 'one');
+
+  @media (min-width: $web-view-break-point) {
+    background-color: transparent;
+    z-index: 2;
+    width: 100%;
+
+    transition: all 0.2s;
+
+    &.dark-bg {
+      background-color: rgba(0, 0, 0, 0.75);
+    }
+
+    &.white-bg {
+      background-color: white;
+    }
+
+    &.shadow {
+      box-shadow: 1px 1px 12px 0px #0000001f !important;
+      margin-bottom: 5px;
+    }
+  }
+}
+
+.mobile-header {
+  padding-inline-start: 0;
+}
+
+.actions {
+  margin-bottom: -12px;
+
+  img {
+    @include button-animation();
+  }
+}
+
+.logo {
+  cursor: pointer;
+  width: 7%;
+  object-fit: contain;
+}
+
+.header-button,
+.lang,
+.currency,
+.action {
+  cursor: pointer;
+  // font-family: Open Sans;
+  font-family: Poppins;
+  font-weight: 700;
+
+  color: white;
+  background: #9ea7a880;
+  transition: all 0.3s;
+
+  &:hover {
+    background: #d4dedf80;
+  }
+}
+
+.header-button {
+  padding-inline: 40px;
+  padding-block: 10px;
+  border-radius: 50px;
+
+  &:hover {
+    background: #d4dedf80;
+  }
+}
+
+.header-black {
+  color: black;
+}
+
+.lang {
+  text-transform: uppercase;
+  padding: 10px;
+}
+
+.action {
+  padding-block: 10px;
+  padding-inline: 25px;
+}
+
+.currency {
+  font-size: 14px;
+
+  padding: 10px;
+
+  img:last-child {
+    margin-inline-start: 12px;
+    object-fit: cover;
+    object-position: center;
+    height: 25px;
+    width: 25px;
+  }
+
+  p {
+    width: 30px;
+    margin: 0;
+  }
+}
+
+.web-actions {
+  gap: 10vw;
+}
+
+.rounded-radius-right {
+  border-radius: 50px 0 0 50px;
+}
+
+.rounded-radius-left {
+  border-radius: 0 50px 50px 0;
+}
+
+@media (max-width: 1000px) {
+  .logo {
+    width: 70px;
+    height: 70px;
+    margin-inline-start: 10px;
+  }
+}

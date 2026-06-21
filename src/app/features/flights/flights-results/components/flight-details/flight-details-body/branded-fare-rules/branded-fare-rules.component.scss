@@ -1,0 +1,110 @@
+@import 'utilities';
+@import 'colors';
+
+p {
+  margin: 0;
+}
+
+.wrapper {
+  margin-top: 40px;
+  gap: 12px;
+}
+
+.fare-section {
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+
+    th {
+      background-color: map-get($map: $blue, $key: 'one');
+      color: #fff;
+      text-align: start;
+      padding: 8px;
+      font-size: 14px;
+      font-weight: 400;
+    }
+
+    td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      font-size: 14px;
+      font-weight: 400;
+      text-align: start;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+  }
+}
+
+.paragraph {
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: start;
+  font-weight: 400;
+
+  &:last-child {
+    margin-top: 10px;
+  }
+}
+.cursor-pointer{
+  cursor: pointer;
+}
+
+.text-align-start {
+  text-align: start;
+  margin-bottom: 10px;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  height: 70px;
+  text-align: start;
+  margin-bottom: 10px;
+}
+
+.hide {
+  visibility: hidden;
+}
+
+.spinner-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 300px;
+}
+
+.no-data-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  text-align: center;
+  color: #666;
+
+  mat-icon {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 1rem;
+    color: #3f51b5;
+  }
+
+  p {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: $web-view-break-point) {
+  .container {
+    padding: 0 5px;
+  }
+}

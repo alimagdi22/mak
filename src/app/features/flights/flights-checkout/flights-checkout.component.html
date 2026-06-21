@@ -1,0 +1,76 @@
+@if(flightCheckoutService.selectedFlight?.airItineraryDTO && selectedFlight) {
+  <div class="search-summary">
+    @if(selectedFlight.searchCriteria.flightType !== 'multicity') {
+      <div class="text-center">
+        {{ selectedFlight.airItineraryDTO.allJourney.flights[0].flightDTO[0].departureTerminalAirport.cityName }}
+        ({{ selectedFlight.airItineraryDTO.allJourney.flights[0].flightDTO[0].departureTerminalAirport.cityCode }})
+        @if(translate.currentLang === 'ar') {
+          <span class="flip-horizontal">⇠</span>
+        } @else {
+          <span class="flip-horizontal">⇢</span>
+        }
+        {{ selectedFlight.airItineraryDTO.allJourney.flights[0].flightDTO[selectedFlight.airItineraryDTO.allJourney.flights[0].flightDTO.length - 1].arrivalTerminalAirport.cityName }}
+        ({{ selectedFlight.airItineraryDTO.allJourney.flights[0].flightDTO[selectedFlight.airItineraryDTO.allJourney.flights[0].flightDTO.length - 1].arrivalTerminalAirport.cityCode }})
+
+        <img src="assets/icons/Vector (1).svg" />
+        {{ selectedFlight.airItineraryDTO.allJourney.flights[0].flightDTO[0].departureDate | date: 'dd MMM' : '' : (translate.currentLang === 'ar' ? 'ar-EG' : 'en-US') }}
+        @if(selectedFlight.searchCriteria.flightType.toLowerCase() === 'roundtrip') {
+          <span>-</span>
+          {{ selectedFlight.airItineraryDTO.allJourney.flights[selectedFlight.airItineraryDTO.allJourney.flights.length - 1].flightDTO[selectedFlight.airItineraryDTO.allJourney.flights[selectedFlight.airItineraryDTO.allJourney.flights.length - 1].flightDTO.length - 1].departureDate | date: 'dd MMM' : '' : (translate.currentLang === 'ar' ? 'ar-EG' : 'en-US') }}
+        }
+      </div>
+    } @else {
+      <div class="text-center">
+        {{ selectedFlight.airItineraryDTO.allJourney.flights[0].flightDTO[0].departureTerminalAirport.cityName }}
+        ({{ selectedFlight.airItineraryDTO.allJourney.flights[0].flightDTO[0].departureTerminalAirport.cityCode }})
+        @if(translate.currentLang === 'ar') {
+          <span class="flip-horizontal">⇠</span>
+        } @else {
+          <span class="flip-horizontal">⇢</span>
+        }
+        {{ selectedFlight.airItineraryDTO.allJourney.flights[0].flightDTO[selectedFlight.airItineraryDTO.allJourney.flights[0].flightDTO.length - 1].arrivalTerminalAirport.cityName }}
+        ({{ selectedFlight.airItineraryDTO.allJourney.flights[0].flightDTO[selectedFlight.airItineraryDTO.allJourney.flights[0].flightDTO.length - 1].arrivalTerminalAirport.cityCode }})
+        <img src="assets/icons/Vector (1).svg" />
+        {{ selectedFlight.airItineraryDTO.allJourney.flights[0].flightDTO[0].departureDate | date: 'dd MMM' : '' : (translate.currentLang === 'ar' ? 'ar-EG' : 'en-US') }}
+      </div>
+    }
+  </div>
+
+  @if(!sharedService.isSegmentPresent(['mpgs-auth'])) {
+    <div class="back-section d-flex" [ngClass]="{'ar':translate.currentLang === 'ar'}">
+      <button class="go-back-btn m-3 px-4 gap-2" (click)="goBackToResultsPage()" dir="ltr">
+        <img src="assets/icons/arrow-white.svg" width="15" />
+  
+        {{ 'checkout.goBack' | translate }}
+      </button>
+    </div>
+  }
+}
+
+<div class="sec">
+  <router-outlet></router-outlet>
+</div>
+
+<app-session-timeout-popup
+  [timeoutSeconds]="7200"
+  [message]="sharedService.lang === 'en' ? 'Sorry, your session has expired!' : 'عذراً، انتهت جلستك!'"
+  [buttonText]="sharedService.lang === 'en' ? 'Search Again' : 'البحث مرة أخرى'"
+  redirectPath="/"
+  bgColor="#fff"
+  textColor="#000"
+  buttonBgColor="#dc3545"
+  buttonTextColor="#fff"
+/>
+
+@if(isSelectedFlightInvalid) {
+  <app-session-timeout-popup
+    [timeoutSeconds]="0"
+    [message]="sharedService.lang === 'en' ? 'Sorry, your session has expired!' : 'عذراً، انتهت جلستك!'"
+    [buttonText]="sharedService.lang === 'en' ? 'Search Again' : 'البحث مرة أخرى'"
+    redirectPath="/"
+    bgColor="#fff"
+    textColor="#000"
+    buttonBgColor="#dc3545"
+    buttonTextColor="#fff"
+  />
+}

@@ -1,0 +1,33 @@
+<div class="container p-5 my-5 bg-white rounded-4" [dir]="translate.currentLang === 'ar' ? 'rtl' : 'ltr'">
+  <!-- Loader -->
+  @if (isLoading) {
+    <div class="loader-container">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  }
+
+  <!-- Error Message -->
+  @if (hasError && !isLoading) {
+    <div class="alert alert-danger text-center">
+      {{ errorMessage }}
+      <button class="btn btn-sm btn-outline-danger ms-2" (click)="loadPrivacyPolicy()">
+        {{ 'common.retry' | translate }}
+      </button>
+    </div>
+  }
+
+  <!-- Main Content -->
+  @if (!isLoading && !hasError) {
+    <!-- <h1 class="title mb-4">{{ 'privacy-policy.title' | translate }}</h1> -->
+    
+    <!-- Dynamic CMS Content -->
+    <div class="policy-content" [innerHTML]="policyContent"></div>
+    
+    <!-- Static Translated Content -->
+    <!-- <div class="static-content mt-4">
+      <p class="fw-bold" [innerHTML]="'privacy-policy.content' | translate"></p>
+    </div> -->
+  }
+</div>

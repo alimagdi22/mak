@@ -1,0 +1,24 @@
+<div class="overlay"></div>
+
+<div class="banner">
+  <span>{{ 'home.title' | translate }}</span>
+</div>
+
+<div
+  class="d-flex justify-content-center search-box"
+  [class.container]="sharedService.screenWidth >= sharedService.webViewBreakPoint"
+>
+  <app-flights-search-box />
+</div>
+
+<main class="container">
+  <app-why-us />
+  @if (
+    !mostSearchedFlightsService.isEmpty && !mostSearchedFlightsService.isError && !mostSearchedFlightsService.isLoading
+  ) {
+    <app-most-searched-flights />
+  }
+
+  <app-mobile-app-ad />
+  <app-most-popular-airlines />
+</main>

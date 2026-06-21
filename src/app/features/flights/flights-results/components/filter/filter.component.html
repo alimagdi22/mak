@@ -1,0 +1,37 @@
+<div class="filter-section">
+  <div class="filters-container">
+    <div class="filter-wrapper">
+      <!-- Other filters -->
+      <app-expansion [title]="'Price' | translate">
+        <app-price-filter />
+      </app-expansion>
+
+      <!-- Last filter (sticks to bottom) -->
+      <app-expansion [title]="'Stops' | translate" class="last-filter">
+        <app-stops-filter />
+      </app-expansion>
+
+      <app-expansion [title]="'Refundability' | translate">
+        <app-refundability-filter />
+      </app-expansion>
+
+      <app-expansion [title]="'flight-result.flightSchedules' | translate">
+        <div class="schedule-wrapper">
+          <app-schedules [isReturn]="false" [flights]="flightResultService.orgnizedResponce.length ? flightResultService.orgnizedResponce[0][0].allJourney.flights : []" />
+
+          @if (flightSharedService.selectedFlightType === 'roundtrip') {
+            <hr />
+            <app-schedules
+              [isReturn]="true"
+              [flights]="flightResultService.orgnizedResponce.length ? flightResultService.orgnizedResponce[0][0].allJourney.flights : []"
+            />
+          }
+        </div>
+      </app-expansion>
+ 
+      <app-expansion [title]="'Airlines' | translate">
+        <app-airlines-filter />
+      </app-expansion>
+    </div>
+  </div>
+</div>

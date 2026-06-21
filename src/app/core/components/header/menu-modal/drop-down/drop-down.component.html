@@ -1,0 +1,26 @@
+<button mat-button [matMenuTriggerFor]="menu" #dropDownTrigger="matMenuTrigger" class="drop-down">
+  <div class="d-flex gap-2 align-items-center">
+    @if (isAtHome) {
+      <i class="bi bi-person text-white"></i>
+    } @else {
+      <img src="assets/icons/userPage/profile-icon.svg" title="User Icon" width="20" />
+    }
+    <span class="text-capitalize" [class.text-dark]="sharedService.screenWidth < sharedService.webViewBreakPoint">{{ userName }}</span>
+  </div>
+</button>
+
+<mat-menu #menu="matMenu">
+  <a mat-menu-item routerLink="user-management">
+    <img src="assets/icons/userPage/profile-icon.svg" title="Profile Icon" width="20" />
+    User Profile
+  </a>
+
+  <button mat-menu-item (click)="$event.stopPropagation(); alertTrigger = true; dropDownTrigger.closeMenu()">
+    <img src="assets/icons/userPage/logout-icon.svg" title="Sing Out Icon" width="20" />
+    Sign Out
+  </button>
+</mat-menu>
+
+@if (alertTrigger) {
+  <app-sign-out-alert-modal (clickCancel)="alertTrigger = false" @fadeAnimation />
+}

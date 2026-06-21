@@ -1,0 +1,38 @@
+<article class="flight-card row justify-content-center gap-0">
+  <section class="flight-card__left col-10 col-lg-5">
+    <div class="flight-card__left__icons">
+      <img src="assets/icons/userPage/airplane-card-icon.svg" title="Flight Icon" />
+      <img src="assets/icons/userPage/checked-card-icon.svg" title="Check Icon" />
+    </div>
+
+    <img
+      class="flight-card__left__img"
+      [src]="trip.cityImage ? trip.cityImage : 'assets/image/userPage/image.png'"
+      (error)="onImageError($event)"
+      title="Flight Card Image"
+    />
+  </section>
+
+  <section class="flight-card__right col-10 col-lg-6">
+    <div class="flight-card__right__top">
+      <p class="flight-card__right__top__title">{{ trip.route }}</p>
+      <p class="flight-card__right__top__info">{{ trip.dates }} {{ flightType }}</p>
+      <p class="flight-card__right__top__info" *ngFor="let ticket of trip.ticketNumber | slice: 0 : 3">
+        {{ ticket.ticketNumber ? 'Ticket # ' + ticket.ticketNumber : '' }}
+      </p>
+      <p class="flight-card__right__top__btn" *ngIf="trip.ticketNumber.length > 3" (click)="trigger = true">
+        click to show more tickets ...
+      </p>
+    </div>
+
+    <div class="flight-card__right__down">
+      <!-- <p class="flight-card__right__down__sub-title">Itinerary Number</p>
+      <p class="flight-card__right__down__sub-info">{{trip.itineraryNumber}}</p> -->
+
+      <p class="flight-card__right__down__sub-title">{{ trip.airline }} Booking Ref</p>
+      <p class="flight-card__right__down__sub-info">{{ trip.bookingRef }}</p>
+    </div>
+  </section>
+</article>
+
+<app-tickets (clickCancel)="trigger = false" [tickets]="trip.ticketNumber" *ngIf="trigger" />

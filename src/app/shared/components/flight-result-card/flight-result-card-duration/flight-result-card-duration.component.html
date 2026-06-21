@@ -1,0 +1,45 @@
+<div class="d-flex justify-content-between align-items-start flex-wrap gap-1">
+  <div class="d-flex align-items-start gap-1">
+    <div class="d-flex align-items-center">
+      <img src="assets/icons/clock-icon.svg" width="12px" height="12px" />
+
+      <p class="mb-0">{{ flight.elapsedTime | durationFormat }}</p>
+
+      @if (flight.stopsNum) {
+        <span>-</span>
+      }
+    </div>
+
+    @if (flight.stopsNum) {
+      <div class="d-flex flex-column">
+        @for (flightSegment of flight.flightDTO; track flightSegment) {
+          @if (flightSegment.transitTime !== '00:00:00') {
+            <p class="text-danger mb-0 truncate-text">
+              {{ flightSegment.transitTime | timeFormatTransit }} {{this.translate.currentLang === 'ar' ? 'توقف في' : 'Stop in'}}
+              {{ flightSegment.arrivalTerminalAirport.airportCode }} 
+            </p>
+          }
+        }
+      </div>
+    }
+  </div>
+
+  <div class="d-flex align-items-center gap-1"  >
+    @if((ticketType === 'branded'&& hasStepTwo) ? isNoBaggageBranded(index) : isNoBaggageLegacy(flight.flightDTO[0].segmentDetails.baggage)) {
+              <img src="assets/icons/no-baggage.png" width="20" height="20" alt="" />
+            }
+            @else {
+              <img src="assets/icons/travel-bag-icon.svg" alt="" />
+            }
+            <p class="mb-0 ar">
+              {{ (ticketType === 'branded' && hasStepTwo)
+                  ? getBrandedBaggageCount(index)
+                  : getBaggageCountOnlyOrRaw(flight.flightDTO[0].segmentDetails.baggage) }}
+            </p>
+    <img src="assets/icons/home-icons/Vector.svg" alt="" style="width: 15px;"/>
+    <p class="mb-0 ar">1 x 7</p>
+    @if (showBaggageIcon) {
+      <img class="baggage-icon" src="assets/icons/Vector.svg" alt="" (click)="showBaggageModal(baggageInformation)" />
+    }
+  </div>
+</div>

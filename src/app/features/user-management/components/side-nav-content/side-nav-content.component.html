@@ -1,0 +1,27 @@
+<div class="side-nav-content">
+  <ul>
+    <li>
+      <img src="assets/icons/userPage/navigation/profile-icon.svg" />
+      <a mat-button routerLink="user-profile" routerLinkActive="active"> My profile </a>
+    </li>
+
+    <li>
+      <img src="assets/icons/userPage/navigation/airplane-icon.svg" />
+      <a mat-button routerLink="flight-booking" routerLinkActive="active"> Flight Booking </a>
+    </li>
+
+    <!-- <li>
+      <img src="assets/icons/userPage/navigation/hotel-icon.svg" />
+      <a mat-button routerLink="hotels-booking" routerLinkActive="active"> Hotels Booking </a>
+    </li> -->
+
+    <li>
+      <img src="assets/icons/userPage/navigation/sign-out-icon.svg" />
+      <a mat-button (click)="alertTrigger = true"> Sign out </a>
+    </li>
+  </ul>
+</div>
+
+@if (alertTrigger) {
+  <app-sign-out-alert-modal (clickCancel)="alertTrigger = false" @fadeAnimation />
+}

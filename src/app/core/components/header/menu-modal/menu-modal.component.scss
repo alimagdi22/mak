@@ -1,0 +1,52 @@
+@import 'utilities';
+
+span {
+  font-weight: 700;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+
+    img {
+      width: 20px;
+      height: 20px;
+      object-fit: contain;
+    }
+  }
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.sign-up-btn,
+.sign-in-btn {
+  @include custom-button($width: 140px, $color: white, $border-radius: 10px, $font-weight: bold);
+}
+
+.sign-up-btn {
+  background-color: map-get($map: $blue, $key: 'two');
+}
+
+.sign-in-btn {
+  background-color: map-get($map: $green, $key: 'one');
+}
+
+.close-btn {
+  @include custom-button(
+    $width: 262px,
+    $background: map-get($green, 'one'),
+    $color: white,
+    $border-radius: 10px,
+    $font-weight: bold
+  );
+}

@@ -1,0 +1,28 @@
+<div class="con">
+  <div class="car">
+    <nav class="my-custom-tabs">
+      <a *ngFor="let link of links" (click)="activeLink = link" [class.active]="activeLink === link">
+        {{ 'flightDetails.headers.' + link.title | translate }}
+      </a>
+    </nav>
+
+    <div class="my-custom-panel">
+      <div *ngIf="activeLink.id === 'tab1'">
+        <app-itinerary></app-itinerary>
+      </div>
+      <div *ngIf="activeLink.id === 'tab2'">
+        <app-branded-fare-rules></app-branded-fare-rules>
+        <!-- @if (flightResultService.fareLoading) {
+          <div class="flight-loader">
+            <app-loader />
+          </div>
+        } @else {
+          <app-fare-rules />
+        } -->
+      </div>
+      <div *ngIf="activeLink.id === 'tab3'">
+        <app-baggage-details [searchCriteria]="searchCriteria"></app-baggage-details>
+      </div>
+    </div>
+  </div>
+</div>

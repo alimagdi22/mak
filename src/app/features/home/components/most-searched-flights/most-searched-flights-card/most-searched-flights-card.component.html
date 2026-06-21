@@ -1,0 +1,39 @@
+<div class="flight" (click)="mostSearchedFlightsService.goToSearchResults(mostSearchedFlight.searchCriteria)">
+  <img class="flight__image" src="assets/images/most-searched-flights/most-searched-flight.jpg" />
+
+  <div class="flight__mid">
+    <div class="flight__mid__main">
+      <span class="flight__mid__main__date">
+        {{
+          mostSearchedFlight.searchCriteria.flights[0].departingOnDate
+            | date: 'd MMMM' : undefined : (translate.currentLang === 'ar' ? 'ar-EG' : 'en-US')
+        }}
+      </span>
+
+      <span class="flight__mid__main__type">
+        {{ mostSearchedFlight.searchCriteria.flightType }}
+      </span>
+    </div>
+
+    <span class="flight__mid__dest-code">
+      {{ mostSearchedFlight.searchCriteria.flights[0].departingFrom }}
+      {{ mostSearchedFlight.searchCriteria.flights[0].arrivingTo }}
+    </span>
+
+    <span class="flight__mid__percentage" dir="ltr">{{ mostSearchedFlight.discountPercentage * -1 }}%</span>
+  </div>
+
+  <div class="flight__footer">
+    <!-- <span class="flight__footer__created-time">Added 35 min ago</span> -->
+    <div class="flight__footer__price">
+      <span class="flight__footer__price__actual">
+        {{ mostSearchedFlight.searchCriteria.currency | exchange: 'code' }}
+        {{ mostSearchedFlight.originalPrice | exchange: 'value' }}*
+      </span>
+      <span class="flight__footer__price__after-discount">
+        {{ mostSearchedFlight.searchCriteria.currency | exchange: 'code' }}
+        {{ mostSearchedFlight.originalPrice | discount: mostSearchedFlight.discountPercentage | exchange: 'value' }}
+      </span>
+    </div>
+  </div>
+</div>

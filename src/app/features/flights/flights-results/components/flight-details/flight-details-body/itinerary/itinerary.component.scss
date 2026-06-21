@@ -1,0 +1,125 @@
+@import 'colors';
+
+p {
+  margin: 0;
+}
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  .itinerary {
+    flex-basis: 45%;
+  }
+
+  div {
+    flex-grow: 1;
+  }
+}
+
+.top-info {
+  margin: 35px;
+  text-align: center;
+  &__time {
+    text-wrap: nowrap;
+    &__date,
+    &__cities {
+      font-weight: 400;
+    }
+
+    &__time {
+      font-size: 18px;
+      margin-block: 9px;
+    }
+  }
+
+  &__flight {
+    &__duration {
+      font-weight: 400;
+    }
+
+    &__logo {
+      width: 40px;
+      margin-block: 9px;
+    }
+  }
+}
+.align-start {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  text-align: center !important;
+}
+.align-end {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+.align-center {
+  text-align: center !important;
+}
+.flight-info {
+  margin-top: 40px;
+  margin-inline: 25px;
+  &__title {
+    font-size: 22px;
+  }
+
+  &__time {
+    font-weight: 400;
+  }
+
+  &__title,
+  &__time {
+    text-align: start;
+  }
+
+  &__path {
+    position: relative;
+    z-index: 5;
+
+    &__date {
+      z-index: 2;
+      margin-left: 140px;
+      display: flex;
+      gap: 15px;
+      margin-bottom: 10px;
+    }
+
+    &__change {
+      padding-inline-start: 140px;
+      border: 1px solid map-get($map: $green, $key: 'one');
+      border-radius: 12px;
+
+      &__time {
+        margin: 10px;
+        display: flex;
+        align-items: center;
+        gap: 3px;
+      }
+    }
+  }
+}
+
+.title {
+  font-size: 22px;
+  text-align: start;
+  font-weight: bold;
+  margin: 20px;
+}
+
+.border {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid map-get($map: $blue, $key: 'one');
+}
+
+.active {
+  border: 1px solid map-get($map: $green, $key: 'one');
+}
+.flight-info__path__change {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}

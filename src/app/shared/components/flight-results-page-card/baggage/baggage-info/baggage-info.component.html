@@ -1,0 +1,102 @@
+<div class="baggage-container" [ngStyle]="{ padding: padding + 'px' }">
+  <div class="baggage-header">
+    <h3 class="baggage-title">{{ 'flightDetails.headers.Baggage' | translate }}</h3>
+    @if(this.flight) {
+      <span>
+        {{flight.flightDTO[0].departureTerminalAirport.airportCode}}-{{flight.flightDTO[flight.flightDTO.length-1].arrivalTerminalAirport.airportCode}} 
+        <span>
+          (
+          <ng-container *ngFor="let f of flight.flightDTO; let last = last">
+            {{ f.flightAirline.airlineCode }}{{ f.flightInfo.flightNumber }}<span *ngIf="!last">, </span>
+          </ng-container>
+          )
+        </span>
+      </span>
+    }
+  </div>
+  @if(flightResultService.isBrandedFaresLoading || flightResultService.fareLoading){
+  <div class="spinner-loading">
+    <mat-spinner />
+  </div>
+  }@else {
+  
+  <div class="baggage-section">
+    <!-- ADULT: render only if ADT present -->
+    @if (flightResultService.baggageInfo && hasPaxType('ADT')) {
+    <div class="baggage-row">
+      <span class="passenger-title">{{ 'checkout.PASSENGER_TYPES.ADULT' | translate }}</span>
+      <div class="baggage-detail">
+        <span class="baggage-icon">
+          @if((ticketType === 'branded' && hasStepTwo) ? isNoBaggageBranded(index, 'ADT') : isNoBaggageLegacy(index,"ADT")) {
+            <img src="assets/icons/no-baggage.png" width='20'height='20' alt=""  />
+          }
+          @else{
+            <img src="assets/icons/bags.svg" alt=""  />
+          }
+        </span>
+        <div class="baggage-quantity" [dir]="translate.currentLang === 'ar' ? 'rtl' : 'ltr'">
+          <span class="weight" [innerHTML]="(ticketType === 'branded' && hasStepTwo)
+                  ? getBrandedBaggageCount(index, 'ADT')
+                  : getBaggageCount(index,'ADT')"></span>
+        </div>
+        <span class="baggage-icon"><img src="assets/icons/home-icons/Vector.svg" style="width: 15px;" alt="" /></span>
+        <div class="baggage-quantity" [dir]="translate.currentLang === 'ar' ? 'rtl' : 'ltr'">
+          <span class="weight">1 x <strong> {{'checkout.payment.cabin'|translate}} </strong> 7KG</span>
+        </div>
+      </div>
+    </div>
+    }
+  
+    <!-- CHILD: render only if CHD present -->
+    @if (flightResultService.baggageInfo && hasPaxType('CHD')) {
+    <div class="baggage-row">
+      <span class="passenger-title">{{ 'checkout.PASSENGER_TYPES.CHILD' | translate }}</span>
+      <div class="baggage-detail">
+        <span class="baggage-icon">
+          @if((ticketType === 'branded' && hasStepTwo) ? isNoBaggageBranded(index, 'CHD') : isNoBaggageLegacy(index,'CHD')) {
+            <img src="assets/icons/no-baggage.png" width='20'height='20' alt=""  />
+          }
+          @else{
+            <img src="assets/icons/bags.svg" alt=""  />
+          }
+        </span>    
+        <div class="baggage-quantity" [dir]="translate.currentLang === 'ar' ? 'rtl' : 'ltr'">
+          <span class="weight" [innerHTML]="(ticketType === 'branded' && hasStepTwo)
+                  ? getBrandedBaggageCount(index, 'CHD')
+                  : getBaggageCount(index,'CHD')"></span>
+        </div>
+        <span class="baggage-icon"><img src="assets/icons/bags.svg" alt="" /></span>
+        <div class="baggage-quantity" [dir]="translate.currentLang === 'ar' ? 'rtl' : 'ltr'">
+          <span class="weight">1 x <strong> {{'checkout.payment.cabin'|translate}} </strong> 7KG</span>
+        </div>
+      </div>
+    </div>
+    }
+  
+    @if (flightResultService.baggageInfo && hasPaxType('INF')) {
+    <div class="baggage-row">
+      <span class="passenger-title">{{ 'checkout.PASSENGER_TYPES.INFANT' | translate }}</span>
+      <div class="baggage-detail">
+        <span class="baggage-icon">
+          @if((ticketType === 'branded' && hasStepTwo) ? isNoBaggageBranded(index, 'INF') : isNoBaggageLegacy(index,'INF')) {
+            <img src="assets/icons/no-baggage.png" width='20'height='20' alt=""  />
+          }
+          @else{
+            <img src="assets/icons/bags.svg" alt=""  />
+          }
+        </span>
+        <div class="baggage-quantity" [dir]="translate.currentLang === 'ar' ? 'rtl' : 'ltr'">
+          <span class="weight" [innerHTML]="(ticketType === 'branded' && hasStepTwo)
+                  ? getBrandedBaggageCount(index, 'INF')
+                  : getBaggageCount(index,'INF')"></span>
+        </div>
+        <!-- <span class="baggage-icon"><img src="assets/icons/bags.svg" alt="" /></span>
+        <div class="baggage-quantity" [dir]="translate.currentLang === 'ar' ? 'rtl' : 'ltr'">
+          <span class="weight">1 x <strong> {{'checkout.payment.cabin'|translate}} </strong> 7KG</span>
+        </div> -->
+      </div>
+    </div>
+    }
+  </div>
+}
+</div>

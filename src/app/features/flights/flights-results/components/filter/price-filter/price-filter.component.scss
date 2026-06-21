@@ -1,0 +1,14 @@
+.slider {
+  width: 95%;
+}
+
+.prices {
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+
+  &__min,
+  &__max {
+    flex-grow: 1;
+  }
+}

@@ -1,0 +1,33 @@
+*{
+  // font-family: Open Sans;
+  font-family: Poppins;
+}
+.fare-container {
+  width: 100%;
+  border: none;
+  box-shadow: 0 3px 6px rgb(0, 0, 0, 0.1);
+  height: auto;
+  background-color: white;
+  padding: 25px;
+  border-radius: 15px;
+}
+
+.ticket-details {
+  display: flex;
+  justify-content: space-between;
+}
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+
+  mat-spinner {
+    // Customize spinner color if needed
+    ::ng-deep .mat-progress-spinner circle,
+    .mat-spinner circle {
+      stroke: #3f51b5; // Change this to your preferred color
+    }
+  }
+}

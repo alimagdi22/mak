@@ -1,0 +1,75 @@
+<section class="about-us-section">
+  <!-- Loader -->
+  @if (isLoading) {
+    <div class="loader-container">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  }
+
+  <!-- Error Message -->
+  @if (hasError && !isLoading) {
+    <div class="alert alert-danger text-center">
+      {{ errorMessage }}
+      <button class="btn btn-sm btn-outline-danger ms-2" (click)="loadAboutUsContent()">
+        {{ 'common.retry' | translate }}
+      </button>
+    </div>
+  }
+
+  <!-- Main Content -->
+  @if (!isLoading && !hasError) {
+    <div class="about-banner">
+      <h1>{{ 'aboutUs.About Us' | translate }}</h1>
+    </div>
+
+    <div class="about-container container" [dir]="translate.currentLang === 'ar' ? 'rtl' : 'ltr'">
+      <div class="about-images">
+        <img src="assets/images/mountain.jpg" alt="About Image 1" />
+        <img src="assets/images/sea.jpg" alt="About Image 2" />
+      </div>
+
+      <!-- CMS Content Section -->
+      <div class="about-text" [innerHTML]="cmsContent"></div>
+
+      <!-- Static Content -->
+      <!-- <div class="about-text">
+        <h3>{{ 'aboutUs.Simplicity' | translate }}</h3>
+        <p>{{ 'aboutUs.Ejazza' | translate }}</p>
+        <h4>{{ 'aboutUs.Chairman' | translate }}</h4>
+        <h4>{{ 'aboutUs.Travels' | translate }}</h4>
+        <h2 class="mt-5">{{ 'aboutUs.missionTitle' | translate }}</h2>
+        <p>{{ 'aboutUs.missionDescription' | translate }}</p>
+        <h2>{{ 'aboutUs.visionTitle' | translate }}</h2>
+        <p>{{ 'aboutUs.visionDescription' | translate }}</p>
+      </div> -->
+    </div>
+
+    <div class="container"></div>
+
+    <!-- <section class="why-albaraq">
+      <p class="section-subtitle">{{ 'aboutUs.Why Ejazza' | translate }}</p>
+      <h2 class="section-title">{{ 'aboutUs.Why' | translate }}</h2>
+
+      <div class="features">
+        <div class="feature-card">
+          <img src="assets/icons/about-us/Vector (4).svg" alt="Airline Icon" />
+          <p>{{ 'aboutUs.worldwide' | translate }}</p>
+        </div>
+        <div class="feature-card">
+          <img src="assets/icons/about-us/fa-solid_hands-helping.svg" alt="Trusted Icon" />
+          <p>{{ 'aboutUs.trusted' | translate }}</p>
+        </div>
+        <div class="feature-card">
+          <img src="assets/icons/about-us/bi_person-lines-fill.svg" alt="Happy Icon" />
+          <p>{{ 'aboutUs.experience' | translate }}</p>
+        </div>
+        <div class="feature-card">
+          <img src="assets/icons/about-us/icomoon-free_happy2.svg" alt="Experience Icon" />
+          <p>{{ 'aboutUs.happy' | translate }}</p>
+        </div>
+      </div>
+    </section> -->
+  }
+</section>

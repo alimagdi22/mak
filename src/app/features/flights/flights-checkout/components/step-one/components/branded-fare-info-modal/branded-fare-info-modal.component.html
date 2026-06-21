@@ -1,0 +1,91 @@
+<div
+  class="modal-overlay"
+  (click)="close()"
+  [class.show]="isOpen"
+  [dir]="translate.currentLang === 'ar' ? 'rtl' : 'ltr'"
+>
+  <div class="modal-content" (click)="$event.stopPropagation()" [class.show]="isOpen">
+
+    @if (buttonService) {
+      @if(translate.currentLang==='en'){
+        <div class="modal-header">
+       
+        <h4 innerHTML="{{ buttonService.serviceName }}"></h4>
+        <button
+          class="close-btn"
+          (click)="close()"
+          
+        >
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        
+        <div class="body-content">
+          <p innerHtml="{{ buttonService.serviceDescription }}"></p>
+         
+        </div>
+      </div>
+      } 
+      @else if (translate.currentLang==='ar') {
+          <div class="modal-header">
+        
+        <h4 innerHtml="{{ buttonService.serviceNameAr }}"></h4>
+        <button
+          class="close-btn"
+          (click)="close()"
+          [ngStyle]="translate.currentLang === 'ar' ? { 'margin-left': '0' } : {}"
+        >
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+       
+        <div class="body-content">
+          <p innerHtml="{{ buttonService.serviceDescriptionAr}}"></p>
+          
+      </div>
+      </div>
+      }
+    
+
+      <div class="modal-footer">
+        <button class="close btn" (click)="close()">
+          {{ 'checkout.close' | translate }}
+        </button>
+      </div>
+    } @else {
+      <div class="modal-header">
+        <h4>{{ 'checkout.ticket.flexible' | translate }}</h4>
+        <button
+          class="close-btn"
+          (click)="close()"
+          [ngStyle]="translate.currentLang === 'ar' ? { 'margin-left': '0' } : {}"
+        >
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <p>{{ 'checkout.Modal.body1' | translate }}</p>
+        <div class="body-content">
+          <p>{{ 'checkout.Modal.body2' | translate }}</p>
+          <p>{{ 'checkout.Modal.body3' | translate }}</p>
+          <p>{{ 'checkout.Modal.body4' | translate }}</p>
+          <p>{{ 'checkout.Modal.body5' | translate }}</p>
+          <p>{{ 'checkout.Modal.body6' | translate }}</p>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="close btn" (click)="close()">
+          {{ 'checkout.close' | translate }}
+        </button>
+      </div>
+    }
+
+  </div>
+</div>
+

@@ -1,0 +1,67 @@
+<div class="baggage-info row between gap-4">
+  <section class="inculded-sec col-lg-3 col-12">
+    <div class="inculded-sec__header">
+      <img src="assets/icons/checked-icon.svg" title="Checked Icon" />
+      <span>{{ 'Included' }}</span>
+    </div>
+    sd
+    <div class="inculded-sec__baggage">
+      <div class="inculded-sec__baggage__info">
+        <img src="assets/icons/travel-bag-icon.svg" title="Bag Icon" class="inculded-sec__baggage__info__icon" />
+        <div>
+          <p>{{ adultBaggage() }} {{ 'flightDetails.baggage.adultItems' }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="inculded-sec__baggage">
+      <div class="inculded-sec__baggage__info">
+        <img src="assets/icons/travel-bag-icon.svg" title="Bag Icon" class="inculded-sec__baggage__info__icon" />
+        <div>
+          <p>{{ childBaggage() }} {{ 'flightDetails.baggage.childItems' }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="inculded-sec__baggage">
+      <div class="inculded-sec__baggage__info">
+        <img src="assets/icons/travel-bag-icon.svg" title="Bag Icon" class="inculded-sec__baggage__info__icon" />
+        <div>
+          <p>{{ infantBaggage() }} {{ 'flightDetails.baggage.infantItems' }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="not-possible-sec col-lg-4 col-12">
+    <div class="not-possible-sec__header">
+      <span class="not-possible-sec__header__icon">x</span>
+      <span class="not-possible-sec__header__text">{{ 'flightDetails.baggage.notPossible' }}</span>
+    </div>
+
+    <div class="not-possible-sec__baggage">
+      <img src="assets/icons/bag-icon.svg" title="Bag Icon" class="not-possible-sec__baggage__icon" />
+      <span class="not-possible-sec__baggage__text">{{ 'flightDetails.baggage.baggageType' }}</span>
+    </div>
+
+    <div class="not-possible-sec__info">
+      <img src="assets/icons/checked-icon.svg" title="Checked Icon" class="not-possible-sec__baggage__icon" />
+      <p>{{ 'flightDetails.baggage.message' }}</p>
+    </div>
+  </section>
+
+  <section class="col-lg-2 col-12">
+    <div class="wrapper">
+      <div class="baggage-item">
+        <img src="assets/icons/hand-bag-icon.svg" title="Exclamation Icon" />
+        <span>{{ normalBaggage }} {{ getUnit }}</span>
+      </div>
+    </div>
+  </section>
+</div>
+
+<hr />
+
+<p class="paragraph">
+  {{ 'flightDetails.baggage.note' }}
+</p>

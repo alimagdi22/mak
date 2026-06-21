@@ -1,0 +1,321 @@
+@import 'colors';
+@import 'variables';
+@import 'utilities';
+
+.airlines-carousel {
+  margin: 10px 0;
+  padding: 0 10px;
+
+  swiper-slide {
+    width: auto;
+  }
+}
+
+.section {
+  gap: 5px;
+}
+
+.flip-horizontal {
+  transform: scaleX(-1);
+  transition: transform 0.3s ease;
+}
+
+.airline-slide {
+  display: flex;
+  justify-content: center;
+}
+
+.airline-card {
+  font-family: Poppins;
+  flex-grow: 1;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  // justify-content: space-between;
+  transition: transform 0.2s ease;
+  border: 1px solid map-get($map: $green, $key: one);
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.arrow-left,
+.arrow-right {
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 43px;
+  transition: all 0.2s;
+  background-color: white;
+  border: 1px solid map-get($map: $green, $key: one);
+
+  // &:hover {
+  //   transform: scale(1.1);
+  // }
+}
+
+.arrow-left {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+
+.arrow-right {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.airline-name {
+  font-weight: 800;
+  color: map-get($blue, three);
+  font-size: 12px;
+  margin-bottom: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.price-logo-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.airline-price {
+  font-weight: 800;
+  font-size: 12px;
+}
+
+.airline-logo {
+  height: 1.5em;
+  width: 1.5em;
+  object-fit: contain;
+}
+
+.active-airline {
+  background-color: rgba(0, 200, 83, 0.1) !important;
+  border-radius: 6px;
+}
+
+::ng-deep swiper-container::part(button-next),
+::ng-deep swiper-container::part(button-prev) {
+  background-color: #ffffff;
+  color: black;
+  width: 40px;
+  height: 40px;
+  padding: 7px 0;
+  box-shadow: 0 2px 8px rgba(35, 35, 35, 0.1);
+  top: 27px;
+  color: transparent;
+}
+
+::ng-deep swiper-container::part(button-prev) {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  left: 0;
+}
+::ng-deep swiper-container::part(button-next) {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  right: 0;
+}
+
+::ng-deep swiper-container::part(button-next) path,
+::ng-deep swiper-container::part(button-prev) path {
+  /* Customize the SVG path appearance */
+  stroke: black; /* Change arrow color */
+  stroke-width: 2px; /* Make it thicker or thinner */
+}
+
+::ng-deep swiper-container::part(button-prev) path {
+  transform: scaleX(-1); /* Flip horizontally for prev button */
+}
+
+::ng-deep swiper-container::part(button-next) svg,
+::ng-deep swiper-container::part(button-prev) svg {
+  display: none; /* Hide the default SVG */
+}
+
+::ng-deep swiper-container::part(button-next)::after,
+::ng-deep swiper-container::part(button-prev)::after {
+  content: '➔';
+  font-size: 20px;
+  color: black;
+  position: absolute;
+  top: 10px;
+}
+
+::ng-deep swiper-container::part(button-prev)::after {
+  content: '➔';
+  transform: scaleX(-1);
+  position: absolute;
+  top: 10px;
+}
+
+::ng-deep .airlines-carousel {
+  overflow: hidden; /* Prevents extra scroll space */
+}
+
+::ng-deep .airline-slide {
+  padding: 4px;
+  margin-inline-end: -30px;
+}
+
+::ng-deep .airline-name {
+  font-size: 13px;
+  font-weight: 800;
+  margin: 0;
+  line-height: 1.2;
+}
+
+::ng-deep .price-logo-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+::ng-deep .airline-price {
+  font-size: 14px;
+  font-weight: 800;
+  margin: 0;
+  white-space: nowrap;
+}
+
+::ng-deep .airline-logo {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+.desktop-swiper-container {
+  width: 100%;
+  overflow: hidden;
+  
+  .swiper-wrapper {
+    font-family: Poppins;
+    display: flex;
+    width: auto;
+  }
+  
+  .swiper-slide {
+    width: auto;
+    flex-shrink: 0;
+  }
+}
+
+.section {
+  gap: 5px;
+}
+
+.flip-horizontal {
+  transform: scaleX(-1);
+  transition: transform 0.3s ease;
+}
+
+
+@media (max-width: $web-view-break-point) {
+  .search-summary {
+    display: flex;
+  }
+  ::ng-deep app-flights-search-box section.search-box-sec {
+    margin-top: 0 !important;
+  }
+
+  .nav-info {
+    background-color: map-get($map: $blue, $key: one);
+  }
+  .airlines-container {
+    display: flex;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    background-color: white;
+    width: 100%;
+  }
+
+  .airline-card {
+    cursor: pointer;
+    flex: 1 1 calc(25% - 10px);
+    width: 100%;
+    border: 1px solid map-get($map: $green, $key: one);
+    padding: 6px;
+    // width: 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+  }
+
+  .airline-name {
+    font-weight: 800;
+    color: map-get($map: $blue, $key: three);
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+
+  .price-logo-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .airline-price {
+    font-weight: 800;
+    font-size: 14px;
+  }
+
+  .airline-logo {
+    height: 1.5em;
+    width: 1.5em;
+    object-fit: contain;
+  }
+  .search-summary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    background-color: map-get($map: $blue, $key: one);
+    color: white;
+    padding: 4px 8px;
+    font-size: 13px;
+    cursor: auto;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .city {
+    font-weight: 400;
+    font-size: 14px;
+  }
+
+  .arrow {
+    font-size: 14px;
+  }
+
+  .date,
+  .passenger,
+  .search-icon {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    font-size: 14px;
+  }
+
+  .date img {
+    width: 13px;
+    color: white;
+  }
+
+  .hide {
+    display: none;
+  }
+  .flip-horizontal {
+    transform: scaleX(-1);
+    transition: transform 0.3s ease;
+  }
+}

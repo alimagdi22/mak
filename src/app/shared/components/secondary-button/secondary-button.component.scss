@@ -1,0 +1,44 @@
+.gradient-button {
+  position: relative;
+  display: inline-block;
+  padding: 10px;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1;
+  font-weight: bold;
+
+  /* Gradient text */
+  background: linear-gradient(90deg, #21910a 0%, #88cb1a 100%);
+  -webkit-background-clip: text;
+
+  /* Optional: To improve rendering */
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+
+  /* Add a gradient border using pseudo-elements */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 12px;
+    padding: 2px;
+    background: linear-gradient(90deg, #21910a 0%, #88cb1a 100%);
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    z-index: -1;
+  }
+}

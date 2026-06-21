@@ -1,0 +1,77 @@
+@import 'utilities';
+
+::ng-deep .content {
+  padding: 15px !important;
+}
+
+.baggage-container {
+  padding: 10px;
+}
+.section {
+  display: grid;
+  padding: 0 25px;
+}
+
+.desktop-layout {
+  display: grid;
+  grid-template-columns: 65% 24%;
+  gap: 2%; 
+  align-items: start;
+  justify-content: center;
+  padding: 0 20px;
+
+  &.ar{
+    grid-template-columns: 68% 24%;
+  }
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sidebar {
+  position: sticky;
+  top: 5px;
+  height: fit-content;
+  margin-top: 27px;
+}
+
+::ng-deep .cards-container {
+  margin-top: 30px;
+  padding: 50px 15px;
+  border-radius: 15px;
+}
+
+::ng-deep .cards-container .card {
+  margin: 0 !important;
+  width: 100% !important;
+}
+
+::ng-deep .payment-container {
+  border-radius: 16px;
+}
+
+app-checkout-card {
+  grid-column: span 9;
+}
+
+app-fare-breakdown {
+  grid-column: span 3;
+  margin-top: 30px;
+}
+
+app-travellers-details {
+  grid-column: span 9;
+}
+
+app-payment-method {
+  grid-column: span 9;
+}
+
+@media (max-width: 768px) {
+  app-travellers-details {
+    grid-column: span 13;
+  }
+}

@@ -1,0 +1,18 @@
+<!-- @if(!sharedService.isSegmentPresent(['mpgs-auth'])) {
+    <app-header />
+    <router-outlet />
+    <app-footer />
+} @else {
+    <router-outlet />
+} -->
+@if (!sharedService.isSegmentPresent(['mpgs-auth'])) {
+  <app-header />
+}
+
+<router-outlet />
+
+@if (!sharedService.isSegmentPresent(['mpgs-auth'])) {
+  <app-footer />
+}
+
+<app-modals />

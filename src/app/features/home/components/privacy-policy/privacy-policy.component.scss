@@ -1,0 +1,14 @@
+@import 'colors';
+
+.container {
+  color: map-get($map: $blue, $key: 'one');
+  .title {
+    font-weight: 700;
+    font-size: 36px;
+    margin-bottom: 60px;
+  }
+
+  p {
+    font-size: 20px;
+  }
+}

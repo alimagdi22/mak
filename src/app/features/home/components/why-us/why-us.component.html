@@ -1,0 +1,11 @@
+@if (sharedService.screenWidth < sharedService.webViewBreakPoint) {
+  <h5 class="fw-bold mx-3 mt-4">{{ 'home.bookWithUs' | translate }}</h5>
+}
+
+<swiper-container #swiperEl [class.mt-5]="sharedService.screenWidth >= sharedService.webViewBreakPoint">
+  @for (card of whyUsCards; track card) {
+    <swiper-slide>
+      <app-why-us-card [whyUsCard]="translate.currentLang === 'en' ? card.en : card.ar" />
+    </swiper-slide>
+  }
+</swiper-container>

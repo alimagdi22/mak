@@ -1,0 +1,653 @@
+@import 'colors';
+@import 'utilities';
+
+@media (min-width: $web-view-break-point) {
+  .card {
+    display: grid;
+    grid-template-columns: 1fr;
+    border-radius: 0%;
+    border: none;
+  }
+
+  .card-body {
+    grid-column: span 4;
+    margin-top: -10px;
+  }
+
+  .card-body .time {
+    display: flex;
+    width: 100%;
+    gap: 45%;
+  }
+
+  .card-body .time .dep-time,
+  .card-body .time .arr-time {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 100%;
+  }
+
+  .card .card-body .flight-info {
+    display: flex;
+    align-items: center;
+  }
+
+  .card .card-body .flight-info img {
+    width: 80px;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .card .card-body .flight-info .flight-name {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+  }
+
+  // === DURATION SECTION ===
+  .duration {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: nowrap;
+  }
+
+  .bag-icon {
+    color: map-get($map: $blue, $key: two);
+  }
+
+  .card-text {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+  }
+
+  .card .card-body .duration .transit-time {
+    color: map-get($map: $red, $key: one);
+  }
+
+  // === BUTTON SECTION ===
+  .card .btn-section {
+    grid-column: span 4;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    bottom: 10px;
+    inset-inline-end: 10px;
+  }
+
+  .card .btn-section .toggle-btn {
+    font-weight: 600;
+    font-size: 16px;
+    background-color: transparent;
+    border: none;
+    margin-top: 10px;
+    margin-inline-end: 7px;
+  }
+
+  .card .btn-section .toggle-btn-open {
+    color: map-get($map: $green, $key: one);
+  }
+  .card .btn-section .toggle-btn-close {
+    color: #3e7dc3;
+  }
+
+  // === STOP LABEL ===
+  .stop {
+    position: absolute;
+    top: 80px;
+    inset-inline-start: 120px;
+    z-index: 5;
+  }
+
+  // === CONTENT SECTION ===
+  .content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .content h2 {
+    font-weight: 600;
+    font-size: 28px;
+    color: black;
+    margin-inline-start: 100px;
+  }
+  .travel {
+    margin-inline-start: 100px;
+  }
+  .duration-time {
+    font-weight: 400;
+    font-size: 18px;
+  }
+
+  .content .duration-details {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .content .duration-details .bags {
+    display: flex;
+  }
+
+  .content .flight-date {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-inline-start: 200px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .content .flight-date p {
+    font-weight: 600;
+    font-size: 16px;
+  }
+
+  .content .flight-details {
+    display: flex;
+    height: 100%;
+    margin-top: 5px;
+    margin-inline-start: -345px;
+  }
+
+  .details-text {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 0;
+  }
+
+  .airline-details {
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 0;
+    margin-left: 20px;
+  }
+
+  // === FLIGHT DETAILS LEFT & RIGHT ===
+  .flight-details .airport {
+    height: 100%;
+  }
+
+  .flight-details .right-sec {
+    width: 90px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 40px;
+    margin-left: 10px;
+    flex-wrap: nowrap;
+
+    &.ar {
+      margin-left: -20px;
+    }
+  }
+
+  .flight-details .left-sec {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .flight-details .left-sec .airport-name {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    margin-left: 20px;
+    margin-top: 5px;
+  }
+
+  .flight-details .left-sec .airline-name {
+    display: flex;
+    flex-direction: column;
+    margin-top: -7px;
+    margin-left: 5px;
+  }
+
+  .flight-details .left-sec .airline-name .airline {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+  }
+
+  .flight-details .left-sec .airline-name .airline .flight-img {
+    max-width: 45px;
+    max-height: 45px;
+    object-fit: contain;
+  }
+
+  .right-airline {
+    margin-top: -7px;
+    margin-left: -15px;
+  }
+
+  .dep-airline {
+    margin-top: -10px;
+    margin-left: -15px;
+  }
+
+  // === CUSTOM CHECKBOX ===
+  .custom-checkbox input {
+    display: none;
+  }
+
+  .custom-checkbox .checkmark {
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    border-radius: 10px;
+    background-color: #ccc;
+    position: relative;
+  }
+
+  .custom-checkbox input:checked + .checkmark {
+    background-color: #4caf50;
+  }
+
+  .custom-checkbox .checkmark::after {
+    content: '✓';
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    position: absolute;
+    top: 3px;
+    inset-inline-start: 8px;
+  }
+
+  .custom-checkbox input:not(:checked) + .checkmark::after {
+    color: transparent;
+  }
+
+  // === TRANSIT DURATION BOX ===
+  .transit-duration {
+    margin: auto;
+    width: 95%;
+    border: 1px solid map-get($map: $blue, $key: three);
+    background-color: #fafafa;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    gap: 50%;
+  }
+
+  .transit-duration p {
+    color: black;
+    font-weight: 600;
+    font-size: 20px;
+    margin-inline-end: 480px;
+  }
+  .invisible {
+    visibility: hidden;
+    min-height: 18px;
+    display: block;
+  }
+}
+
+@media (max-width: $web-view-break-point) {
+  .card {
+    display: grid;
+    grid-template-columns: 1fr;
+    border-radius: 0%;
+    border: 1px solid map-get($map: $green, $key: one);
+  }
+  .custom-duration{
+    margin-bottom: 2px !important;
+  }
+
+  .card-body {
+    grid-column: span 4;
+    margin-top: -10px;
+  }
+
+  .card-body .time {
+    display: flex;
+    width: 100%;
+    gap: 45%;
+  }
+
+  .card-body .time .dep-time,
+  .card-body .time .arr-time {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 100%;
+  }
+
+  .card .card-body .flight-info {
+    display: flex;
+    align-items: center;
+  }
+
+  .card .card-body .flight-info img {
+    width: 80px;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .card .card-body .flight-info .flight-name {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+  }
+
+  // === DURATION SECTION ===
+  .duration {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: nowrap;
+  }
+
+  .bag-icon {
+    color: map-get($map: $blue, $key: two);
+  }
+
+  .card-text {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+  }
+
+  .card .card-body .duration .transit-time {
+    color: map-get($map: $red, $key: one);
+  }
+
+  // === BUTTON SECTION ===
+  .card .btn-section {
+    grid-column: span 4;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    bottom: 10px;
+    inset-inline-end: 10px;
+  }
+
+  .card .btn-section .toggle-btn {
+    font-weight: 600;
+    font-size: 16px;
+    background-color: transparent;
+    border: none;
+    margin-top: 10px;
+    margin-inline-end: 7px;
+  }
+
+  .card .btn-section .toggle-btn-open {
+    color: map-get($map: $green, $key: one);
+  }
+  .card .btn-section .toggle-btn-close {
+    color: #3e7dc3;
+  }
+
+  // === STOP LABEL ===
+  .stop {
+    position: absolute;
+    top: 80px;
+    inset-inline-start: 120px;
+    z-index: 5;
+  }
+
+  // === CONTENT SECTION ===
+  .content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .content h2 {
+    font-weight: 600;
+    font-size: 16px;
+    color: map-get($map: $blue, $key: three);
+  }
+
+  .content .duration-details {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .content .duration-details .bags {
+    display: flex;
+  }
+
+  .content .flight-date {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .content .flight-date p {
+    font-weight: 600;
+    font-size: 16px;
+  }
+
+  .content .flight-details {
+    display: flex;
+    height: 100%;
+    margin-top: 5px;
+  }
+
+  .details-text {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 0;
+  }
+
+  .airline-details {
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 0;
+    margin-left: 20px;
+  }
+
+  // === FLIGHT DETAILS LEFT & RIGHT ===
+  .flight-details .airport {
+    height: 100%;
+  }
+
+  .flight-details .right-sec {
+    width: 90px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 40px;
+    margin-left: 10px;
+    flex-wrap: nowrap;
+
+    &.ar {
+      margin-left: -20px;
+    }
+  }
+
+  .flight-details .left-sec {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .flight-details .left-sec .airport-name {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    margin-left: 20px;
+    margin-top: 5px;
+  }
+
+  .flight-details .left-sec .airline-name {
+    display: flex;
+    flex-direction: column;
+    margin-top: -7px;
+    margin-left: 5px;
+  }
+
+  .flight-details .left-sec .airline-name .airline {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+  }
+
+  .flight-details .left-sec .airline-name .airline .flight-img {
+    max-width: 45px;
+    max-height: 45px;
+    object-fit: contain;
+  }
+
+  .right-airline {
+    margin-top: -7px;
+    margin-left: -15px;
+  }
+
+  .dep-airline {
+    margin-top: -10px;
+    margin-left: -15px;
+  }
+
+  // === CUSTOM CHECKBOX ===
+  .custom-checkbox input {
+    display: none;
+  }
+
+  .custom-checkbox .checkmark {
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    border-radius: 10px;
+    background-color: #ccc;
+    position: relative;
+  }
+
+  .custom-checkbox input:checked + .checkmark {
+    background-color: #4caf50;
+  }
+
+  .custom-checkbox .checkmark::after {
+    content: '✓';
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    position: absolute;
+    top: 3px;
+    inset-inline-start: 8px;
+  }
+
+  .custom-checkbox input:not(:checked) + .checkmark::after {
+    color: transparent;
+  }
+
+  // === TRANSIT DURATION BOX ===
+  .transit-duration {
+    margin: auto;
+    width: 95%;
+    border: 1px solid map-get($map: $blue, $key: three);
+    background-color: #fafafa;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    gap: 50%;
+  }
+
+  .transit-duration p {
+    color: map-get($map: $red, $key: one);
+    font-weight: 600;
+    font-size: 15px;
+  }
+  .invisible {
+    visibility: hidden;
+    min-height: 18px;
+    display: block;
+  }
+
+  .baggage-container {
+  background-color: #fff;
+}
+
+.baggage-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.baggage-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.flight-route {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 15px;
+  font-weight: 400;
+  flex-wrap: wrap;
+}
+
+.baggage-row {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  align-items: center;
+  direction: ltr !important; 
+  text-align: left;
+}
+
+.passenger-title {
+  min-width: 70px;
+  font-weight: 700;
+  font-size: 16px;
+  color: map-get($map: $blue, $key: three);
+}
+
+.baggage-detail-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.baggage-detail {
+  display: flex;
+  margin-left: 5px;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  color: #444;
+  word-break: break-word;
+}
+
+.baggage-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.baggage-quantity {
+  display: flex;
+  gap: 4px;
+    direction: ltr;
+  text-align: left;
+}
+
+
+.spinner-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100px;
+}
+}
+
+.terminal {
+  font-size: 12px;
+  font-weight: 400;
+}

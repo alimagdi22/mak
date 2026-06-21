@@ -1,0 +1,98 @@
+<div class="cards-container">
+  @for (flight of details.length ? details[0].allJourney.flights : []; track $index) {
+    <div class="card">
+      <div class="card-header d-flex">
+        <p>
+          {{ flight.flightDTO[0].departureTerminalAirport.airportName }}
+          ({{ flight.flightDTO[0].departureTerminalAirport.airportCode }})
+        </p>
+        <p class="mb-2">..........</p>
+        <p>
+          {{
+            flight.flightDTO[flight.flightDTO.length - 1].arrivalTerminalAirport.airportName
+          }}
+          ({{ flight.flightDTO[flight.flightDTO.length - 1].arrivalTerminalAirport.airportCode }})
+        </p>
+      </div>
+
+      <div class="card-body">
+        <div class="section">
+          <div class="img-sec">
+            <img [src]="flight.flightAirline.airlineLogo" alt="" />
+          </div>
+          <p class="airline-name">{{ flight.flightAirline.airlineName }}</p>
+        </div>
+
+        <div class="depart-details d-flex" #departDetails>
+          <p class="time">{{ flight.flightDTO[0].deptTime | timeFormat: true }}</p>
+          <p>
+            {{ flight.flightDTO[0].departureTerminalAirport.cityName }}
+            ({{ flight.flightDTO[0].departureTerminalAirport.airportCode }})
+          </p>
+        </div>
+
+        <div class="divider d-flex">
+          <ng-container [ngSwitch]="flight?.stopsNum">
+            <ng-container *ngSwitchCase="0">
+              <p>{{ 'flight-result.direct' | translate }}</p>
+              <img [src]="'assets/icons/Ejazza Desktop/direct-g-' + currentLang + '.png'" width="200" />
+            </ng-container>
+            <ng-container *ngSwitchCase="1">
+              <p>
+                {{ 'flight-result.oneStop' | translate }} |
+                {{ getTotalTransitMinutes(flight.flightDTO[0].transitTime) | durationFormat }}
+              </p>
+              <img [src]="'assets/icons/Ejazza Desktop/one-stop-g-' + currentLang + '.png'" width="200" />
+            </ng-container>
+            <ng-container *ngSwitchCase="2">
+              <p>
+                {{ 'flight-result.twoStop' | translate }} |
+                {{
+                  getTotalTransitMinutes(flight.flightDTO[0].transitTime, flight.flightDTO[1].transitTime)
+                    | durationFormat
+                }}
+              </p>
+              <img [src]="'assets/icons/Ejazza Desktop/two-stops-g-' + currentLang + '.png'" width="200" />
+            </ng-container>
+          </ng-container>
+          <p class="mt-1">
+            {{ 'flight-result.duration' | translate }}
+            {{ flight.elapsedTime | hourminute: sharedService.lang }}
+          </p>
+        </div>
+
+        <div class="return-details d-flex" #returnDetails>
+          <p class="time">
+            {{ flight.flightDTO[flight.flightDTO.length - 1].landTime | timeFormat: true }}
+          </p>
+          <p>
+            {{
+              flight.flightDTO[flight.flightDTO.length - 1].arrivalTerminalAirport.cityName
+            }}
+            ({{ flight.flightDTO[flight.flightDTO.length - 1].arrivalTerminalAirport.airportCode }})
+          </p>
+        </div>
+
+        <!-- ✅ Baggage Section -->
+        <div class="baggages d-flex">
+          <!-- 🔹 NEW branded baggage logic -->
+          @if((ticketType === 'branded' && hasStepTwo) ? isNoBaggageBranded($index) : isNoBaggageLegacy(flight.flightDTO[0].segmentDetails.baggage)) {
+              <img src="assets/icons/no-baggage.png" width="20" height="20" alt="" />
+            }
+            @else {
+              <img src="assets/icons/travel-bag-icon.svg" alt="" />
+            }
+            <p>
+              {{ (ticketType === 'branded' && hasStepTwo)
+                  ? getBrandedBaggageCount($index)
+                  : getBaggageCountOnlyOrRaw(flight.flightDTO[0].segmentDetails.baggage) }}
+            </p>
+        </div>
+      </div>
+
+      <div class="card-footer" (click)="goToFlightDetails(details[0])">
+        <p>{{ 'checkout.CARD.Details' | translate }}</p>
+      </div>
+    </div>
+  }
+</div>

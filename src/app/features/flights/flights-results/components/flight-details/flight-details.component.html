@@ -1,0 +1,44 @@
+@if (sharedService.screenWidth >= sharedService.webViewBreakPoint) {
+  <app-flight-details-header />
+  <div>
+    <app-flight-details-body [searchCriteria]="searchCriteria" />
+  </div>
+} @else {
+  <div class="btn">
+    <button (click)="closeDialog()" class="circle-button">✕</button>
+  </div>
+  <div class="tabs-container">
+    <div class="tabs-header">
+      <div class="tab-item" [class.active]="selectedTab === 'details'" (click)="selectedTab = 'details'">
+        {{ 'flight-result.details' | translate }}
+      </div>
+      <div class="tab-item" [class.active]="selectedTab === 'fare'" (click)="selectedTab = 'fare'">
+        {{ 'flight-result.fare' | translate }}
+      </div>
+    </div>
+
+    <div class="tabs-content">
+      <ng-container *ngIf="selectedTab === 'details'">
+        @if (this.flightSharedService.selectedFlight.length) {
+          <app-flight-result-card [details]="this.flightSharedService.selectedFlight" [showButtonMoreDetails]="true" />
+        }
+        @if (flightResultService.loading && !this.flightSharedService.selectedFlight.length) {
+          <div class="flight-loader">
+            <app-loader />
+          </div>
+        }
+      </ng-container>
+
+      <ng-container *ngIf="selectedTab === 'fare'">
+        <app-branded-fare-rules />
+        <!-- @if (flightResultService.fareLoading) {
+          <div class="flight-loader">
+            <app-loader />
+          </div>
+        } @else {
+          <app-fare-rules />
+        } -->
+      </ng-container>
+    </div>
+  </div>
+}

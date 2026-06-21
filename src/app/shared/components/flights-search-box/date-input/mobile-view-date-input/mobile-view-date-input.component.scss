@@ -1,0 +1,51 @@
+@import 'colors';
+
+.custom-day {
+  text-align: center;
+  padding: 0.185rem 0.25rem;
+  display: inline-block;
+  height: 2rem;
+  width: 2rem;
+
+  transition: all 0.2s;
+
+  &.focused {
+    background-color: map-get($map: $green, $key: 'one');
+    color: white;
+  }
+
+  &.range {
+    background-color: map-get($map: $blue, $key: 'one');
+    color: white;
+  }
+
+  &:hover {
+    background-color: map-get($map: $blue, $key: 'three');
+    color: white;
+  }
+}
+
+::ng-deep .ngb-dp-header {
+  direction: ltr !important;
+}
+::ng-deep .calenderMobile_datepicker ngb-datepicker {
+  width: 100%;
+  flex-direction: column !important;
+}
+::ng-deep .calenderMobile_datepicker .ngb-dp-months {
+  flex-direction: column !important;
+}
+::ng-deep .calenderMobile_datepicker ngb-datepicker-month {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex-grow: 1;
+}
+::ng-deep .calenderMobile_datepicker .ngb-dp-weekdays,
+::ng-deep .calenderMobile_datepicker .ngb-dp-week {
+  display: flex;
+  justify-content: space-evenly;
+}
+::ng-deep .calenderMobile_datepicker .ngb-dp-day.disabled {
+  color: #808080 !important;
+}

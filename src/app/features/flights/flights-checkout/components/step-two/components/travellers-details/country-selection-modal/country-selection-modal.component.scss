@@ -1,0 +1,34 @@
+.country-selection-container {
+  padding: 16px;
+  width: 100%;
+  max-height: 80vh;
+  overflow: auto;
+}
+.search-header {
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 1;
+  padding-bottom: 16px;
+}
+.search-box {
+  margin-top: 16px;
+}
+.search-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+.country-list {
+  margin-top: 16px;
+}
+.country-item {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+.country-item:hover {
+  background-color: #f5f5f5;
+}

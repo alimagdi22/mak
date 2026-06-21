@@ -1,0 +1,9 @@
+<div class="skeleton" [ngStyle]="{ height }">
+  <ng-content />
+</div>
+<div class="skeleton-container">
+  <div class="skeleton-row" *ngFor="let item of items; let i = index">
+    <div class="skeleton-box first-box"></div>
+    <div class="skeleton-box"></div>
+  </div>
+</div>

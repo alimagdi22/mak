@@ -1,0 +1,364 @@
+@import 'colors';
+@import 'variables';
+@import 'utilities';
+
+.big-card {
+  margin: -17px 0;
+  box-shadow: 0 8px 6px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+.full-flight-card {
+  background-color: white;
+  margin: 20px auto;
+  border-radius: 10px;
+  border: none;
+}
+
+.card-body {
+  padding: 0px 25px;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+
+  @media (max-width: 1350px) {
+    padding: 0px 10px;
+  }
+}
+
+.flight-row {
+  padding: 20px 0;
+  border-bottom: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 22px;
+}
+.single-flight {
+  height: 200px;
+}
+
+.flight-airline {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.img-sec {
+  border: 1px solid #cbcbcb;
+  border-radius: 10px;
+  padding: 5px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 57.6px;
+  height: 61.1حء;
+  max-width: 59px;
+  max-height: 62px;
+}
+
+.img-sec img {
+  height: 60%;
+  max-width: 40px;
+  max-height: 55px;
+}
+
+.airline-name {
+  font-weight: 600;
+  font-size: 18px;
+  // font-family: 'Open Sans', sans-serif;
+  font-family: Poppins;
+  width: 100px;
+
+  @media (max-width: 1350px) {
+    width: 50px;
+  }
+
+  margin: 0;
+}
+
+.flight-time {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+  min-width: 120px;
+}
+
+.flight-time .time {
+  font-weight: 600;
+  font-size: 16px;
+  // font-family: 'Open Sans', sans-serif;
+  font-family: Poppins;
+  white-space: nowrap;
+  margin: 0;
+  color: #043263;
+}
+
+.flight-time p {
+  font-size: 14px;
+  margin: 0;
+  color: #043263;
+}
+
+.divider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 120px;
+}
+
+.divider p {
+  font-size: 14px;
+  color: black;
+  margin: -4px;
+  z-index: 1;
+
+  @media (max-width: 1350px) {
+    font-size: 12px;
+  }
+}
+
+.divider img {
+  width: 115px;
+  transform: scale(1.2);
+
+  &.ar {
+    transform: scaleX(-1);
+  }
+}
+
+.flight-bottom {
+  min-width: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.price {
+  font-size: 18px;
+  font-weight: 600;
+  color: #000;
+  margin: 0;
+}
+
+.refundable {
+  font-size: 14px;
+  color: #3a8fcc;
+  margin: 0;
+}
+.red-color{
+  color: map-get($map: $red, $key:'two' );
+}
+.select-btn {
+  padding: 10px 24px;
+  font-size: 16px;
+  font-weight: 700;
+  background-color: #66a928;
+  border-radius: 12px;
+  border: none;
+  width: 186px;
+
+  @media (max-width: 1350px) {
+    width: 100%;
+  }
+}
+
+.baggages {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+}
+.baggages {
+  direction: ltr;
+
+  [dir='rtl'] & {
+    direction: rtl;
+  }
+}
+.time {
+  direction: ltr;
+
+  [dir='rtl'] & {
+    direction: rtl;
+  }
+}
+
+
+
+.baggages p {
+  margin: 0;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.card-footer {
+  flex-grow: 1;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  padding: 15px 25px;
+  font-size: 14px;
+  border-top: 1px solid black;
+  background-color: white;
+  border-radius: 0 0 10px 10px;
+}
+
+.details-link {
+  color: map-get($map: $green, $key:'one' );
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.details-link:hover{
+  color: map-get($map: $blue, $key:'one' );
+}
+
+.more-flights {
+  color: #0649fb;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+@media (min-width: 1351px) {
+  .baggages p {
+    font-size: 11px;
+  }
+  .flight-bottom button {
+    width: 80%;
+  }
+}
+@media (max-width: $web-view-break-point) {
+  .tag {
+    position: absolute;
+    top: 0px;
+    inset-inline-end: 10px;
+    width: 86px;
+    height: 25px;
+    padding: 0 12px;    
+    color: black;
+    text-align: center;
+    line-height: 22px;
+    font-size: 13px;
+    font-weight: 400;
+    
+    &.sort-type {
+      background-color: #66A92847;
+    }
+
+    &.best-value {
+      background-color: #3E7DC338;
+    }
+  }
+  .more-flights-btn{
+    display: grid;
+        grid-template-columns: 1fr;
+        border-radius: 0%;
+        margin: 0px 10px;
+  }
+  .button{
+        background-color: white;
+        color: #0649fb;
+        border: none;
+        font-size: 16px;
+        font-weight: 600;
+        padding: 12px;
+        }
+
+  .pricing {
+    position: relative;
+    min-height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 16px;
+    border: 1px dotted map-get($map: $green, $key: one);
+    flex-wrap: wrap;
+    margin: 0 10px;
+    background-color: white;
+  }
+
+  .price-section {
+    position: absolute;
+    top: 16px;
+    inset-inline-end: 16px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  [dir='rtl'] .price-section {
+    align-items: flex-end;
+  }
+
+  [dir='ltr'] .price-section {
+    align-items: flex-start;
+  }
+
+  .price-row {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+  }
+
+  [dir='ltr'] .price-row {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .price-box {
+    @include custom-button(
+      $background: map-get($green, 'one'),
+      $color: white,
+      $border-radius: 12px,
+      $font-weight: bold,
+      $font-size: 18px,
+      $height: 38px
+    );
+  }
+
+  .old-price {
+    text-decoration: line-through;
+    text-decoration-color: map-get($map: $red, $key: two);
+    font-weight: 400;
+    font-size: 14px;
+    color: #999;
+  }
+
+  .refund {
+    font-size: 16px;
+    font-weight: 400;
+    color: #3a8fcc;
+    margin-top: 6px;
+  }
+.red-color{
+  color: map-get($map: $red, $key:'two' );
+}
+  .btn-sectionn {
+    position: relative;
+    bottom: -12px;
+    inset-inline-end: 12px;
+  }
+
+  .details-btn {
+    background: none;
+    border: none;
+    color: map-get($map: $green, $key: one);
+    padding: 6px 12px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .arrow-icon {
+    width: 10px;
+    height: 10px;
+    margin-top: -2px;
+    color: map-get($map: $green, $key: one);
+  }
+}

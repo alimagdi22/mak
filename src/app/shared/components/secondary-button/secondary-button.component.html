@@ -1,0 +1,14 @@
+<button
+  mat-stroked-button
+  color="primary"
+  (click)="onClick($event)"
+  class="gradient-button"
+  [title]="secondaryButtonInfo.title"
+  [ngStyle]="{
+    width: secondaryButtonInfo.width,
+    height: secondaryButtonInfo.height,
+    borderRadius: secondaryButtonInfo.borderRadius,
+  }"
+>
+  {{ secondaryButtonInfo.title }}
+</button>

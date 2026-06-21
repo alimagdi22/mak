@@ -1,0 +1,23 @@
+@import 'colors';
+@import 'variables';
+
+.price {
+  border: 1px solid gray;
+  padding: 0px 8px;
+  border-radius: 10px;
+}
+
+//   &__title,
+//   &__value span {
+//     font-size: 12px;
+//     font-weight: 400;
+//   }
+
+//   &__value {
+//     margin-top: 10px;
+
+//     display: flex;
+//     align-items: end;
+//     gap: 5px;
+//   }
+// }

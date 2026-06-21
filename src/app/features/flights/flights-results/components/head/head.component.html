@@ -1,0 +1,73 @@
+@if (sharedService.screenWidth >= sharedService.webViewBreakPoint) {
+  <div class="section d-flex px-2 mb-3 justify-content-between">
+    <div
+      class="arrow-left"
+      [ngClass]="{ 'flip-horizontal': currentLang === 'ar' }"
+    >
+      <img src="assets/icons/filter-arrow-left.svg" />
+    </div>
+    
+    <div class="desktop-swiper-container" #desktopSwiper>
+      <div class="swiper-wrapper">
+        @for (airline of flightResultService.customFilteredAirline; track airline; let i = $index) {
+          @if (airline.name) {
+            <div class="swiper-slide">
+              <div class="airline-card bg-white" 
+                   (click)="chooseCustomFilterAirline(airline, i)"
+                   [ngClass]="{ 'active-airline': isAirlineSelected(airline.name) }">
+                <div class="airline-name">
+                  {{ airline.name | slice: 0 : 15 }}
+                </div>
+                <div class="price-logo-row">
+                  <div class="airline-price">
+                    {{ airline.currency | exchange: 'code' }}
+                    {{ airline.price | exchange: 'value' | number: '1.0-0' }}
+                  </div>
+                  <img [src]="airline.logo" alt="{{ airline.name }}" class="airline-logo" />
+                </div>
+              </div>
+            </div>
+          }
+        }
+      </div>
+    </div>
+    
+    <div
+      class="arrow-right"
+      [ngClass]="{ 'flip-horizontal': currentLang === 'ar' }"
+    >
+      <img src="assets/icons/filter-arrow-right.svg" />
+    </div>
+  </div>
+} @else {
+  <!-- Mobile view remains the same but with fixed selection logic -->
+  @if (flightResultService.orgnizedResponce.length) {
+    <div class="search-summary" (click)="toggleSearchBox()" style="cursor: pointer">
+      <!-- ... existing mobile summary code ... -->
+    </div>
+  }
+  
+  <ng-container>
+    <app-flights-search-box [class.d-none]="!isSearchBoxOpen" />
+  </ng-container>
+
+  <swiper-container #swiperEl class="m-2">
+    @for (airline of flightResultService.customFilteredAirline; track airline; let i = $index) {
+      @if (airline.name) {
+        <swiper-slide class="d-flex justify-content-center">
+          <div class="airline-card bg-white" 
+               (click)="chooseCustomFilterAirline(airline, i)"  
+               [ngClass]="{ 'active-airline': isAirlineSelected(airline.name) }">
+            <div class="airline-name">{{ airline.name | slice: 0 : 15 }}</div>
+            <div class="price-logo-row">
+              <div class="airline-price">
+                {{ airline.currency | exchange: 'code' }} {{ airline.price | exchange: 'value' | number: '1.0-0' }}
+              </div>
+              <img [src]="airline.logo" alt="{{ airline.name }}" class="airline-logo" />
+            </div>
+          </div>
+        </swiper-slide>
+      }
+    }
+  </swiper-container>
+}

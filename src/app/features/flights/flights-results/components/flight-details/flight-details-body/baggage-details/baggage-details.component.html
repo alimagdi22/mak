@@ -1,0 +1,140 @@
+<div class="baggage-info row justify-content-between gap-3">
+  <section class="inculded-sec col-12">
+    <div class="inculded-sec__header">
+      <img src="assets/icons/checked-icon.svg" title="Checked Icon" />
+      <span>{{ 'flightDetails.baggage.included' | translate }}</span>
+    </div>
+    @if (flightResultService.isBrandedFaresLoading || flightResultService.fareLoading) {
+      <div class="spinner-loading">
+        <mat-spinner />
+      </div>
+    } @else {
+      @if (flightResultService.baggageInfo) {
+        <!-- Loop through baggageInfo instead of flights -->
+        <div *ngFor="let baggageItem of flightResultService.baggageInfo[0].baggageAllowanceDetails; let i = index">
+          @if (flightResultService.baggageInfo && hasPaxType('ADT')) {
+            <div class="baggage-line">
+              <div class="baggage-type">{{ 'flightDetails.baggage.adultItems' | translate }}</div>
+              <div class="baggage-route">
+                {{ getFlightRouteCityNames(i) }}
+              </div>
+
+              <div class="baggage-entry">
+                <img src="assets/icons/travel-bag-icon.svg" alt="" />
+
+                <span>
+                  {{ 'flightDetails.baggage.checkedBaggage' | translate }}
+                </span>
+
+                <span dir="ltr">
+                  {{
+                    ticketType === 'branded' && hasStepTwo
+                      ? getBrandedBaggageCount(i, 'ADT')
+                      : getBaggageCount(i, 'ADT')
+                  }}
+                </span>
+              </div>
+
+              <div class="hand-baggage">
+                <div class="hand-baggage-top">
+                  <img src="assets/icons/hand-bag-icon.svg" alt="" />
+
+                  <span>
+                    {{ 'flightDetails.baggage.cabinBaggage' | translate }}
+                  </span>
+
+                  <span dir="ltr"> 1 X 7kg </span>
+                </div>
+              </div>
+            </div>
+          }
+
+          @if (flightResultService.baggageInfo && hasPaxType('CHD')) {
+            <div class="baggage-line">
+              <div class="baggage-type">{{ 'flightDetails.baggage.childItems' | translate }}</div>
+              <div class="baggage-route">
+                {{ getFlightRouteCityNames(i) }}
+              </div>
+
+              <div class="baggage-entry">
+                @if (
+                  ticketType === 'branded' && hasStepTwo ? isNoBaggageBranded(i, 'CHD') : isNoBaggageLegacy(i, 'CHD')
+                ) {
+                  <img src="assets/icons/no-baggage.png" width="20" height="20" alt="" />
+                } @else {
+                  <img src="assets/icons/travel-bag-icon.svg" alt="" />
+                }
+
+                <span>
+                  {{ 'flightDetails.baggage.checkedBaggage' | translate }}
+                </span>
+
+                <span dir="ltr">
+                  {{
+                    ticketType === 'branded' && hasStepTwo
+                      ? getBrandedBaggageCount(i, 'CHD')
+                      : getBaggageCount(i, 'CHD')
+                  }}
+                </span>
+              </div>
+
+              <div class="hand-baggage">
+                <div class="hand-baggage-top" dir="rtl">
+                  <img src="assets/icons/hand-bag-icon.svg" alt="" />
+
+                  <span>
+                    {{ 'flightDetails.baggage.cabinBaggage' | translate }}
+                  </span>
+
+                  <span dir="ltr"> 1*7kg </span>
+                </div>
+              </div>
+            </div>
+          }
+
+          @if (
+            flightResultService.baggageInfo &&
+            hasPaxType('INF') &&
+            (ticketType === 'branded' && hasStepTwo ? hasInfantBaggage() : true)
+          ) {
+            <div class="baggage-line">
+              <div class="baggage-type">{{ 'flightDetails.baggage.infantItems' | translate }}</div>
+              <div class="baggage-route">
+                {{ getFlightRouteCityNames(i) }}
+              </div>
+
+              <div class="baggage-entry">
+                @if (
+                  ticketType === 'branded' && hasStepTwo ? isNoBaggageBranded(i, 'INF') : isNoBaggageLegacy(i, 'INF')
+                ) {
+                  <img src="assets/icons/no-baggage.png" width="20" height="20" alt="" />
+                } @else {
+                  <img src="assets/icons/travel-bag-icon.svg" alt="" />
+                }
+
+                <span>
+                  {{ 'flightDetails.baggage.checkedBaggage' | translate }}
+                </span>
+
+                <span dir="ltr">
+                  {{
+                    ticketType === 'branded' && hasStepTwo
+                      ? getBrandedBaggageCount(i, 'INF')
+                      : getBaggageCount(i, 'INF')
+                  }}
+                </span>
+              </div>
+
+              <!-- <div class="hand-baggage">
+                <div class="hand-baggage-top">
+                  <img src="assets/icons/hand-bag-icon.svg" alt="" />
+                  1 x {{ 'flightDetails.baggage.cabinBaggage' | translate }} (7kg)
+                </div>
+              </div> -->
+            </div>
+          }
+        </div>
+      }
+    }
+  </section>
+</div>

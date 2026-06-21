@@ -1,0 +1,56 @@
+<main class="container">
+  <div class="wrapper">
+    @for (flight of sharedService.selectedFlightItinerary.allJourney.flights; track $index) {
+      <div
+        [ngClass]="{
+          border: sharedService.selectedFlightItinerary.allJourney.flights.length > 1,
+          active:
+            sharedService.selectedFlightItinerary.allJourney.flights.length > 1 &&
+            sharedService.selectedItinerary === $index,
+        }"
+        class="itinerary"
+      >
+        @if (flightSharedService.selectedFlightType === 'roundtrip') {
+          <p class="title">
+            {{ ($index ? 'flightDetails.itinerary.Arrive' : 'flightDetails.itinerary.Departure') | translate }}
+          </p>
+        }
+
+        <section class="flight-info">
+          @if (flightSharedService.selectedFlightType === 'oneway') {
+            <p class="fw-bold mb-0">{{ 'flightDetails.itinerary.Departure' | translate }}</p>
+          }
+
+          <p class="flight-info__time">
+            {{ 'flightDetails.itinerary.totalDuration' | translate }} {{ flight.elapsedTime | hourminute: sharedService.lang }}
+          </p>
+
+          <div class="flight-info__path">
+            @for (flightSegment of flight.flightDTO; track flightSegment; let i = $index) {
+              <app-flight-path
+                [flightSegment]="flightSegment"
+                [cabinClass]="cabinClass"
+                [airlineLogo]="flight.flightAirline.airlineLogo"
+                [airlineName]="flight.flightAirline.airlineName"
+                [terminal]="flight.flightDTO[0].departureTerminalAirport.airportCode"
+              />
+
+              @if (i != flight.flightDTO.length - 1) {
+                <div class="flight-info__path__change">
+                  <div class="flight-info__path__change__time">
+                    <img src="assets/icons/clock-icon.svg" title="Clock Icon" />
+                    <p>
+                      {{ flightSegment.transitTime | timeFormatTransit  }}
+                      {{ 'flightDetails.itinerary.changeIn' | translate }}
+                      {{ flightSegment.arrivalTerminalAirport.cityName }}
+                    </p>
+                  </div>
+                </div>
+              }
+            }
+          </div>
+        </section>
+      </div>
+    }
+  </div>
+</main>

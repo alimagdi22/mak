@@ -1,0 +1,73 @@
+@if (sharedService.screenWidth >= sharedService.webViewBreakPoint) {
+  <div class="sort-container">
+    <div class="sort-box">
+      <div class="sort-option-box" [ngClass]="{ active: sortItems[0].isActive }" (click)="setSort('cheapest')">
+        <span class="label">{{ 'flight-result.cheapest' | translate }}</span>
+        <span class="count">{{ sortItems[0].price | exchange: 'value' }}</span>
+      </div>
+
+      <span class="divider"></span>
+
+      <div class="sort-option-box" [ngClass]="{ active: sortItems[1].isActive }" (click)="setSort('fastest')">
+        <span class="label">{{ 'flight-result.fastest' | translate }}</span>
+        <span class="count">{{ sortItems[1].price | exchange: 'value' }}</span>
+      </div>
+
+      <span class="divider"></span>
+
+      <div class="sort-option-box" [ngClass]="{ active: sortItems[2].isActive }" (click)="setSort('earliest')">
+        <span class="label">{{ 'flight-result.earliest' | translate }}</span>
+        <span class="count">{{ sortItems[2].price | exchange: 'value' }}</span>
+      </div>
+
+      <span class="divider"></span>
+
+      <div class="sort-option-box" [ngClass]="{ active: sortItems[3].isActive }" (click)="setSort('latest')">
+        <span class="label">{{ 'flight-result.latest' | translate }}</span>
+        <span class="count">{{ sortItems[3].price | exchange: 'value' }}</span>
+      </div>
+    </div>
+  </div>
+} @else {
+  <div class="sort-container">
+    <div
+      class="sort-box"
+      [ngStyle]="{
+        paddingInlineEnd: '0',
+      }"
+    >
+      <span class="sort-option ps-2" [ngClass]="{ active: sortItems[0].isActive }" (click)="setSort('cheapest')">
+        {{ 'flight-result.cheapest' | translate }}
+        <span class="count">{{ sortItems[0].price | exchange: 'value' }}</span>
+      </span>
+
+      <span class="divider"></span>
+
+      <span class="sort-option" [ngClass]="{ active: sortItems[1].isActive }" (click)="setSort('fastest')">
+        {{ 'flight-result.fastest' | translate }}
+        <span class="count">{{ sortItems[1].price | exchange: 'value' }}</span>
+      </span>
+      <span class="sort-icon">
+        <!-- Trigger button -->
+        <button mat-button [matMenuTriggerFor]="sortMenu" class="sort-button">
+          <img src="assets/icons/Sort list_alt.svg" alt="Sort Icon" width="20" />
+        </button>
+
+        <!-- The menu -->
+        <mat-menu #sortMenu="matMenu">
+          <button mat-menu-item [ngClass]="{ active: sortItems[2].isActive }" (click)="setSort('earliest')">
+            {{ 'flight-result.earliest' | translate }}
+            <span class="count">{{ sortItems[2].price | exchange: 'value' }}</span>
+          </button>
+
+          <button mat-menu-item [ngClass]="{ active: sortItems[3].isActive }" (click)="setSort('latest')">
+            {{ 'flight-result.latest' | translate }}
+            <span class="count">{{ sortItems[3].price | exchange: 'value' }}</span>
+          </button>
+        </mat-menu>
+
+        <img src="assets/icons/svgexport-15 (3).svg" alt="Open" class="filter-icon" (click)="openFilter.emit()" />
+      </span>
+    </div>
+  </div>
+}

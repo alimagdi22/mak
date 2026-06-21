@@ -1,0 +1,198 @@
+@import 'colors';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  gap: 2%;
+  padding: 2%;
+  height: 85%;
+}
+
+.custom-radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 20px;
+
+  div,
+  label {
+    flex-basis: 40%;
+    flex-grow: 1;
+  }
+}
+
+.custom-radio-group input[type='radio'] {
+  display: none;
+}
+
+.custom-radio-group .radio-btn {
+  display: inline-block;
+  cursor: pointer;
+  padding: 8px 16px;
+  border: 1px solid #d3d3d3;
+  border-radius: 8px;
+  background-color: #f5f5f5;
+  text-align: center;
+  transition: background-color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.custom-radio-group .radio-btn:has(input[type='radio']:checked) {
+  color: white; /* Optional: Make text white */
+  background-color: map-get($map: $green, $key: 'one'); /* Green background */
+  border-color: map-get($map: $green, $key: 'one'); /* Match border color with background */
+}
+
+.custom-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 1px solid #d3d3d3;
+  border-radius: 8px;
+  background-color: #f5f5f5;
+  padding: 8px 12px;
+  box-sizing: border-box;
+
+  input,
+  .phone-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 16px;
+    padding: 0 8px;
+    color: #333;
+
+    &::placeholder {
+      color: #aaa;
+      font-size: 14px;
+    }
+  }
+
+  .input-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+
+    img {
+      width: 20px;
+      height: 20px;
+      object-fit: contain;
+    }
+  }
+}
+
+h3 {
+  margin: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 12px;
+}
+
+.custom-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 1px solid #d3d3d3;
+  border-radius: 8px;
+  background-color: #f5f5f5;
+  padding: 8px 12px;
+  box-sizing: border-box;
+
+  input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 16px;
+    padding: 0 8px;
+    color: #333;
+
+    &::placeholder {
+      color: #aaa;
+      font-size: 14px;
+    }
+  }
+
+  .input-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+
+    img {
+      width: 20px;
+      height: 20px;
+      object-fit: contain;
+    }
+  }
+}
+
+.privacy-policy-paragraph {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+
+  p {
+    font-weight: 300;
+
+    span {
+      cursor: pointer;
+      font-weight: 400;
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+
+  button {
+    position: relative;
+
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+
+    padding: 10px 20px;
+    height: 45px;
+    font-weight: bold;
+    color: white;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    background-color: map-get($map: $green, $key: 'one');
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+      background-color 0.3s,
+      color 0.3s;
+
+    &:hover {
+      background-color: white;
+      border: 1px solid map-get($map: $green, $key: 'one');
+      color: map-get($map: $green, $key: 'one');
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 5px rgba(0, 128, 0, 0.8);
+    }
+
+    img {
+      position: absolute;
+      left: 15px;
+      width: 25px;
+    }
+  }
+}

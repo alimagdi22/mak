@@ -1,0 +1,27 @@
+<div class="p-4 d-flex flex-column gap-4">
+  <div class="d-flex gap-2 align-items-end flex-wrap">
+    <img src="assets/icons/support.svg" width="50" />
+    <p class="h2 p-0">
+      {{ translate.currentLang === 'en' ? 'We care about your booking' : 'نحن نهتم بحجزك' }}
+    </p>
+  </div>
+
+  <p>
+    <span>
+      {{
+        translate.currentLang === 'en'
+          ? 'We encountered an issue processing your payment. Our team will contact you shortly to assist. For immediate help, please reach out to us at'
+          : 'واجهنا مشكلة في معالجة دفعتك. سيتواصل معك فريقنا قريبًا للمساعدة. للمساعدة الفورية، يرجى التواصل معنا عبر'
+      }}
+    </span>
+    [
+    <a class="d-inline" href="mailto:Ticketing3@mak-travel.com">Ticketing3&#64;mak-travel.com</a>
+    /
+    <a class="d-inline" href="tel:01123324859">01123324859</a>
+    ]
+  </p>
+
+  <button class="btn align-self-start" (click)="goToHomePage()">
+    {{ translate.currentLang === 'en' ? 'New Search' : 'بحث جديد' }}
+  </button>
+</div>

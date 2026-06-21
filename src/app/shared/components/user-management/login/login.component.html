@@ -1,0 +1,95 @@
+@if (sharedService.screenWidth >= sharedService.webViewBreakPoint) {
+  <h1 class="text-center mt-2">{{ 'user.login.title' | translate }}</h1>
+} @else {
+  <app-input-header [headerTitle]="'user.login.title' | translate" (onClickClose)="dismiss.emit()" />
+}
+
+<div class="login">
+  <form
+    class="login__form"
+    [formGroup]="authService.loginForm"
+    [ngStyle]="sharedService.screenWidth >= sharedService.webViewBreakPoint ? { gap: '0' } : {}"
+  >
+    <div class="login__form__input">
+      <label>{{ 'user.login.emailLabel' | translate }}</label>
+      <input type="text" [placeholder]="'user.login.emailPlaceholder' | translate" formControlName="email" />
+
+      @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+        <p class="validation-msg">
+          {{ getEmailErrorMessage(loginForm.get('email')!, lang) }}
+        </p>
+      } @else {
+        <p
+          class="validation-msg"
+          [ngStyle]="{
+            visibility: 'hidden',
+          }"
+        >
+          {{ 'user.login.errorMessagePlaceholder' | translate }}
+        </p>
+      }
+    </div>
+
+    <div class="login__form__input">
+      <label>{{ 'user.login.passwordLabel' | translate }}</label>
+      <input type="password" [placeholder]="'user.login.passwordPlaceholder' | translate" formControlName="password" />
+
+      @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+        <p class="validation-msg">
+          {{ getPasswordErrorMessage(loginForm.get('password')!, lang, false) }}
+        </p>
+      } @else {
+        <p
+          class="validation-msg"
+          [ngStyle]="{
+            visibility: 'hidden',
+          }"
+        >
+          {{ 'user.login.errorMessagePlaceholder' | translate }}
+        </p>
+      }
+    </div>
+
+    @if (error) {
+      <p class="validation-msg">
+        {{ 'user.login.invalidUserError' | translate }}
+      </p>
+    } @else {
+      <p
+        class="validation-msg"
+        [ngStyle]="{
+          visibility: 'hidden',
+        }"
+      >
+        {{ 'user.login.errorMessagePlaceholder' | translate }}
+      </p>
+    }
+  </form>
+
+  <div
+    class="login__actions"
+    [ngStyle]="sharedService.screenWidth >= sharedService.webViewBreakPoint ? { 'margin-top': '-30px' } : {}"
+  >
+    <p (click)="goToRestPassword($event)" [class.text-start]="lang === 'ar'">{{ 'user.login.forgotPassword' | translate }}</p>
+    <button (click)="onSubmit()" [disabled]="isLoading || loginForm.invalid">
+      @if (!isLoading) {
+        {{ 'user.login.signIn' | translate }}
+      } @else {
+        <mat-spinner diameter="20" color="accent"></mat-spinner>
+      }
+    </button>
+    <button class="google" (click)="googleLoginSubmit()">
+      <img src="assets/icons/user/google-icon.svg" title="Google Icon" />
+      {{ 'user.login.signInWithGoogle' | translate }}
+    </button>
+    <!-- <button class="facebook" (click)="loginWithFacebook()">
+      <img src="assets/icons/user/facebook-svgrepo-com.svg" title="facebook Icon" />
+      {{ 'user.login.signInWithFacebook' | translate }}
+    </button> -->
+  </div>
+
+  <footer class="login__footer">
+    {{ 'user.login.noAccount' | translate }}
+    <span (click)="goToSignUp($event)">{{ 'user.login.signUp' | translate }}</span>
+  </footer>
+</div>

@@ -1,0 +1,206 @@
+@import 'utilities';
+@import 'colors';
+@import 'variables';
+
+
+*{
+  // font-family: Open Sans;
+  font-family: Poppins;
+
+}
+.contact-section {
+  display: flex;
+  flex-direction: column;
+  width: 75vw;
+  margin: auto;
+  background-color: white;
+  border-radius: 16px;
+  gap: 30px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+form {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.contact-input-group {
+  width: 50%;
+}
+
+.contact-title {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  margin-bottom: 0;
+  margin-top: 5px;
+}
+label{
+  font-size: 16px;
+  font-weight: 600;
+}
+
+input {
+  border: 1px solid #cbcbcb;
+  border-radius: 6px;
+  background-color: #f4f4f5;
+  height: 35px;
+  padding: 0 10px;
+}
+
+select {
+  width: 18%;
+  border: 1px solid #cbcbcb;
+  border-radius: 6px;
+  background-color: #f4f4f5;
+  height: 35px;
+}
+
+.contact-phone {
+  width: 80%;
+}
+
+input.is-invalid,
+select.is-invalid {
+  border: 1px solid red;
+}
+
+.contact-country-select {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  direction: ltr;
+  position: relative;
+}
+
+.contact-country-select:hover {
+  overflow: visible;
+}
+
+.contact-country-select option {
+  white-space: nowrap;
+}
+
+::ng-deep ngx-intl-tel-input .iti {
+  width: 100% !important;
+}
+
+::ng-deep ngx-intl-tel-input .iti__tel-input {
+  width: 100% !important;
+  background-color: #f4f4f5 !important;
+  border: 1px solid #cbcbcb !important;
+  border-radius: 6px !important;
+  height: 35px !important;
+  padding: 5px 10px;
+  box-sizing: border-box;
+}
+
+::ng-deep ngx-intl-tel-input {
+  &.is-invalid {
+    .iti__selected-flag {
+      border-color: #dc3545 !important; /* Red border for the flag dropdown */
+      background-color: #f4f4f5 !important;
+    }
+
+    input {
+      border-color: #dc3545 !important; /* Red border for the input */
+      background-color: #fff !important;
+    }
+  }
+
+  /* Normal state styling */
+  input {
+    background-color: #f4f4f5 !important;
+    border: 1px solid #cbcbcb !important;
+  }
+  .dropdown-toggle {
+    background-color: rgba(225, 231, 238, 1);
+  }
+}
+
+::ng-deep input#country-search-box{
+  height: 40px;
+}
+
+::ng-deep .dropdown-menu{
+  width: auto !important;
+}
+
+::ng-deep .country-dropdown{
+  width: auto !important;
+}
+
+
+@media (max-width: $web-view-break-point) {
+  .contact-section {
+    width: 100%;
+    gap: 0;
+    box-shadow: none;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  .contact-input-group {
+    width: 100%;
+  }
+  .contact-phone {
+    width: 63%;
+  }
+  select {
+    width: 35%;
+    border: 1px solid map-get($map: $green, $key: one);
+    border-radius: 0;
+    height: 35px;
+  }
+  input {
+    border: 1px solid map-get($map: $green, $key: one);
+    height: 35px;
+  }
+  .contact-title {
+    margin-top: 0;
+  }
+
+  ::ng-deep ngx-intl-tel-input .iti {
+    width: 100% !important;
+    margin-top: -5px;
+  }
+
+  ::ng-deep ngx-intl-tel-input .iti__tel-input {
+    width: 100% !important;
+    background-color: #f4f4f5 !important;
+    border: 1px solid #cbcbcb !important;
+    border-radius: 6px !important;
+    height: 35px !important;
+    padding: 5px 10px;
+    box-sizing: border-box;
+  }
+
+  ::ng-deep ngx-intl-tel-input {
+    &.is-invalid {
+      .iti__selected-flag {
+        border-color: #dc3545 !important; /* Red border for the flag dropdown */
+        background-color: #f4f4f5 !important;
+        border-radius: 0;
+      }
+
+      input {
+        border-color: #dc3545 !important; /* Red border for the input */
+        background-color: #fff !important;
+        border-radius: 0;
+      }
+    }
+
+    /* Normal state styling */
+    input {
+      background-color: #f4f4f5 !important;
+      border: 1px solid map-get($map: $green, $key: one) !important;
+      border-radius: 0 !important;
+      background-color: transparent !important;
+    }
+  }
+  input {
+    border-radius: 0 !important;
+    background-color: transparent;
+  }
+}

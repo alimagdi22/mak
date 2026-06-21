@@ -1,0 +1,48 @@
+@if (sharedService.isAuthenticated) {
+  <div class="d-flex flex-column py-3 px-4 mb-1 bg-white">
+    <app-drop-down />
+  </div>
+} @else {
+  <div class="d-flex flex-column py-3 px-4 mb-1 bg-white">
+    <span class="title text-center">{{ 'header.menuTitle' | translate }}</span>
+
+    <div class="d-flex justify-content-between gap-5 mt-4">
+      <button class="sign-up-btn" (click)="headerSharedService.onClickRegister()">
+        {{ 'header.signUp' | translate }}
+      </button>
+      <button class="sign-in-btn" (click)="headerSharedService.onClickLogin()">
+        {{ 'header.signIn' | translate }}
+      </button>
+    </div>
+
+    <div class="d-flex justify-content-between mt-4">
+      <span class="fw-light">{{ 'header.menuNote' | translate }}</span>
+
+      <div class="d-flex gap-4 me-4">
+        <img src="assets/icons/header/google.svg" (click)="googleLoginSubmit()"/>
+        <img src="assets/icons/header/facebook.svg" (click)="headerSharedService.onClickLogin()" />
+      </div>
+    </div>
+  </div>
+}
+
+<div class="px-4 py-3 mb-1 bg-white">
+  <ul class="d-flex flex-column gap-3 mx-2">
+    <li routerLink="/about-us" (click)="sharedService.closeModals()">
+      <img src="assets/icons/header/exclamation.svg" />
+      <span>{{ 'header.aboutUs' | translate }}</span>
+    </li>
+    <li routerLink="/contact-us" (click)="sharedService.closeModals()">
+      <img src="assets/icons/header/phone.svg" />
+      <span>{{ 'header.contactUs' | translate }}</span>
+    </li>
+    <li routerLink="/">
+      <img src="assets/icons/header/home-green.svg" />
+      <span>{{ 'header.home' | translate }}</span>
+    </li>
+  </ul>
+</div>
+
+<div class="d-flex justify-content-center py-2 bg-white">
+  <button class="close-btn" (click)="sharedService.closeModals()">{{ 'header.close' | translate }}</button>
+</div>

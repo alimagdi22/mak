@@ -1,0 +1,13 @@
+<header>
+    <div class="card-header mt-2">
+      <img [src]="flight.flightAirline.airlineLogo" class="header-flight-img" alt="airline_logo" />
+      <h2 class="header-title">{{ flight.flightAirline.airlineName }}</h2>
+    </div>
+
+  @if (showTag && !index && (sharedService.selectedSortItem.sortCode === 1 || sharedService.selectedSortItem.sortCode === 2)) {
+    <div class="tags-wrapper d-flex gap-2 justify-content-end">
+      <div class="tag best-value">{{ 'flight-result.bestValue' | translate}}</div>
+      <div class="tag sort-type">{{ 'flight-result.' + sharedService.selectedSortItem.title.toLowerCase() | translate}}</div>
+    </div>
+  }
+</header>

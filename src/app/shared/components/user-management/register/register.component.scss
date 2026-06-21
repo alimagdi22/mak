@@ -1,0 +1,165 @@
+@import 'utilities';
+
+.register {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  background-color: white;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+
+    img {
+      cursor: pointer;
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-wrap: wrap;
+
+    // Mobile-first approach (single column)
+    &__input {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+
+      label {
+        text-align: start;
+        color: #686872;
+      }
+
+      input {
+        padding: 15px 25px;
+        border: 1px solid gray;
+        outline: none;
+        border-radius: 12px;
+      }
+    }
+
+    // Desktop styles (two columns)
+    @media (min-width: 768px) {
+      // Adjust breakpoint as needed
+      &__input {
+        width: calc(50% - 10px); // Half width minus half the gap
+
+        // Specific adjustments for certain inputs
+        &:nth-child(5), // Phone number
+        &:nth-child(7) {
+          // Confirm password
+          width: calc(50% - 10px);
+        }
+
+        &:nth-child(3), // Username
+        &:nth-child(4), // Email
+        &:nth-child(6) {
+          // Password
+          width: calc(50% - 10px);
+        }
+      }
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    div {
+      display: flex;
+      align-items: center;
+
+      p {
+        cursor: pointer;
+        font-size: 14px;
+        color: #686872;
+        text-align: right;
+      }
+
+      input[type='checkbox']:checked {
+        background-color: map-get($map: $green, $key: 'one');
+      }
+    }
+
+    button {
+      position: relative;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+      padding: 10px 20px;
+      height: 48px;
+      font-weight: bold;
+      color: white;
+      border: 1px solid transparent;
+      border-radius: 50px;
+      background-color: map-get($map: $green, $key: 'one');
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      transition:
+        background-color 0.3s,
+        color 0.3s;
+
+      &:hover {
+        background-color: white;
+        border: 1px solid map-get($map: $green, $key: 'one');
+        color: map-get($map: $green, $key: 'one');
+      }
+
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 5px rgba(0, 128, 0, 0.8);
+      }
+
+      img {
+        position: absolute;
+        left: 15px;
+        width: 25px;
+      }
+    }
+
+    button.google {
+      border-color: gray;
+      color: gray;
+      background-color: white;
+    }
+
+    button.facebook {
+      color: white;
+      background-color: #1877f2;
+    }
+  }
+
+  &__footer {
+    color: #686872;
+
+    span {
+      cursor: pointer;
+      color: map-get($map: $green, $key: 'one');
+    }
+  }
+}
+
+// Validation messages - keep them visible when needed
+.validation-msg {
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+  min-height: 1rem; // Prevent layout shift
+}
+
+::ng-deep .modal-dialog {
+  @media (min-width: 768px) {
+    max-width: 800px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  form {
+    gap: 10px;
+  }
+}

@@ -1,0 +1,71 @@
+<div class="d-flex gap-2 align-items-center calendar my-2">
+  <img src="assets/icons/calander-icon.svg" title="Calander Icon" />
+  <p>
+    {{
+      flightSegment.departureDate
+        | date: 'EEEE dd MMM' : undefined : (translate.currentLang === 'ar' ? 'ar-EG' : 'en-US')
+    }}
+  </p>
+</div>
+
+<div class="flight-path">
+  <div class="flight-path__right">
+    <div class="flight-path__right__city">
+      <p class="flight-path__right__city__name">{{ deptCityName }}</p>
+      <p class="flight-path__right__city__airport">
+        {{ deptAirportName }}
+        <span class="fs-7"
+          >{{ 'flightDetails.itinerary.terminal' | translate }}
+          {{ flightSegment.departureTerminalAirport.terminal }}</span
+        >
+      </p>
+    </div>
+
+    <div class="flight-path__right__airport">
+      <div class="img-sec">
+        <img [src]="airlineLogo" title="Airport Logo" class="flight-path__right__airport__logo" />
+      </div>
+      <div class="flight-path__right__airport__text">
+        <p class="flight-path__right__airport__text__title">{{ airlineName }}</p>
+        <p class="flight-path__right__airport__text__class">
+          {{ flightSegment.flightAirline.airlineCode }}{{ flightSegment.flightInfo.flightNumber }} -
+          {{ 'flightDetails.itinerary.' + cabinClass | translate }}
+        </p>
+        <p>
+          @if(airlineName !== flightSegment.operatedAirline.airlineName){
+           Operated By {{flightSegment.operatedAirline.airlineName}}
+          }
+        </p>
+      </div>
+    </div>
+
+    <div class="flight-path__right__city">
+      <p class="flight-path__right__city__name">{{ arrivalCityName }}</p>
+      <p class="flight-path__right__city__airport">
+        {{ arrivalAirportName }}
+        <span class="fs-6"
+          >{{ 'flightDetails.itinerary.terminal' | translate }}
+          {{ flightSegment.arrivalTerminalAirport.terminal }}</span
+        >
+      </p>
+    </div>
+  </div>
+
+  <div class="flight-path__middle">
+    <div class="flight-path__middle__circle"></div>
+    <div class="flight-path__middle__line"></div>
+    <img src="assets/icons/flight-icon.svg" title="Flight Icon" class="flight-path__middle__flight-icon" />
+    <div class="flight-path__middle__line"></div>
+    <div class="flight-path__middle__circle"></div>
+  </div>
+
+  <div class="flight-path__left">
+    <p class="flight-path__left__time">
+      {{ deptDate | date: 'HH:mm' : undefined : (translate.currentLang === 'ar' ? 'ar-EG' : 'en-US') }}
+    </p>
+    <p class="flight-path__left__duration">{{ segmentDuration |  hourminute: sharedService.lang }}</p>
+    <p class="flight-path__left__timee">
+      {{ landDate | date: 'HH:mm' : undefined : (translate.currentLang === 'ar' ? 'ar-EG' : 'en-US') }}
+    </p>
+  </div>
+</div>

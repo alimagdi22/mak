@@ -1,0 +1,234 @@
+<div class="fare-container">
+  @if (isLoading || flightCheckoutService.loader) {
+    <div class="loading-container d-flex align-items-center justify-content-center">
+      <mat-spinner diameter="50" strokeWidth="3"></mat-spinner>
+      <p class="loading-text"></p>
+    </div>
+  } @else {
+    <h4>
+      {{ selectedFlight?.searchCriteria?.totalPassengersNum }}
+      @if (selectedFlight?.searchCriteria?.totalPassengersNum == 1) {
+        <span>
+          {{ 'checkout.BreakDown.singlePassenger' | translate }}
+        </span>
+      }
+      @if ((selectedFlight?.searchCriteria?.totalPassengersNum ?? 0) > 1) {
+        <span>
+          {{ 'checkout.BreakDown.fareBreakdown' | translate }}
+        </span>
+      }
+      : {{ translateFlightType(selectedFlight?.searchCriteria?.flightType) }}
+    </h4>
+    <hr />
+    @if (selectedTicket === 'standard' || !selectedTicket || (selectedTicket === 'branded' && !brand)) {
+      @if (selectedFlight?.airItineraryDTO?.passengerFareBreakDownDTOs) {
+        @for (fare of selectedFlight.airItineraryDTO.passengerFareBreakDownDTOs; track fare) {
+          <ng-container [ngSwitch]="fare.passengerType">
+            <div class="ticket-details">
+              <p class="fw-bold">
+                {{
+                  fare.passengerType === 'ADT'
+                    ? ('checkout.BreakDown.passengerType.adultFare' | translate)
+                    : fare.passengerType === 'CNN' || fare.passengerType === 'CHD'
+                      ? ('checkout.BreakDown.passengerType.childFare' | translate)
+                      : ('checkout.BreakDown.passengerType.infantFare' | translate)
+                }}
+                :
+              </p>
+              <p>
+                {{ (fare.flightFaresDTOs | fareFilter: 'TotalFare')?.currencyCode | exchange: 'code' }}
+                {{
+                  (selectedFlight?.airItineraryDTO?.itinTotalFare?.mValue > 0 && fare.passengerType === 'ADT'
+                    ? (fare.flightFaresDTOs | fareFilter: 'TotalFare')?.fareAmount +
+                      selectedFlight?.airItineraryDTO?.itinTotalFare?.mValue / fare.passengerQuantity
+                    : (fare.flightFaresDTOs | fareFilter: 'TotalFare')?.fareAmount
+                  ) | exchange: 'value'
+                }}
+                x {{ fare.passengerQuantity }}
+              </p>
+            </div>
+            @if (fare.flightFaresDTOs) {
+              @for (fareDto of fare.flightFaresDTOs; track fareDto) {
+                <!-- @if (fareDto.fareType === 'BaseFare') {
+                  <div class="ticket-details">
+                    @if (
+                      (fare.flightFaresDTOs | fareFilter: 'EquivFare')?.fareAmount &&
+                      (fare.flightFaresDTOs | fareFilter: 'EquivFare')?.fareAmount !== fareDto.fareAmount
+                    ) {
+                      <p class="fare">{{ 'checkout.BreakDown.fareType.baseFare' | translate }}</p>
+                      <p>{{ (fare.flightFaresDTOs | fareFilter: 'EquivFare')?.fareAmount |exchange:'value'}}</p>
+                    } @else {
+                      <p class="fare">{{ 'checkout.BreakDown.fareType.baseFare' | translate }}</p>
+                      <p>{{ fareDto.fareAmount |exchange:'value'}}</p>
+                    }
+                  </div>
+                }
+                @if (fareDto.fareType === 'TotalTax') {
+                  <div class="ticket-details">
+                    <p class="fare">{{ 'checkout.BreakDown.fareType.totalTax' | translate }}</p>
+                    <p>{{ fareDto.fareAmount | exchange:'value'}}</p>
+                  </div>
+                } -->
+              }
+            }
+          </ng-container>
+        }
+      }
+      <div class="teicket-details"></div>
+      @if (selectedFlight?.airItineraryDTO?.itinTotalFare?.dValue > 0) {
+        <hr />
+        <div class="ticket-details">
+          <p class="fare">{{ 'checkout.BreakDown.discount' | translate }}</p>
+          <p>
+            (
+            {{ selectedFlight?.airItineraryDTO?.itinTotalFare?.dValue | exchange: 'value' }}
+            {{ selectedFlight?.airItineraryDTO?.itinTotalFare?.currencyCode | exchange: 'code' }}
+            )
+          </p>
+        </div>
+      }
+      <!-- @if (selectedFlight?.airItineraryDTO?.itinTotalFare?.mValue > 0) {
+        <hr />
+        <div class="ticket-details">
+          <p class="fare">{{ 'checkout.BreakDown.serviceCharge' | translate }}</p>
+          <p>
+            {{ selectedFlight?.airItineraryDTO?.itinTotalFare?.currencyCode | exchange: 'code' }}
+            {{ selectedFlight?.airItineraryDTO?.itinTotalFare?.mValue | exchange: 'value' }}
+          </p>
+        </div>
+      } -->
+      <!-- @if(sharedService.selectedGateway && sharedService.selectedGateway.Amount > 0 ){
+        <hr />
+        <div class="ticket-details">
+          <p class="fare fw-bold">{{ 'checkout.BreakDown.serviceCharge' | translate }}</p>
+          <p>
+            {{ (sharedService.selectedGateway.Amount) | exchange: 'value' }}
+            {{ sharedService.selectedGateway.Currency | exchange: 'code' }}
+          </p>
+        </div>
+      } -->
+      <hr />
+      <div class="ticket-details">
+        <p class="fare fw-bold">{{ 'checkout.BreakDown.fareType.totalFare' | translate }}</p>
+        <p>
+          @if (sharedService.selectedGateway && sharedService.selectedGateway.Amount > 0) {
+            {{
+              selectedFlight?.airItineraryDTO?.itinTotalFare?.amount + sharedService.selectedGateway.Amount
+                | exchange: 'value'
+            }}
+          } @else {
+            {{ selectedFlight?.airItineraryDTO?.itinTotalFare?.amount | exchange: 'value' }}
+          }
+          {{ selectedFlight?.airItineraryDTO?.itinTotalFare?.currencyCode | exchange: 'code' }}
+        </p>
+      </div>
+    } @else {
+      @if (isLoading || flightCheckoutService.loader || flightresult.isBrandedFaresLoading) {
+        <div class="loading-container d-flex align-items-center justify-content-center">
+          <mat-spinner diameter="50" strokeWidth="3"></mat-spinner>
+          <p class="loading-text"></p>
+        </div>
+      } @else {
+        @if (brand && brand.passengerFareBreakDowns) {
+          @for (fare of brand.passengerFareBreakDowns; track fare) {
+            <ng-container [ngSwitch]="fare.passengerType">
+              <div class="ticket-details">
+                <p class="fw-bold">
+                  {{
+                    fare.passengerType === 'ADT'
+                      ? ('checkout.BreakDown.passengerType.adultFare' | translate)
+                      : fare.passengerType === 'CNN' || fare.passengerType === 'CHD'
+                        ? ('checkout.BreakDown.passengerType.childFare' | translate)
+                        : ('checkout.BreakDown.passengerType.infantFare' | translate)
+                  }}
+                  :
+                </p>
+                <p>
+                  {{ (fare.flightFaresDTOs | fareFilter: 'TotalFare')?.currencyCode | exchange: 'code' }}
+                  {{
+                    (brand?.airItineraryDTO?.itinTotalFare?.mValue > 0 && fare.passengerType === 'ADT'
+                      ? (fare.flightFaresDTOs | fareFilter: 'TotalFare')?.fareAmount +
+                        selectedFlight?.airItineraryDTO?.itinTotalFare?.mValue / fare.passengerQuantity
+                      : (fare.flightFaresDTOs | fareFilter: 'TotalFare')?.fareAmount
+                    ) | exchange: 'value'
+                  }}
+                  x {{ fare.passengerQuantity }}
+                </p>
+              </div>
+              @if (fare.flightFaresDTOs) {
+                <!-- @for (fareDto of fare.flightFaresDTOs; track fareDto) {
+                  @if (fareDto.fareType === 'BaseFare') {
+                    <div class="ticket-details">
+                      @if (
+                        (fare.flightFaresDTOs | fareFilter: 'EquivFare')?.fareAmount &&
+                        (fare.flightFaresDTOs | fareFilter: 'EquivFare')?.fareAmount !== fareDto.fareAmount
+                      ) {
+                        <p class="fare">{{ 'checkout.BreakDown.fareType.baseFare' | translate }}</p>
+                        <p>{{ (fare.flightFaresDTOs | fareFilter: 'EquivFare')?.fareAmount }}</p>
+                      } @else {
+                        <p class="fare">{{ 'checkout.BreakDown.fareType.baseFare' | translate }}</p>
+                        <p>{{ fareDto.fareAmount }}</p>
+                      }
+                    </div>
+                  }
+                  @if (fareDto.fareType === 'Taxes') {
+                    <div class="ticket-details">
+                      <p class="fare">{{ 'checkout.BreakDown.fareType.totalTax' | translate }}</p>
+                      <p>{{ fareDto.fareAmount }}</p>
+                    </div>
+                  }
+                } -->
+              }
+            </ng-container>
+          }
+          @if (brand?.airItineraryDTO?.itinTotalFare?.dValue > 0) {
+            <hr />
+            <div class="ticket-details">
+              <p class="fare">{{ 'checkout.BreakDown.discount' | translate }}</p>
+              <p>
+                (
+                {{ brand?.airItineraryDTO?.itinTotalFare?.dValue | exchange: 'value' }}
+                {{ brand?.airItineraryDTO?.itinTotalFare?.currencyCode | exchange: 'code' }}
+                )
+              </p>
+            </div>
+          }
+          <!-- @if (selectedFlight?.airItineraryDTO?.itinTotalFare?.mValue > 0) {
+            <hr />
+            <div class="ticket-details">
+              <p class="fare">{{ 'checkout.BreakDown.servcieCharge' | translate }}</p>
+              <p>
+                {{ selectedFlight?.airItineraryDTO?.itinTotalFare?.currencyCode | exchange: 'code' }}
+                {{ selectedFlight?.airItineraryDTO?.itinTotalFare?.mValue | exchange: 'value' }}
+              </p>
+            </div>
+          } -->
+          <!-- @if(sharedService.selectedGateway && sharedService.selectedGateway.Amount > 0 ){
+            <hr />
+            <div class="ticket-details">
+              <p class="fare fw-bold">{{ 'checkout.BreakDown.serviceCharge' | translate }}</p>
+              <p>
+                {{ (sharedService.selectedGateway.Amount) | exchange: 'value' }}
+                {{ sharedService.selectedGateway.Currency | exchange: 'code' }}
+              </p>
+            </div>
+          } -->
+          @if (brand?.itinTotalFare) {
+            <hr />
+            <div class="ticket-details">
+              <p class="fare fw-bold">{{ 'checkout.BreakDown.fareType.totalFare' | translate }}</p>
+              <p>
+                @if (sharedService.selectedGateway && sharedService.selectedGateway.Amount > 0) {
+                  {{ brand.itinTotalFare.amount + sharedService.selectedGateway.Amount | exchange: 'value' }}
+                } @else {
+                  {{ brand.itinTotalFare.amount | exchange: 'value' }}
+                }
+                {{ brand.itinTotalFare.currencyCode | exchange: 'code' }}
+              </p>
+            </div>
+          }
+        }
+      }
+    }
+  }
+</div>

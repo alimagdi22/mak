@@ -1,0 +1,7 @@
+<ng-container [formGroup]="flightResultService.filterForm">
+  <ng-container formGroupName="stopsForm">
+    @for (stop of stopsFilter; track stop.title; let i = $index) {
+      <mat-checkbox color="primary" [formControlName]="stop.formControlName">{{ stop.title | translate }}</mat-checkbox>
+    }
+  </ng-container>
+</ng-container>

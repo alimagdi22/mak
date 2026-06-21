@@ -1,0 +1,33 @@
+<div class="container-fluid" [formGroup]="flightResultService.filterForm">
+  <mat-slider
+    [min]="flightResultService.minPriceValueForSlider - 1"
+    [max]="flightResultService.maxPriceValueForSlider + 1"
+    class="slider"
+  >
+    <input
+      [value]="flightResultService.priceMinValue - 1"
+      matSliderStartThumb
+      placeholder="Min"
+      formControlName="minpriceSlider"
+    />
+    <input
+      [value]="flightResultService.priceMaxValue + 1"
+      matSliderEndThumb
+      placeholder="Max"
+      formControlName="maxpriceSlider"
+    />
+  </mat-slider>
+
+  <div class="prices">
+    <app-max-min
+      [title]="'minPrice' | translate"
+      [price]="(flightResultService.filterForm.get('minpriceSlider')?.value ?? 0) - 1 | exchange: 'value'"
+      class="prices__min"
+    />
+    <app-max-min
+      [title]="'maxPrice' | translate"
+      [price]="(flightResultService.filterForm.get('maxpriceSlider')?.value ?? 0) + 1 | exchange: 'value'"
+      class="prices__max"
+    />
+  </div>
+</div>

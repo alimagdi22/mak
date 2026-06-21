@@ -1,0 +1,26 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  .options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+
+    app-schedule-option {
+      flex-grow: 1;
+      flex-basis: 40%;
+    }
+  }
+}
+
+.text-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.flip-icon {
+  transform: rotateZ(180deg);
+}

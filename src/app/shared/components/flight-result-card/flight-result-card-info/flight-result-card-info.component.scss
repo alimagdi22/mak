@@ -1,0 +1,22 @@
+.segment {
+  .segment-time {
+    font-weight: 700;
+    font-size: 18px;
+    
+  }
+
+  p {
+    margin-bottom: 0;
+  }
+}
+.stop {
+  display: flex;
+  gap: 15px;
+}
+.segment-airport {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%; /* أو أي عرض ثابت يناسبك */
+  display: block;  /* مهم علشان النص يتعامل كبلوك */
+}

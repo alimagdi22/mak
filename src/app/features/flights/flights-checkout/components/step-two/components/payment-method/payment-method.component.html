@@ -1,0 +1,189 @@
+<div class="payment-container">
+  <!-- Error Popup -->
+  @if(flightCheckoutService.paymentError){
+    <div class="error-popup-overlay">
+      <div class="error-popup">
+        <div class="error-icon">
+          <i class="bi bi-exclamation-circle"></i>
+        </div>
+        <h3 class="error-title">{{ 'checkout.payment.errorTitle' | translate }}</h3>
+        <p class="error-message">{{ 'checkout.payment.errorMessage' | translate }}</p>
+        <button class="error-button" (click)="redirectToHome()">
+          {{ 'checkout.payment.tryAgain' | translate }}
+        </button>
+      </div>
+    </div>
+  }
+  <!-- Header -->
+
+  <!-- Payment Method -->
+  <div class="section" *ngIf="paymentData$ | async as paymentData; else loading">
+    @if (sharedService.screenWidth >= sharedService.webViewBreakPoint) {
+      <h1
+        class="payment-header"
+        [class.nargin-en]="currentLang === 'en'"
+        [ngStyle]="
+          currentLang === 'ar' && sharedService.screenWidth > sharedService.webViewBreakPoint
+            ? { 'margin-left': '80px' }
+            : {}
+        "
+      >
+        {{ 'checkout.payment.paymentSelectionDesktop' | translate }}
+      </h1>
+    } @else {
+      <h1
+        class="payment-header"
+        [class.nargin-en]="currentLang === 'en'"
+        [ngStyle]="
+          currentLang === 'ar' && sharedService.screenWidth > sharedService.webViewBreakPoint
+            ? { 'margin-left': '160px' }
+            : {}
+        "
+      >
+        {{ 'checkout.payment.paymentSelection' | translate }}
+      </h1>
+    }
+    <div class="payment-method">
+      <div *ngFor="let gateway of paymentData; let i = index">
+        <div class="option" [ngClass]="{ selected: selectedOption === i }" (click)="selectOption(i, gateway)">
+          <img [alt]="gateway.PaymentMethod" [src]="gateway.cardImg" class="cards-img" title="Payment Method Image" />
+        </div>
+      </div>
+    </div>
+    <div [style.display]="showMPGSPayment ? 'block' : 'none'" class="payment-session container">
+      <div class="loading-msg payment-label" *ngIf="!mpgsSessionInitialized">{{"checkout.payment.loadingMsg"| translate}}</div>
+      <div class="card-data"  [ngClass]="{ 'invisible-section': !mpgsSessionInitialized }">
+        <div class="payment-label" [ngClass]="{'arabic-label': currentLang==='ar'}">{{"checkout.payment.cardMsg"| translate}}</div>
+         <label class="payment-label" [ngClass]="{'arabic-label': currentLang==='ar'}">{{currentLang === 'en' ? 'Card Number' : 'رقم البطاقة'}}</label>
+      <input type="text" id="card-number" [ngClass]="{'arabic-placeholder': currentLang==='ar'}"  placeholder=" {{currentLang === 'en' ? 'Enter your Card Number' :'ادخل رقم البطاقة'}}" class="payment-input"  readonly />
+      <div class="d-flex row justify-content-center">
+        <div class="col-6">
+          <label class="payment-label" [ngClass]="{'arabic-label': currentLang==='ar'}">{{currentLang === 'en' ? 'Expiry Month' : 'شهر انتهاء البطاقة'}}</label>
+          <input type="text" id="expiry-month"  placeholder="MM" class="payment-input" readonly />
+        </div>
+        <div class="col-6">
+          <label class="payment-label" [ngClass]="{'arabic-label': currentLang==='ar'}">{{currentLang === 'en' ? 'Expiry Year' : 'سنة انتهاء البطاقة'}}</label>
+          <input type="text" id="expiry-year" placeholder="YY" class="payment-input" readonly />
+        </div>
+      </div>
+
+      <label class="payment-label"[ngClass]="{'arabic-label': currentLang==='ar'}">{{currentLang === 'en' ? 'Security Code (CVV)' :'الرمز (CVV)'}}</label>
+      <input type="text" id="security-code" [ngClass]="{'arabic-placeholder': currentLang==='ar'}" placeholder="{{currentLang === 'en' ? 'Enter your CVV Code' :'الرمز'}}" class="payment-input" readonly />
+
+      <label class="payment-label"[ngClass]="{'arabic-label': currentLang==='ar'}">{{currentLang === 'en' ? 'Name on Card' :'الاسم على البطاقة'}}</label>
+      <input type="text" id="cardholder-name" [ngClass]="{'arabic-placeholder': currentLang==='ar'}" placeholder=" {{currentLang === 'en' ? 'Enter your Name on Card' :'ادخل الاسم على البطاقة'}}" class="payment-input" readonly />
+      </div>
+     
+
+    </div>
+
+    <div class="ticket-input-group d-flex align-items-center mt-3 gap-2">
+      <label class="ticket-checkbox">
+        <input type="checkbox" [(ngModel)]="checked" />
+        <span class="ticket-checkmark"></span>
+      </label>
+      <span class="ticket-text" [ngClass]="{ ar: currentLang === 'ar' }">
+        {{ 'checkout.payment.conditionStart' | translate }}
+        <a class="terms-link" [routerLink]="['/terms']" target="_blank">
+          {{ 'checkout.payment.conditionEnd' | translate }}
+        </a>
+      </span>
+    </div>
+  </div>
+
+  <ng-template #loading>
+    <div class="loading-container">
+      <mat-spinner></mat-spinner>
+    </div>
+  </ng-template>
+
+  @if (selectedTicket === 'branded') {
+    <div class="payment-secure-payment d-flex align-content-center gap-2">
+      @if (sharedService.screenWidth <= sharedService.webViewBreakPoint) {
+        <div class="payment-flexible-booking mt-4">
+          <h2 class="payment-flexible-booking-title fw-bold mt-2" [ngClass]="{ ar: currentLang === 'ar' }">
+            {{ 'checkout.ticket.flexible' | translate }}
+          </h2>
+        </div>
+      }
+      <div class="payment-btn-section d-flex gap-2 mt-4">
+        <div class="payment-amount mt-2">
+          @if(sharedService.selectedGateway && sharedService.selectedGateway.Amount > 0 && brandedFare.amount !== undefined){
+            {{ (brandedFare.amount + sharedService.selectedGateway.Amount) | exchange: 'value' }}
+          }@else {
+            {{ brandedFare.amount | exchange: 'value' }}
+          }
+          {{ brandedFare.currencyCode | exchange: 'code' }}
+          @if (sharedService.screenWidth > sharedService.webViewBreakPoint) {
+            <!-- <i class="bi bi-info-circle-fill info-icon"></i> -->
+          }
+        </div>
+        <button
+          mat-raised-button
+          color="primary"
+          class="payment-secure-payment-btn"
+          [ngClass]="{ en: currentLang === 'en' }"
+          (click)="submit(selectedGatway); submitPayment($event)"
+          [disabled]="!checked || !selectedGatway || flightCheckoutService.saveBookingLoadeer"
+        >
+          @if (flightCheckoutService.saveBookingLoadeer) {
+            <mat-progress-spinner
+              diameter="20"
+              mode="indeterminate"
+              color="accent"
+              strokeWidth="3"
+              class="spinner"
+            ></mat-progress-spinner>
+          } @else {
+            <span *ngIf="!flightCheckoutService.saveBookingLoadeer">
+              {{ 'checkout.payment.securePayment' | translate }}
+            </span>
+          }
+        </button>
+      </div>
+    </div>
+  } @else {
+    <div class="payment-secure-payment d-flex align-content-center gap-2">
+      @if (sharedService.screenWidth <= sharedService.webViewBreakPoint) {
+        <div class="payment-flexible-booking mt-4">
+          <h2 class="payment-flexible-booking-title fw-bold mt-2" [ngClass]="{ ar: currentLang === 'ar' }">
+            {{ 'checkout.ticket.standard' | translate }}
+          </h2>
+        </div>
+      }
+      <div class="payment-btn-section d-flex gap-2 mt-4">
+        <div class="payment-amount mt-2">
+          @if(sharedService.selectedGateway && sharedService.selectedGateway.Amount > 0){
+            {{ (selectedFlight.airItineraryDTO.itinTotalFare.amount +  (sharedService.selectedGateway ? sharedService.selectedGateway.Amount : 0) )| exchange: 'value' }}
+          }@else {
+            {{ selectedFlight.airItineraryDTO.itinTotalFare.amount | exchange: 'value' }}
+          }
+          {{ selectedFlight.airItineraryDTO.itinTotalFare.currencyCode | exchange: 'code' }}
+          @if (sharedService.screenWidth > sharedService.webViewBreakPoint) {
+            <!-- <i class="bi bi-info-circle-fill info-icon"></i> -->
+          }
+        </div>
+        <button
+          class="payment-secure-payment-btn"
+          [ngClass]="{ en: currentLang === 'en' }"
+          (click)="submit(selectedGatway); submitPayment($event)"
+          [disabled]="!checked || !selectedGatway"
+        >
+          @if (flightCheckoutService.saveBookingLoadeer) {
+            <mat-progress-spinner
+              diameter="20"
+              mode="indeterminate"
+              color="accent"
+              strokeWidth="3"
+              class="spinner"
+            ></mat-progress-spinner>
+          } @else {
+            <span *ngIf="!flightCheckoutService.saveBookingLoadeer">
+              {{ 'checkout.payment.securePayment' | translate }}
+            </span>
+          }
+        </button>
+      </div>
+    </div>
+  }
+</div>

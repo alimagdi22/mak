@@ -1,0 +1,24 @@
+$space: 12px;
+
+.why-us-card {
+  background-color: white;
+  box-shadow: 1px 1px 12px 0px #0000001a;
+  padding: $space;
+  border-radius: 16px;
+
+  display: flex;
+  gap: $space;
+  margin-block: 30px;
+  margin-inline: 10px;
+
+  &__text {
+    &__title {
+      font-weight: bold;
+    }
+
+    &__paragraph {
+      text-align: center;
+      font-size: 12px;
+    }
+  }
+}
